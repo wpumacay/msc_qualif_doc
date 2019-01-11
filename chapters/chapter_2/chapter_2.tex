@@ -1,0 +1,77 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Chapter 2 : Background
+%%
+%%      * Should give the necessary info/math/tools to understand the proposal
+%%
+%%  BASIC STRUCTURE :
+%%
+%%      a. DRL overview
+%%            * RL definition
+%%            * RL mathematical problem formulation
+%%            * RL methods
+%%              > Value based methods
+%%                  - Exact methods using DP (planning by DP)
+%%                  - Model free prediction (MonteCarlo and TD learning)
+%%                  - Model free control (MonteCarlo, SARSA and Q-learning)
+%%              > Policy based methods
+%%                  - Policy gradients
+%%                  - Actor Critic methods
+%%            * RL with function approximation
+%%            * DeepRL overview (DQN, PPO)
+%%
+%%      b. Simulated environments (talk about ALE, Gym)
+%%          * Why is this important?
+%%          * Some success stories
+%%
+%%      c. Simulated environments for robot locomotion
+%%          * Physics engines
+%%          * Robot representations
+%%              - Kinematic trees
+%%              - Model formats (urdf,mjcf,sdf)
+%%              - Actuation models
+%%          * Generic framework architecture
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Background}
+\label{ch:background}
+
+\input{./chapters/chapter_2/chapter_2_figs}
+
+In this chapter we we will give an overview of the core concepts needed to
+understand the following chapters in this document. 
+
+
+\begin{itemize}
+    \item We start by giving a \textbf{brief overview of the field of Deep Reinforcement Learning}.
+    \item Then we give an overview of \textbf{learning environments}, why are they 
+          important and some examples used incurrent Deep Reinforcement Learning research.
+    \item Finally we give a more specific overview of \textbf{learning environments 
+          for robot locomotion}, what are their components, and some concepts about their design.
+\end{itemize}
+
+
+\section{Deep Reinforcement Learning}
+
+At a very high level Deep Reinforcement Learning (DRL) could be thought as combination 
+of current Deep Learning (DL) models and techniques, with the framework of Reinforcement 
+Learning (RL), to solve complex RL problems. This combination has given impressive 
+results over the past few years, like being able to play a suite of atari games [@CITE], 
+beating the world Go champion [@CITE], making simulated characters develop locomotion
+skills [@CITE,@CITE,@CITE], and being able to learning manipulation tasks in real-world
+robotics platforms [@CITE], just to name a few.
+
+We will cover most of the core concepts of the Reinforcement Learning framework in 
+this section (MDPs, Value based methods). Then we will explain the links between 
+Deep Learning and Reinforcement Learning (function approximation, Policy Gradients) and
+finally explain some details of some state-of-the-art DRL algorithms.
+
+\subsection{Reinforcement Learning}
+
+Reinforcement Learning is an overloaded term that encloses both a \textbf{learning approach}
+and the \textbf{algorithms} that solve problems in this paradigm. RL as a learning approach
+is a learning paradigm, like supervised and unsupervised learning, with the difference that
+an \textbf{agent} has to \textbf{learn from interaction} with an environment.
+
+\figrlloop
+

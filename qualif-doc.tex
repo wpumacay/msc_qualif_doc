@@ -1,0 +1,75 @@
+\documentclass[a4paper,12pt,twoside,openright]{book} 
+\input{Includes.tex}
+\input{./includes/colors.tex}
+
+%% \usepackage[T1]{fontenc}
+%% \usepackage[utf8]{inputenc}
+%% \usepackage{lmodern}
+
+\fontfamily{lmtt}\selectfont
+
+\addto\extrasenglish{%
+  \renewcommand{\chapterautorefname}{Chapter}%
+  \renewcommand{\sectionautorefname}{Section}%
+}
+
+\hyphenation{fi-gu-re}
+\hyphenation{le-gend}
+\hyphenation{i-ma-ges}
+\hyphenation{i-ma-ge}
+\hyphenation{va-lues}
+\hyphenation{va-lue}
+\hyphenation{bet-ween}
+\hyphenation{a-chie-ving}
+
+
+\pagenumbering{Roman} 
+
+\title{Evaluation of Deep Reinforcement Learning algorithms in Rich and Complex Environments for Continuous Control}
+\author{Wilbert Santos Pumacay Huallpa}
+\orientador{Dr. Jose Ochoa Luna}
+\jurado
+{
+Dr. Foo -- Foo-univ % @REPLACE_JUDGES
+Dr. Bar -- Bar-univ % @REPLACE_JUDGES
+Dr. Fun -- Fun-univ % @REPLACE_JUDGES
+}
+
+\dedicado{
+%Aquí deberás colocar a quien va dedicada tu tesis por ejemplo: A Dios, por todo lo que me ha dado, a todos los profesores por sus enseñanzas y algunos amigos.
+% To my parents.
+}
+
+\begin{document}
+\maketitle 
+
+% \include{abbreviations}
+% \input{acknowledgments}
+% \input{./abstract/abstract_en}
+% \input{./abstract/abstract_es} 
+
+\tableofcontents 
+% \listoftables 
+% \addcontentsline{toc}{chapter}{List of Tables}
+%\cleardoublepage
+% \listoffigures 
+% \addcontentsline{toc}{chapter}{List of Figures}
+%\listoftables 
+%\listoffigures 
+
+\clearpage 
+\pagenumbering{arabic} 
+
+\input{./chapters/chapter_1/chapter_1}
+\input{./chapters/chapter_2/chapter_2}
+\input{./chapters/chapter_3/chapter_3}
+\input{./chapters/chapter_4/chapter_4}
+\input{./chapters/chapter_5/chapter_5}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\bibliographystyle{./resources/apabrahand}
+\bibliography{qualif-doc}
+\addcontentsline{toc}{chapter}{Bibliography}
+
+\end{document}

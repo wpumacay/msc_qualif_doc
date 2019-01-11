@@ -1,0 +1,72 @@
+\begin{thebibliography}{}
+
+\bibitem[\protect\astroncite{Andrychowicz et~al.}{2018}]{dexterity-openai}
+Andrychowicz, O.~M., Baker, B., et~al. (2018).
+\newblock Learning dexterous in-hand manipulation.
+
+\bibitem[\protect\astroncite{Brockman et~al.}{2016}]{OpenAIgym}
+Brockman, G., Cheung, V., et~al. (2016).
+\newblock Openai gym.
+
+\bibitem[\protect\astroncite{Catto}{2011}]{Box2D}
+Catto, E. (2011).
+\newblock Box2d: A 2d physics engine for games.
+
+\bibitem[\protect\astroncite{Coumans}{2015}]{Bullet}
+Coumans, E. (2015).
+\newblock Bullet physics simulation.
+\newblock In {\em ACM SIGGRAPH 2015 Courses}, SIGGRAPH '15, New York, NY, USA.
+  ACM.
+
+\bibitem[\protect\astroncite{Duan et~al.}{2016}]{rllab}
+Duan, Y., Chen, X., et~al. (2016).
+\newblock Benchmarking deep reinforcement learning for continuous control.
+\newblock ICML.
+
+\bibitem[\protect\astroncite{Heess et~al.}{2017}]{emergence-of-locomotion}
+Heess, N., TB, D., et~al. (2017).
+\newblock Emergence of locomotion behaviours in rich environments.
+
+\bibitem[\protect\astroncite{Juliani et~al.}{2018}]{unity-ml-agents}
+Juliani, A., Berges, V.-P., et~al. (2018).
+\newblock Unity: A general platform for intelligent agents.
+
+\bibitem[\protect\astroncite{Lee et~al.}{2018}]{DART}
+Lee, J., Grey, M.~X., et~al. (2018).
+\newblock Dart: Dynamic animation and robotics toolkit.
+\newblock Journal of Open Source Software.
+
+\bibitem[\protect\astroncite{OpenAI}{2017}]{roboschool}
+OpenAI (2017).
+\newblock Roboschool.
+
+\bibitem[\protect\astroncite{Peng et~al.}{2016}]{deepterrainrl}
+Peng, X.~B., Berseth, G., et~al. (2016).
+\newblock Terrain-adaptive locomotion skills using deep reinforcement learning.
+\newblock {\em ACM Transactions on Graphics (Proc. SIGGRAPH 2016)}, 35(4).
+
+\bibitem[\protect\astroncite{PhysX}{}]{physX}
+PhysX.
+\newblock Physx. https://developer.nvidia.com/physx-sdk.
+
+\bibitem[\protect\astroncite{RLworkgroup}{}]{garage}
+RLworkgroup.
+\newblock garage. https://github.com/openai/roboschool.
+
+\bibitem[\protect\astroncite{Tan et~al.}{2018}]{simtoreal-quadruped}
+Tan, J., amd Erwin~Coumans, T.~Z., et~al. (2018).
+\newblock Sim-to-real: Learning agile locomotion for quadruped robots.
+
+\bibitem[\protect\astroncite{Tassa et~al.}{2018}]{Controlsuite}
+Tassa, Y., Doron, Y., et~al. (2018).
+\newblock Deepmind control suite.
+
+\bibitem[\protect\astroncite{Todorov et~al.}{2012}]{MuJoCo}
+Todorov, E., Erez, T., et~al. (2012).
+\newblock Mujoco: A physics engine for model-based control.
+
+\bibitem[\protect\astroncite{Unity3d}{}]{unity}
+Unity3d.
+\newblock Unity3d. https://unity3d.com/.
+
+\end{thebibliography}

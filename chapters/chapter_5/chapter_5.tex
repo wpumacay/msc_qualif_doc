@@ -1,0 +1,60 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Chapter 5 : Current progress
+%%
+%%      * Should describe the current state we are in the implementations, research, etc.
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Current progress}
+\label{ch:current_progress}
+
+In this chapter we explain our current results in the implementation of the proposed framework and
+related tools. In section 4.1 we explain the progress made related each component proposed in the
+framework.
+
+\section{Framework progress}
+
+We first start by the model edito, whose current state is shown the following figure. We are
+at a 40\% percent progress related to this component, as the most difficult parts was the underlying
+infrastructure needed to abstract away the physics backends. We have the UI working and ready to be
+linked to the necessary commands to be implemented for the editor.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=6in]{./chapters/imgs/img_current_progress_model_editor.png}
+    \caption[img_cp_model_editor]{Current progress of the model editor}
+    \label{fig:img_cp_model_editor}
+\end{figure}
+
+Then, the terrain generation tools are at a 50\%, and it is working with both Bullet and Mujoco
+as physics backends. The following figures show the progress made with this components in both
+engines.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=6in]{./chapters/imgs/img_current_progress_terrain_generation_1.png}
+    \caption[img_cp_terrain_generation_bullet_1]{Current progress of the terrain generation tools in Bullet}
+    \label{fig:img_cp_terrain_generation_bullet_1}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=6in]{./chapters/imgs/img_current_progress_terrain_generation_2.png}
+    \caption[img_cp_terrain_generation_bullet_2]{Current progress of the terrain generation tools in Bullet}
+    \label{fig:img_cp_terrain_generation_bullet_2}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=6in]{./chapters/imgs/img_current_progress_terrain_generation_3.png}
+    \caption[img_cp_terrain_generation_mujoco_1]{Current progress of the terrain generation tools in MuJoCo}
+    \label{fig:img_cp_terrain_generation_mujoco_1}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=6in]{./chapters/imgs/img_current_progress_terrain_generation_4.png}
+    \caption[img_cp_terrain_generation_mujoco_2]{Current progress of the terrain generation tools in MuJoCo}
+    \label{fig:img_cp_terrain_generation_mujoco_2}
+\end{figure}

@@ -1,0 +1,68 @@
+\ProvidesPackage{hlundef}
+\RequirePackage{color}
+%from inputname.sty
+\let\in@old@input@=\@input@
+\def\@input@#1{%
+	\edef\inputfilename{#1}%
+	\in@old@input@{#1}%
+}
+\let\in@old@input=\@input
+\def\@input#1{%
+	\edef\inputfilename{#1}%
+	\in@old@input{#1}%
+}
+
+\edef\inputfilename{\jobname.tex}
+\AtBeginDocument{
+\gdef\@latex@error#1#2{%
+   \GenericError{%
+      \space\space\space\@spaces\@spaces\@spaces
+   }{%
+\inputfilename:\the\inputlineno:      LaTeX Error: #1%
+   }{%
+      See the LaTeX manual or LaTeX Companion for explanation.%
+   }{#2}%
+}
+\def\@latex@warning#1{%
+   \GenericWarning{%
+      \space\space\space\@spaces\@spaces\@spaces
+   }{%
+\inputfilename:\the\inputlineno:      LaTeX Warning: #1%
+   }%
+}
+}
+% end inputname.sty
+
+\newcommand{\hlu@arrange@undefined}{\hlu@final@arrange@undefined}
+\DeclareOption{draft}{
+	\renewcommand{\hlu@arrange@undefined}{\hlu@draft@arrange@undefined}
+	\let\hlu@final@arrange@undefined=\hlu@draft@arrange@undefined
+}
+\DeclareOption{final}{
+	\renewcommand{\hlu@arrange@undefined}{\hlu@final@arrange@undefined}
+}
+\ExecuteOptions{final}
+\newcommand{\hlu@draft@arrange@undefined}{
+}
+\newcommand{\hlu@final@arrange@undefined}{
+\AtBeginDocument{
+\let\@oldG@refundefinedtrue=\G@refundefinedtrue
+\def\G@refundefinedtrue{%
+	\framebox{\colorbox{red}{\bfseries\color{white}{** Referencia no definida  \inputfilename:\the\inputlineno **}%
+	\immediate\typeout{\inputfilename:\the\inputlineno:Warning: Referencia no definida}%
+	\@oldG@refundefinedtrue
+	}}}
+\@ifpackageloaded{natbib}{
+	\let\@old@NAT@citeundefined=\NAT@citeundefined
+	\def\NAT@citeundefined{%
+		\framebox{\colorbox{red}{\bfseries\color{white}{** Cita no definida en \inputfilename:\the\inputlineno **}%
+		\immediate\typeout{\inputfilename:\the\inputlineno:Warning: Cita no definida}%
+		\@old@NAT@citeundefined
+		}}}
+}{
+}
+}
+}
+\ProcessOptions
+\hlu@arrange@undefined
+\endinput

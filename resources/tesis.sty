@@ -1,0 +1,265 @@
+%\NeedsTeXFormat{LaTeX2e}[01/06/2002]
+%\ProvidesClass{ucsptesis}[19/03/2007 v1.0 UCSP Formato de tesis para la UCSP]
+
+%\DeclareOption*{\PassOptionsToClass{\CurrentOption}{report}}
+%\ProcessOptions*                  
+%\LoadClass[a4paper,openany,12pt]{book}
+
+%*****************************************************************************
+%Definiendo Paquetes
+%*****************************************************************************
+
+%*****************************************************************************
+%Diseí±ando Carátula
+%*****************************************************************************
+\renewcommand{\maketitle}
+{
+    \thispagestyle{empty}
+    
+    \begin{figure}[h]
+    \center
+    \includegraphics[scale = 0.25]{./resources/ucsp.png}
+    \end{figure}
+
+    \begin{center}
+        \vspace*{1cm}
+        {\Large \textbf \@title \par}
+        \vspace*{2cm}
+        {\large \textbf \@author}\\
+        \vspace*{\stretch{1}}
+        \textbf{Advisor: \@orientador}
+        \vspace*{\stretch{1}} \\
+    
+ 
+
+    \textbf{Committee Members:} 
+        \@jurado
+        \vspace*{\stretch{1}}
+
+    \end{center}    
+            
+        \presentar        
+        \vspace*{\stretch{1}}
+    \begin{center}
+        \textbf{Universidad Católica San Pablo -- UCSP}\\
+        \textbf{$\,$\monthname\ of\ \the\year$\,$ -- Arequipa -- Peru}
+    \end{center}
+    \pagebreak
+    \cleardoublepage
+    \dedicatoria
+}
+
+%***************************************************************************** 
+%Diseí±ando presentación 
+%***************************************************************************** 
+\newcommand{\presentacion}{\gdef\@presentacion}
+\presentacion{
+%EN
+Thesis submitted to the \\
+Department of Computer Science \\
+in partial fulfillment of the requirements for the degree of \\
+Master in Computer Science.
+%ES: Tesis presentada al \\ Centro de Investigación e Innovación en Ciencia de la Computación (RICS) \\ como parte de los requisitos para obtener el grado de \\Maestro en Ciencia de la Computación.
+}
+
+\newcommand{\presentar}
+{
+    \begin{center}
+        %\begin{tabular}{p{10cm}}
+            \normalsize\it\@presentacion
+        %\end{tabular}
+    \end{center}
+}
+
+
+%***************************************************************************** 
+%Diseí±ando Orientador 
+%***************************************************************************** 
+\newcommand{\orientador}{\gdef\@orientador}
+\newcommand{\jurado}{\gdef\@jurado}
+
+
+%*****************************************************************************
+%Diseí±ando Dedicatoria
+%*****************************************************************************
+\newcommand{\dedicado}{\gdef\@dedicado}
+\dedicado{}
+
+\newcommand{\dedicatoria}
+{
+    \begin{flushright}
+        \vspace*{2.6cm}
+        \begin{tabular}{p{7cm}}
+            \normalsize\it\@dedicado
+        \end{tabular}
+    \end{flushright}
+    \thispagestyle{empty}
+}
+
+
+%*****************************************************************************
+%Diseí±ando Agradecimientos
+%*****************************************************************************
+\newenvironment{agradecimientos}
+{
+    \chapter*{Acknowledgments}
+    \hrule
+    \vspace*{0.5cm}
+    \parindent 0cm
+    \narrower
+    \vfill
+    \thispagestyle{empty}
+}
+{
+    \vfill
+    \vfill
+    \vfill
+    \clearpage
+}
+
+
+%*****************************************************************************
+%Diseí±ando Abstract ACM
+%*****************************************************************************
+\newenvironment{abstract_fig}
+{   
+}
+{
+    \vfill
+    \vfill
+    \vfill
+    \clearpage
+}
+
+
+%*****************************************************************************
+%Diseí±ando Abstract
+%*****************************************************************************
+\newenvironment{abstract}
+{
+    \chapter*{Abstract}
+    \hrule
+    \vspace*{0.5cm}
+    \narrower
+    \vfill
+    \thispagestyle{empty}
+}
+{
+    \vfill
+    \vfill
+    \vfill
+    \clearpage
+}
+
+
+%*****************************************************************************
+%Diseí±ando Resumen
+%*****************************************************************************
+\newenvironment{resumen}
+{
+    \chapter*{Resumen}
+    \hrule
+    \vspace*{0.5cm}
+    \narrower
+    \vfill
+    \thispagestyle{empty}
+}
+{
+    \vfill
+    \vfill
+    \vfill
+    \clearpage
+}
+
+
+%*****************************************************************************
+%Diseí±ando los índices
+%*****************************************************************************
+%\newif \if@listtab
+%\newif \if@listfig
+
+%\newcommand{\itb}{\@listtabtrue}
+%\newcommand{\ifg}{\@listfigtrue}
+%
+%\newcommand{\indice}[1]
+%{    
+%    #1
+%    \pagenumbering{arabic}
+%    
+%    \tableofcontents
+%    
+%    \if@listtab
+%        \listoftables
+%    \fi
+%    
+%    \if@listfig
+%        \listoffigures
+%    \fi
+%}
+
+
+%*****************************************************************************
+%Diseí±ando Encabezado y Pie de Página
+%*****************************************************************************
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LO]{\leftmark}
+\fancyhead[RE]{\rightmark}
+%\fancyfoot[CE,CO]{Programa de Maestría en Ciencia de la Computación - UCSP}
+\fancyfoot[CE,CO]{Master Program in Computer Science - UCSP}
+\fancyfoot[LE,RO]{\thepage}
+
+\renewcommand{\chaptermark}[1]
+    {\markboth{\MakeUppercase{\chaptername}\ \thechapter. #1}{}}
+\renewcommand{\sectionmark}[1]
+    {\markright{\thesection. #1}}
+\renewcommand{\headrulewidth}{0.1pt}
+\renewcommand{\footrulewidth}{0.1pt}
+
+
+%*****************************************************************************
+%Diseí±ando Párrafos
+%*****************************************************************************
+\parindent 1cm
+\parskip 0.4cm
+
+
+%*****************************************************************************
+%Diseí±ando la Bibliografí­a
+%*****************************************************************************
+\newcommand{\bibliografia}[1]
+{
+    
+}
+
+
+%*****************************************************************************
+%Mensajes de Error
+%*****************************************************************************
+\renewcommand{\@title}{\ClassError{UCSP}{Falta especificar \string\title{}}
+ {Use el comando \string\title{} en el preambulo para especificar \MessageBreak
+  el titulo de su tesis.}}
+\renewcommand{\title}[1]{\gdef\@title{#1}}
+
+\renewcommand{\@author}{\ClassError{UCSP}{Falta especificar \string\author{}}
+ {Use el comando \string\author{} en el preambulo para especificar su nombre.}}
+\renewcommand{\author}[1]{\gdef\@author{#1}}
+
+\renewcommand{\@dedicado}{\ClassError{UCSP}{Falta especificar \string\dedicado{}}
+ {Use el comando \string\dedicado{} en el preambulo para especificar su dedicatoria.}}
+\renewcommand{\dedicado}[1]{\gdef\@dedicado{#1}}
+
+
+%*****************************************************************************
+%Nombre de mes
+%*****************************************************************************
+\newcommand{\mes}{\ifcase\month\or Enero\or Febrero\or
+      Marzo\or Abril\or Mayo\or Junio\or Julio\or Agosto\or Septiembre\or
+      Octubre\or Noviembre\or Diciembre\fi}
+\newcommand{\monthname}{\ifcase\month\or January\or February\or
+      March\or April\or May\or June\or July\or August\or September\or
+      October\or November\or December\fi}
+
+
+%*****************************************************************************
+\endinput
