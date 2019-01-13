@@ -6,7 +6,127 @@
     \begin{figure}
         \centering
         \includegraphics[width=5in]{./chapters/chapter_2/imgs/img_rl_loop.png}
-        \caption[RL interaction loop]{Agent-Environment interaction loop}
-        \label{fig:ch2:rlloop}
+        \caption{Agent-Environment interaction loop}
+        \label{fig:ch2_rlloop}
+    \end{figure}
+}
+
+\newcommand{\figdrlsamplesFirst}{
+    \begin{figure}
+        \centering
+        \begin{subfigure}[b]{0.4\textwidth}
+            \centering
+            \includegraphics[width=0.9\textwidth]{./chapters/chapter_2/imgs/img_dqn_breakout.png}
+            \caption{}
+            \label{fig:ch2_dqn_breakout}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.4\textwidth}
+            \centering
+            \includegraphics[width=0.9\textwidth]{./chapters/chapter_2/imgs/img_alphago.png}
+            \caption{}
+            \label{fig:ch2_alphago}
+        \end{subfigure}
+        \caption{Some DeepRL success stories: (a) DQN agent playing atari breakout [@CITE],
+                                              (b) AlphaGo playing against Go champion Lee Sedol [@CITE]}
+        \label{fig:ch2_drl_stories_1}
+    \end{figure}
+}
+
+\newcommand{\figdrlsamplesSecond}{
+    \begin{figure}
+        \centering
+        \begin{subfigure}[b]{0.3\textwidth}
+            \centering
+            \includegraphics[width=0.9\textwidth]{./chapters/chapter_2/imgs/img_emergence_of_locomotion.png}
+            \caption{}
+            \label{fig:ch2_emergence_of_locomotion}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.3\textwidth}
+            \centering
+            \includegraphics[width=0.9\textwidth]{./chapters/chapter_2/imgs/img_deepterrainrl.png}
+            \caption{}
+            \label{fig:ch2_deepterrainrl}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.3\textwidth}
+            \centering
+            \includegraphics[width=0.9\textwidth]{./chapters/chapter_2/imgs/img_deepmimic.png}
+            \caption{}
+            \label{fig:ch2_deepmimic}
+        \end{subfigure}
+        \caption{Some DeepRL success stories: (a) Deepmind's agent running in a simulated environment [@CITE],
+                                              (b) Simulated dog running in a course with obstacles [@CITE],
+                                              (c) Simulated character running in an obstacle course, while 
+                                                  mimicking humans' natural motion [@CITE]}
+        \label{fig:ch2_drl_stories_2}
+    \end{figure}
+}
+
+\newcommand{\figdrlsamplesThird}{
+    \begin{figure}
+        \centering
+        \begin{subfigure}[b]{0.3\textwidth}
+            \centering
+            \includegraphics[width=0.9\textwidth]{./chapters/chapter_2/imgs/img_visual_motor_control.png}
+            \caption{}
+            \label{fig:ch2_visual_motor_control}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.3\textwidth}
+            \centering
+            \includegraphics[width=0.9\textwidth]{./chapters/chapter_2/imgs/img_vision_based_robotics.png}
+            \caption{}
+            \label{fig:ch2_vision_based_robotics}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.3\textwidth}
+            \centering
+            \includegraphics[width=0.9\textwidth]{./chapters/chapter_2/imgs/img_sim_2_real.png}
+            \caption{}
+            \label{fig:ch2_sim_2_real}
+        \end{subfigure}
+        \caption{Some DeepRL success stories: (a) PR2 robot learning manipulation tasks [@CITE],
+                                              (b) Learning more manipulation tasks using lots of robots [@CITE],
+                                              (c) Quadruped running in the real world [@CITE]}
+        \label{fig:ch2_drl_stories_3}
+    \end{figure}
+}
+
+\newcommand{\figMdpSamples}{
+    \begin{figure}
+        \centering
+        \begin{subfigure}[b]{0.9\textwidth}
+            \centering
+            \includegraphics[width=0.9\textwidth]{./chapters/chapter_2/imgs/img_rl_mdp_atari.png}
+            \caption{}
+            \label{fig:ch2_mdp_sample_atari}
+        \end{subfigure}
+
+        \centering
+        \begin{subfigure}[b]{0.9\textwidth}
+            \centering
+            \includegraphics[width=0.9\textwidth]{./chapters/chapter_2/imgs/img_rl_mdp_locomotion.png}
+            \caption{}
+            \label{fig:ch2_mdp_sample_locomotion}
+        \end{subfigure}
+        \caption{Some examples of MDPs: (a) MDP modelling an Atari game. 
+                                        (b) MDP modelling a locomotion task.}
+        \label{fig:ch2_mdps_samples}
+    \end{figure}
+}
+
+\newcommand{\figRlPolicies}{
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.9\textwidth]{./chapters/chapter_2/imgs/img_rl_policies.png}
+        \caption{Differences between deterministic and stochastic policies.}
+        \label{fig:ch2_rl_policies_differences}
+    \end{figure}
+}
+
+\newcommand{\figRlMethodsLandspace}{
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.9\textwidth]{./chapters/chapter_2/imgs/img_rl_methods.png}
+        \caption{RL solution methods landspace. \textbf{Value-based methods} (right) solve for the policy 
+                 indirectly, whereas \textbf{Policy-based methods} (left) solve for the policy directly.}
+        \label{fig:ch2_rl_policies_differences}
     \end{figure}
 }
