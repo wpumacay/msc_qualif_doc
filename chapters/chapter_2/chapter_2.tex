@@ -7,18 +7,10 @@
 %%  BASIC STRUCTURE :
 %%
 %%      a. DRL overview
-%%            * RL definition
-%%            * RL mathematical problem formulation
+%%            * RL overview
 %%            * RL methods
-%%              > Value based methods
-%%                  - Exact methods using DP (planning by DP)
-%%                  - Model free prediction (MonteCarlo and TD learning)
-%%                  - Model free control (MonteCarlo, SARSA and Q-learning)
-%%              > Policy based methods
-%%                  - Policy gradients
-%%                  - Actor Critic methods
-%%            * RL with function approximation
-%%            * DeepRL overview (DQN, PPO)
+%%            * Policy Optimization
+%%            * Deep Learning and RL
 %%
 %%      b. Simulated environments (talk about ALE, Gym)
 %%          * Why is this important?
@@ -79,9 +71,9 @@ in the context of function approximation.
 \subsection{Reinforcement Learning}
 
 Reinforcement Learning is an overloaded term that encloses both a \textbf{learning approach}
-and the \textbf{algorithms} that solve problems in this paradigm. RL as a learning approach
+and the \textbf{algorithms} that solve problems in this framework. RL as a learning approach
 is a learning paradigm, like supervised and unsupervised learning, with the difference that
-instead of learning from a curated dataset (like in supervised learning) or learning an underlying
+instead of learning from a labeled dataset (like in supervised learning) or learning an underlying
 structure of unlabeled incoming data (like in unsupervised learning), in RL we learn by interactions
 with an environment.
 
@@ -175,7 +167,8 @@ summarized in the categories shown in Figure @FIG-2.7. These include:
 \begin{itemize}
     \item \textbf{Value based methods}, which try to solve for some auxiliary
           functions, called \textit{State-value} and \textit{Action-value} functions
-          and then extract the solution directly.
+          and then extract the solution directly. These methods make use of the Bellman
+          Backups iteratively to find a solution that satisfies the Bellman Equations.
     \item \textbf{Policy based methods}, which solve for the policy directly. These methods
           make use of some parametrization of the policy via some function approximator
           (like a Neural Network), and then search for the parameters of this policy
@@ -184,7 +177,13 @@ summarized in the categories shown in Figure @FIG-2.7. These include:
 
 Most of the current methods used are Policy based methods, specially in the context
 of robot locomotion. In the following section we will cover some concepts used when
-using policy based methods.
+using policy based methods. 
+
+We will also focus specially in \textbf{model-free} methods,
+which don't required information of the transition model of the environment. Most of the
+literature deals with these type of methods, although because of this assumption these
+methods are usually very sample inneficient (need lots of samples of interaction to be
+able to learn).
 
 \subsection{Policy Optimization}
 
@@ -228,8 +227,58 @@ Recall that the agent tries to its maximize expected return, so we can define th
 an objective $J$ that depends on the parameters of our policy as follows:
 
 \begin{equation}
-    J(\theta) = \mathbb{E}_{\tau \sim p(\tau;\theta)}[G(\tau)]
+    J(\theta) = \mathbb{E}_{\tau \sim p(\tau;\theta)}[G(\tau)] = \sum_{\tau} p(\tau;\theta) G(\tau)
 \end{equation}
 
 Where $p(\tau;\theta)$ is a probability distribution of trajectories, induced by
-the parameters of our policy $\theta$ (recall that the agent sees what its policy allows)
+the parameters of our policy $\theta$ (recall that the agent sees what its policy allows).
+We can then optimize for the parameters $\theta$ by computing the gradient of this
+objective function. However, directly trying to compute the gradient of this expectation
+is intractable, so we have to make use of a trick (REINFORCE trick) to be able to
+get an estimate of this gradient [@CITE-sutton-2000].
+
+\begin{theorem}
+    For any differentiable policy $\pi_{\theta}(a|s)$, the gradient of the
+    objective function $J(\theta) = \sum_{\tau} p(\tau;\theta) G(\tau)$ 
+    can be computed using the following policy gradient.
+    \begin{equation}
+        \nabla_{\theta} J(\theta) = \mathbb{E}_{\pi_{\theta}} \lbrace G(\tau) \nabla_{\theta} \log \pi_{\theta} \rbrace
+    \end{equation}
+\end{theorem}
+
+The resulting expression from the previous theoreom needs no information of the model.
+The only requirement is for the policy to be differentiable. We can compute this expected
+gradient by using samples, and then apply gradient ascent in the parameters space to optimize 
+the parameters $\theta$ of our policy.
+
+The intuition of this algorithm is that it is increasing the probability of selecting
+the actions that yielded good results (from the trajectories that gave good returns), 
+and decreasing the probability of selectiong the actions that yielded bad results. This
+is shown in the Figure @FIG-2.7.
+
+\figRlPolicyGradientsIntuition
+
+\subsection{Deep Learning and RL}
+
+As already explained earlier, we make use of function approximation to parametrize
+some component of our RL setup. In value based methods we usually parametrize the
+Action-value function as $Q_{\theta}$, and in policy based methods we parametrize
+the policy as $\pi_{\theta}$. These parametrization can be made by using various
+function approximators, like \textit{linear models}, \textit{fourier basis}, 
+\textit{decision trees}, \textit{radial basis functions}, etc..
+
+Deep learning is used in this context to provide function approximators via Deep
+Neural Networks, as shown in Figure @FIG-2.8. In this case, our $\theta$ parameters are the weights of a neural
+network used to represent our policy. We can use the machinery from before (Policy Gradients)
+to optimize for the parameters of our network.
+
+\figRlPolicyParametrization
+
+\section{Simulated Learning Environments}
+
+@WIP
+
+\section{Simulated Environments for Robot Locomotion}
+
+@WIP
+
