@@ -13,8 +13,6 @@
 %%            * Deep Learning and RL
 %%
 %%      b. Simulated environments (talk about ALE, Gym)
-%%          * Why is this important?
-%%          * Some success stories
 %%
 %%      c. Simulated environments for robot locomotion
 %%          * Physics engines
@@ -274,9 +272,54 @@ to optimize for the parameters of our network.
 
 \figRlPolicyParametrization
 
+The term Deep Reinforcement Learning refers to this approach of using Deep Neural Networks
+as function approximators in the RL framework. The key difference behind this approach
+and previous works that used different function approximators is that in previous works
+the use of function approximators was decoupled from the representation given to the mode.
+The representation was given by features that where hand engineered by the researcher, and then
+combined with the function approximator chosen for the task. The approach that DeepRL follows is 
+different in the sense that we learn the representation via the Deep models we use as function approximators.
+
 \section{Simulated Learning Environments}
 
-@WIP
+One key component of the RL framework (and one that seems to be trivial) is the learning
+environment itself. This learning environment is used by the agent to get samples of
+experience and then learn using the machinery explained in previous sections. It is analogous
+to the role that a dataset plays in Supervised Learning.
+
+These learning environments are usually simulations of some RL tasks that we want an
+agent to learn. This simulated nature of the environment makes it easy to grab as much 
+experience as needed, and because the environment is a simulation we can usuarlly
+speed up the process and take huges amounts of experience for our learning algorithms.
+
+A learning environment is usually designed around the agent interacion loop mentioned
+at the beginning of this chapter. This defines the basic API that such an environment
+has to provide:
+
+\begin{itemize}
+    \item A representation for the \textbf{actions} to take in the simulation.
+    \item A \textbf{reward} to give to the agent because of the action taken.
+    \item A \textbf{state} (or observation) to give to the agent because of the action taken.
+\end{itemize}
+
+Some learning environments have become benchmarks for testing DeepRL algorithms, and
+are widely used because of this standarization. Some of these learning environments
+are:
+
+\begin{itemize}
+    \item \textbf{The Arcade Learning Environment} (ALE) [@CITE], which provides a suite
+           of Atari games to be used as DeepRL benchmarks. This was used in the DQN
+           agent made by Deepmind [@CITE], which started the interest in DeepRL.
+           The core of the environment is an emulator for the Atari 2600 games, and
+           it has functionality to access registers from the emulated game, and return
+           this state. Some of these registers are loaded with the score of the game
+           and can be retrieved to be exposed to the user. The observations consist
+           of frames from the rendered game, which are also exposed to the user. The actions
+           are mapped into the appropiate register that the emulator expects in order
+           to apply the joystick controls in the game.
+    \item \textbf{OpenAI Gym}
+    \item \textbf{Deepmind Lab}
+\end{itemize}
 
 \section{Simulated Environments for Robot Locomotion}
 
