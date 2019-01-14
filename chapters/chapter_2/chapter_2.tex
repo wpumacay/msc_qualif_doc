@@ -303,8 +303,7 @@ has to provide:
 \end{itemize}
 
 Some learning environments have become benchmarks for testing DeepRL algorithms, and
-are widely used because of this standarization. Some of these learning environments
-are:
+are widely used because of this standarization. Just to name a few:
 
 \begin{itemize}
     \item \textbf{The Arcade Learning Environment} (ALE) [@CITE], which provides a suite
@@ -317,8 +316,16 @@ are:
            of frames from the rendered game, which are also exposed to the user. The actions
            are mapped into the appropiate register that the emulator expects in order
            to apply the joystick controls in the game.
-    \item \textbf{OpenAI Gym}
-    \item \textbf{Deepmind Lab}
+    \item \textbf{OpenAI Gym} [@CITE]. This toolkit provides various learning environments
+           as benchmarks for RL algorithms. It contains simple benchmarks, starting from simple
+           toy problems like gridworlds, and it also contains more complicated benchmarks like
+           games (like Atari 2600 games), robotics manipulation tasks and also various
+           robotics locomotion benchmarks, which we will cover in the next section.
+    \item \textbf{Deepmind Lab} [@CITE], which is a 3D learning environment built on top
+           of the Quake game engine, from \textit{Id Software}. It provides various challenging
+           environments like mazes, multi-agent setups, etc. The actions are mapped to a discrete
+           set of actions that the original game engine supported, and the observations consists
+           mainly of the camera frames from the renderer game.
 \end{itemize}
 
 \section{Simulated Environments for Robot Locomotion}
