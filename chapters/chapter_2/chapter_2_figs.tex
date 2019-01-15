@@ -170,8 +170,73 @@
 \newcommand{\figDeepmindLabEnvs}{
     \begin{figure}[H]
         \centering
-        \includegraphics[width=0.7\textwidth]{./chapters/chapter_2/imgs/img_deepmind_lab.png}
+        \includegraphics[width=0.9\textwidth]{./chapters/chapter_2/imgs/img_deepmind_lab.png}
         \caption{Environments in Deepmind Lab}
         \label{fig:ch2_deepmind_lab}
+    \end{figure}
+}
+
+\newcommand{\figPhysicsEngineLoop}{
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.6\textwidth]{./chapters/chapter_2/imgs/img_physics_engine_loop.png}
+        \caption{A common pipeline used by physics engines, from [@CITE-mlcp]}
+        \label{fig:ch2_physics_engines_loop}
+    \end{figure}
+}
+
+\newcommand{\figKinTreeRepresentation}{
+    \begin{figure}
+        \centering
+        \begin{subfigure}[b]{0.45\textwidth}
+            \centering
+            \includegraphics[width=0.9\textwidth]{./chapters/chapter_2/imgs/img_dyno_agent.png}
+            \caption{}
+            \label{fig:ch2_dyno_agent}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.45\textwidth}
+            \centering
+            \includegraphics[width=0.9\textwidth]{./chapters/chapter_2/imgs/img_kinematic_tree.png}
+            \caption{}
+            \label{fig:ch2_kintree}
+        \end{subfigure}
+        \caption{An agent for a locomotion task. a) The agent with its bodies tagged. 
+                                                 b) A kinematic tree representing that agent}
+        \label{fig:ch2_kinematic_tree_representation}
+    \end{figure}
+}
+
+\newcommand{\figActuationModels}{
+    \begin{figure}
+        \centering
+        \begin{subfigure}[b]{0.45\textwidth}
+            \centering
+            \includegraphics[width=0.9\textwidth]{./chapters/chapter_2/imgs/img_actuation_torque.png}
+            \caption{}
+            \label{fig:ch2_actuation_torques}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.45\textwidth}
+            \centering
+            \includegraphics[width=0.9\textwidth]{./chapters/chapter_2/imgs/img_actuation_target_velocities.png}
+            \caption{}
+            \label{fig:ch2_actuation_target_velocities}
+        \end{subfigure}
+
+        \centering
+        \begin{subfigure}[b]{0.45\textwidth}
+            \centering
+            \includegraphics[width=0.9\textwidth]{./chapters/chapter_2/imgs/img_actuation_target_angles.png}
+            \caption{}
+            \label{fig:ch2_actuation_target_angles}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.45\textwidth}
+            \centering
+            \includegraphics[width=0.9\textwidth]{./chapters/chapter_2/imgs/img_actuation_muscle_activation.png}
+            \caption{}
+            \label{fig:ch2_actuation_muscle_activations}
+        \end{subfigure}
+        \caption{An agent for a locomotion task. a) The agent with its bodies tagged. 
+                                                 b) A kinematic tree representing that agent}
+        \label{fig:ch2_actuation_models}
     \end{figure}
 }

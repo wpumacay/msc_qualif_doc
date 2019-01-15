@@ -16,11 +16,8 @@
 %%
 %%      c. Simulated environments for robot locomotion
 %%          * Physics engines
-%%          * Robot representations
-%%              - Kinematic trees
-%%              - Model formats (urdf,mjcf,sdf)
-%%              - Actuation models
-%%          * Generic framework architecture
+%%          * Kinematic trees
+%%          * Actuation models
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Background}
@@ -340,39 +337,94 @@ are widely used because of this standarization. Just to name a few:
 
 \section{Simulated Environments for Robot Locomotion}
 
-We will now talk a bit more about learning environments for robot locomotion tasks.
+In this section we discuss about learning environments for robot locomotion tasks.
 These make use of different components to provide the simulation required for the desired
-tasks (like walking, running, standing, etc.). The main two components we will use
+tasks (like walking, running, standing, etc.). The main components we will use
 to describe these environments are the underlying \textbf{physics engine} used for the simulations, 
-and the user interface exposed to the user through an appropiate \textbf{agent representation}.
+the internal agent representation of an agent by using \textbf{kinematic trees}, and the
+the underlying representation of the agent actions we can apply by using an appropiate \textbf{actuation model}.
 
 \subsection{Physics Engines}
 
-\todo{@WIP}
+The physics engine is the component in charge of simulating the environment by doing the
+required collision checkings and applying the dynamics to the simulated objects. These
+physics engines vary according to the application needed and the methods used for solving
+the underlying problems required for the simulations. A brief summary of the steps involved are
+shown in Figure @FIG-2.13.
+
+\figPhysicsEngineLoop
+
+Different physics engines make changes in different parts of this general pipeline.
+The changes are made based on some tradeoffs that depend on the application. That's
+why some engines are more suited for applications like games (by reducing accuracy for speed)
+and some other are more suited for robotics applications (by being more accurate in 
+contact calculations, actuation models, etc.). Some available physics engines are 
+listed below:
 
 \begin{itemize}
-    \item \textbf{Bullet}, @WIP
-    \item \textbf{MuJoCo}, @WIP
-    \item \textbf{PhysX}, @WIP
-    \item \textbf{FleX}, @WIP
+    \item \textbf{MuJoCo} [@CITE], developed by Emo Todorov, is a recent physics engine
+          used for robotics applications, and widely used for RL locomotion benchmarks through
+          various python packages made by various researchers, like Deepmind's controlsuite [@CITE],
+          Berkeley's Rllab, OpenAI's mujoco-py, etc. This engine is closed source and it
+          requires a license for continuous use.
+
+    \item \textbf{Bullet} [@CITE], developed by Erwin Cowmans, is a very popular opensouce
+          physics engine. It provides both C/C++ and Python APIs, and it's been used in packages
+          like OpenAI's Roboschool [@CITE], and in research in [@CITE,@CITE].
+
+    \item \textbf{PhysX} [@CITE], developed by NVIDIA, is a physics engine used
+          mostly in games, and integrated into game engines like Unity [@CITE] and Unreal [@CITE].
+          It has recently been released as opensource, and version 4.0 has new features
+          that allow to simulate robotics applications more accurately.
+
+    \item \textbf{FleX} [@CITE], developed also by NVIDIA, is a GPU particle-physics engine,
+          it uses position-based dynamics (unlike the others which are force-based), which is
+          more visually pleasing, but not accurate to simulate the real world. The advantage is
+          that is posible to simulate large scenes easily and with very few compute resources.
+          For example, in [@CITE] the authors (also from NVIDIA) developed a simulator based on
+          this physics engine, and they show that they can simulate large scene with hundreds of
+          agents.
 \end{itemize}
 
-\subsection{Agent Representation}
+\subsection{Kinematic trees}
 
-\todo{@WIP}
+A kinematic tree is the internal data structure used to hold the information of
+an agent composed of links (bodies) and joints (constraints). Each node in the 
+tree represents a link of the agent, and it connects to other nodes according to
+the joints shared between these nodes. An example of a kinematic tree is shown in
+Figure @FIG-2.14. 
 
-\subsubsection{Kinematic trees}
+This data structure is usually used for character animation, because by traversing 
+the tree we can propagate the world positions and orientations of each body. In the
+case of robot locomotion is used internally by the engine to do internal calculations,
+some of them related to computing forces and torques using the Featherstone algorithm [@CITE],
+which allows to compute these forces using $O(n)$ cost, where $n$ is the number of
+links in the kinematic tree.
 
-\todo{@WIP}
+\figKinTreeRepresentation
 
-\subsubsection{Model formats}
+\subsection{Actuation models}
 
-\todo{@WIP}
+An actuation model refers to how the simulation handles an input received in an actuator
+of the simulated agent. Depending on the type of actuation model, a given agent
+can behave very different given the same input. Some actuation models are listed below:
 
-\subsubsection{Actuation models}
+\begin{itemize}
+    \item \textbf{Torques}, which are applied directly to the actuated joints.
+    \item \textbf{Target positions}, which are requested angles for the actuated joints,
+          and translated into torques via PD controllers.
+    \item \textbf{Target velocities}, which are requested velocities for the actuated joints,
+          and translated into torques via a P controller over the velocities.
+    \item \textbf{Muscle activations}, which are requested activations to a set of tendons
+          related to an actuated joint.
+\end{itemize}
 
-\todo{@WIP}
+For more details in actuation models, see [@CITE]. Some physics engines don't support 
+various of this actuation models, leaving the user with the responsability to implement
+these models using the primitives provided, which usually consist in torques (like the authors
+of [@CITE] did in its implementation). Figure @FIG-2.15 shows these actuation models 
+(adapted from [@CITE]).
 
-\subsection{Generic Framework Architecture}
+\figActuationModels
 
-\todo{@WIP}
+

@@ -1,0 +1,381 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Chapter 2 : Background
+%%
+%%      * Should give the necessary info/math/tools to understand the proposal
+%%
+%%  BASIC STRUCTURE :
+%%
+%%      a. DRL overview
+%%            * RL overview
+%%            * RL methods
+%%            * Policy Optimization
+%%            * Deep Learning and RL
+%%
+%%      b. Simulated environments (talk about ALE, Gym)
+%%
+%%      c. Simulated environments for robot locomotion
+%%          * Physics engines
+%%          * Robot representations
+%%              - Kinematic trees
+%%              - Model formats (urdf,mjcf,sdf)
+%%              - Actuation models
+%%          * Generic framework architecture
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Background}
+\label{ch:background}
+
+\input{./chapters/chapter_2/chapter_2_figs}
+
+In this chapter we we will give an overview of the core concepts needed to
+understand the following chapters in this document. These include:
+
+
+\begin{itemize}
+    \item A brief overview of the field of \textbf{Deep Reinforcement Learning}, where
+          we describe some concepts of Reinforcement Learning, Deep Learning, and Deep
+          Reinforcement Learning.
+    \item An overview of \textbf{learning environments}, which are a key component of
+          the Reinforcement Learning framework. We analyze why are they important 
+          and some examples used in current Deep Reinforcement Learning research.
+    \item A more specific overview of \textbf{learning environments for robot locomotion}, 
+          what are their components, and some concepts about their design. This is
+          intended for the first half of the proposal which consists of making this type
+          of learning environments.
+\end{itemize}
+
+
+\section{Deep Reinforcement Learning}
+
+At a very high level Deep Reinforcement Learning (DeepRL) could be thought as a combination 
+of current Deep Learning (DL) models and techniques, with the framework of Reinforcement 
+Learning (RL), to solve complex RL problems. This combination has given impressive 
+results over the past few years, like being able to play a suite of atari games [@CITE], 
+beating the world Go champion [@CITE], making simulated characters develop locomotion
+skills [@CITE,@CITE,@CITE], and being able to learn manipulation and locomotion tasks in 
+real-world robotics platforms [@CITE,@CITE], just to name a few.
+
+\figdrlsamplesFirst
+
+\figdrlsamplesSecond
+
+\figdrlsamplesThird
+
+Let's start \todo{Parece un poco informal usar Let's start, usa otra frase o simplemente sácala} 
+by defining Reinforcement Learning and classic solutions methods, and then
+see how Deep Learning fits into this framework by providing a way to capture representation
+in the context of function approximation.
+
+\subsection{Reinforcement Learning}
+\todo{En toda esta subsección no vi una referencia, por lo menos indicar en que autor te basaste para escribirla}
+Reinforcement Learning is an overloaded term that encloses both a \textbf{learning approach}
+and the \textbf{algorithms} that solve problems in this framework. RL as a learning approach \todo{mejor decir directamente que is a learning paradigm like}
+is a learning paradigm , like supervised and unsupervised learning, 
+\todo{Aqui colocar un punto y comenzar con Unlike learning from ... en vez de with the difference...} 
+with the difference that
+instead of learning from a labeled dataset (like in supervised learning) or learning an underlying
+structure of unlabeled incoming data (like in unsupervised learning), in RL we learn by interactions
+with an environment.
+
+In Figure @FIG-2.4 we show the Agent-Environment interaction loop. This represents
+the way an agent in a certain \textbf{state} $S_{t}$ (a certain modeled configuration) interacts 
+with its environments by means of some \textbf{action} $A_{t}$, and models how the environment 
+responds by giving the agent a \textbf{reward} $R_{t+1}$ (basically a score for its interaction) 
+and a \textbf{new state} $S_{t+1}$ (obtained from the environment dynamics).
+
+\figrlloop
+
+We can formalize this setting with Markov Decision Processes (MDPs)\todo{referencia}, which is a framework
+that we can use to model sequential decision making problems with uncertainties.
+
+\begin{definition}
+    A Markov Decision Process (MDP) is a 5-tuple of the following components:
+    \begin{itemize}
+        \item A set of states $s \in S$
+        \item A set of actions $a \in A$
+        \item A transition model $T(s',s,a) = P(s'|s,a)$
+        \item A reward function $R(s',s,a)$
+        \item A discount factor $\gamma$
+    \end{itemize}
+\end{definition}
+
+We have already talked \todo{discussed} about some of the components of an MDP (state, action, reward).
+The remaining components consist of: a transition model of the environment, $P(s'|s,a)$
+which basically models the environment's dynamics into a single conditional probability
+distribution, and a discount factor $\gamma$ that models that \todo{that .. that no suena muy bien} rewards in the future might have
+less importance than rewards now (discounting like when dealing with money). Some examples 
+of problems in RL formulated in the MDP framework are shown in Figure @FIG-2.5.
+
+\figMdpSamples
+
+The objective of the agent is to maximize the expected sum of rewards it gets from
+its interaction with the environment. To achieve this it has to come up with a
+way to select the appropriate actions in a given situation, which in this case is given
+by the state of the agent. To formalize this, let's \todo{usa algo más formal} define some extra concepts:
+
+\begin{itemize}
+    \item \textbf{Returns}, which is a more compact notation to express the sum of rewards.
+    \item \textbf{Policies}, which are the way an agent picks its actions, meaning they
+          are the solution to our RL problem.
+\end{itemize}
+
+\newpage
+
+\begin{definition}
+    The return $G_{t}$ is defined as the sum of rewards an agent gets from its
+    interactions starting at timestep $t$.
+    \begin{equation}
+        G_{t} = \sum_{k=0}^{\infty} \gamma^{k} R_{t+k+1}
+    \end{equation}
+\end{definition}
+
+\begin{definition}
+    A deterministic policy $\pi(s)$ is defined as a mapping between states $s \in S$
+    to action $a \in A$.
+    \begin{equation}
+        \pi : S \rightarrow A
+    \end{equation}
+\end{definition}
+
+\begin{definition}
+    An stochastic policy $\pi(a|s)$ is defined as a conditional probability distribution over
+    states $s \in S$ of a certain action $a \in A$.
+    \begin{equation}
+        \pi : S \times A \rightarrow [0,1]
+    \end{equation}
+\end{definition}
+
+\figRlPolicies
+
+Figure @FIG-2.6 shows the differences between an stochastic policy and a deterministic
+policy. We can reformulate the objective of the agent into the following: \textit{An agent's objective
+in the RL setup is to maximize the expected return $\mathbb{E} \lbrace G_{t} \rbrace$ it
+can get from its interactions with the environment by finding the best policy $\pi$, which
+we call optimal policy, and denote by $\pi^{*}$}
+
+\begin{equation}
+    \pi^{*} = \arg \max_{\pi} \mathbb{E}_{\pi} \lbrace G_{t} \rbrace
+\end{equation}
+
+\subsection{Solution methods}
+
+\figRlMethodsLandspace
+
+To solve an MDP there are various methods that can be used. Most of them are
+summarized in the categories shown in Figure @FIG-2.7. These include:
+
+\begin{itemize}
+    \item \textbf{Value based methods}, which try to solve for some auxiliary
+          functions, called \textit{State-value} and \textit{Action-value} functions
+          and then extract the solution directly. These methods make use of the Bellman
+          Backups iteratively to find a solution that satisfies the Bellman Equations\todo{referencia}.
+    \item \textbf{Policy based methods}, which solve for\todo{ quitar} the policy directly. These methods
+          make use of some parametrization of the policy via some function approximator
+          (like a Neural Network), and then search for the parameters of this policy
+          by optimizing the expected return.
+\end{itemize}
+
+Most of the current methods used are Policy based methods, specially in the context
+of robot locomotion \todo{referencia}. In the following section we will cover some concepts used when
+using policy based methods. 
+
+We will also focus specially in \textbf{model-free} methods,
+which don't require information of the transition model of the environment. Most of the
+literature deals with these type of methods, although because of this assumption these
+methods are usually very sample inefficient (They need a lot of interaction samples to be
+able to learn).
+
+\subsection{Policy Optimization}
+
+As described earlier, policy based methods try to solve for the parameters $\theta$
+of a parametrized policy $\pi_{\theta}$ such that this policy maximizes the expected
+return the agent gets from its interactions with the environment.
+
+\begin{equation}
+    \theta = \arg \max_\theta \mathbb{E}_{\pi_{\theta}} \lbrace G_{t} \rbrace
+\end{equation}
+
+One way to solve this optimization problem is to apply Derivative Free Optimization
+methods, like evolutionary algorithms \todo{referencia}. These black box optimization methods would
+search for the right set of parameters that satisfy the objective we are requesting.
+
+We will focus in Gradient based optimization methods, which make use of gradient
+ascent to search for the right set of parameters. The kind of gradient used in this
+case is an estimate of the gradient of this\todo{its?} expectation objective, which we can sample
+using sample trajectories of interaction, and then use it with an optimizer like
+SGD. Let's introduce some extra concepts and then present this gradient estimate,
+and the base form of the Policy Gradients algorithms.
+
+\begin{definition}
+    A trajectory $\tau$ is defined as a consecutive sequence of states, actions 
+    and rewards experienced by an agent over its interactions with the environment.
+    \begin{equation}
+        \tau = \lbrace s_{0},a_{0},r_{1},s_{1},a_{1},r_{2},\hdots,s_{H-1},a_{H-1},r_{H} \rbrace
+    \end{equation}
+\end{definition}
+
+\begin{definition}
+    We define the return over a trajectory $G(\tau)$ as the discounted sum of
+    rewards obtained in that trajectory.
+    \begin{equation}
+        G(\tau) = \sum_{t=0}^{H} \gamma^{t} r_{t+1}
+    \end{equation}
+\end{definition}
+
+We then can reformulate the objective we want to optimize for using this new notation.
+Recall that the agent tries to maximize its expected return, so we can define this as
+an objective $J$ that depends on the parameters of our policy as follows:
+
+\begin{equation}
+    J(\theta) = \mathbb{E}_{\tau \sim p(\tau;\theta)}[G(\tau)] = \sum_{\tau} p(\tau;\theta) G(\tau)
+\end{equation}
+
+Where $p(\tau;\theta)$ is a probability distribution of trajectories, induced by
+the parameters of our policy $\theta$ (recall that the agent sees what its policy allows).
+We can then optimize for the parameters $\theta$ by computing the gradient of this
+objective function. However, directly trying to compute the gradient of this expectation
+is intractable, so we have to make use of a trick (REINFORCE trick) to be able to
+get an estimate of this gradient [@CITE-sutton-2000].
+
+\begin{theorem}
+    For any differentiable policy $\pi_{\theta}(a|s)$, the gradient of the
+    objective function $J(\theta) = \sum_{\tau} p(\tau;\theta) G(\tau)$ 
+    can be computed using the following policy gradient.
+    \begin{equation}
+        \nabla_{\theta} J(\theta) = \mathbb{E}_{\pi_{\theta}} \lbrace G(\tau) \nabla_{\theta} \log \pi_{\theta} \rbrace
+    \end{equation}
+\end{theorem}
+
+The resulting expression from the previous theoreom needs no information of the model.
+The only requirement is for the policy to be differentiable. We can compute this expected
+gradient by using samples, and then apply gradient ascent in the parameters space to optimize 
+the parameters $\theta$ of our policy.
+
+The intuition of this algorithm is that it is increasing the probability of selecting
+the actions that yielded good results (from the trajectories that gave good returns), 
+and decreasing the probability of selectiong the actions that yielded bad results. This
+is shown in the Figure @FIG-2.7.
+
+\figRlPolicyGradientsIntuition
+
+\subsection{Deep Learning and RL}
+
+As already explained earlier, we make use of function approximation to parametrize
+some component of our RL setup. In value based methods we usually parametrize the
+Action-value function as $Q_{\theta}$, and in policy based methods we parametrize
+the policy as $\pi_{\theta}$. These parametrization can be made by using various
+function approximators, like \textit{linear models}, \textit{fourier basis}, 
+\textit{decision trees}, \textit{radial basis functions}, etc..
+
+Deep learning is used in this context to provide function approximators via Deep
+Neural Networks, as shown in Figure @FIG-2.8. In this case, our $\theta$ parameters are the weights of a neural
+network used to represent our policy. We can use the machinery from before (Policy Gradients)
+to optimize for the parameters of our network.
+
+\figRlPolicyParametrization
+
+The term Deep Reinforcement Learning refers to this approach of using Deep Neural Networks
+as function approximators in the RL framework. The key difference behind this approach
+and previous works that used different function approximators is that in previous works
+the use of function approximators was decoupled from the representation given to the mode.
+The representation was given by features that where hand engineered by the researcher, and then
+combined with the function approximator chosen for the task. The approach that DeepRL follows is 
+different in the sense that we learn the representation via the Deep models we use as function approximators.
+
+\section{Simulated Learning Environments}
+
+One key component of the RL framework (and one that seems to be trivial) is the learning
+environment itself. This learning environment is used by the agent to get samples of
+experience and then learn using the machinery explained in previous sections. It is analogous
+to the role that a dataset plays in Supervised Learning.
+
+These learning environments are usually simulations of some RL tasks that we want an
+agent to learn. This simulated nature of the environment makes it easy to grab as much 
+experience as needed, and because the environment is a simulation we can usually
+speed up the process and take huges amounts of experience for our learning algorithms.
+
+A learning environment is usually designed around the agent interacion loop mentioned
+at the beginning of this chapter. This defines the basic API that such an environment
+has to provide:
+
+\begin{itemize}
+    \item A representation for the \textbf{actions} to take in the simulation.
+    \item A \textbf{reward} to give to the agent because of the action taken.
+    \item A \textbf{state} (or observation) to give to the agent because of the action taken.
+\end{itemize}
+
+Some learning environments have become benchmarks for testing DeepRL algorithms, and
+are widely used because of this standarization. Just to name a few:
+
+\begin{itemize}
+
+    \item \textbf{The Arcade Learning Environment} (ALE) [@CITE], which provides a suite
+           of Atari games to be used as DeepRL benchmarks. This was used in the DQN
+           agent made by Deepmind [@CITE], which started the interest in DeepRL.
+           The core of the environment is an emulator for the Atari 2600 games, and
+           it has functionality to access registers from the emulated game, and return
+           this state. Some of these registers are loaded with the score of the game
+           and can be retrieved to be exposed to the user. The observations consist
+           of frames from the rendered game, which are also exposed to the user. The actions
+           are mapped into the appropiate register that the emulator expects in order
+           to apply the joystick controls in the game.
+
+           \figALEgames
+
+    \item \textbf{OpenAI Gym} [@CITE]. This toolkit provides various learning environments
+           as benchmarks for RL algorithms. It contains simple benchmarks, starting from simple
+           toy problems like gridworlds, and it also contains more complicated benchmarks like
+           games (like Atari 2600 games), robotics manipulation tasks and also various
+           robotics locomotion benchmarks, which we will cover in the next section.
+
+           \figOpenAIEnvs
+
+    \item \textbf{Deepmind Lab} [@CITE], which is a 3D learning environment built on top
+           of the Quake game engine, from \textit{Id Software}. It provides various challenging
+           environments like mazes, multi-agent setups, etc. The actions are mapped to a discrete
+           set of actions that the original game engine supported, and the observations consists
+           mainly of the camera frames from the renderer game.
+
+           \figDeepmindLabEnvs
+
+\end{itemize}
+
+\section{Simulated Environments for Robot Locomotion}
+
+We will now talk a bit more about learning environments for robot locomotion tasks.
+These make use of different components to provide the simulation required for the desired
+tasks (like walking, running, standing, etc.). The main two components we will use
+to describe these environments are the underlying \textbf{physics engine} used for the simulations, 
+and the user interface exposed to the user through an appropiate \textbf{agent representation}.
+
+\subsection{Physics Engines}
+
+\todo{@WIP}
+
+\begin{itemize}
+    \item \textbf{Bullet}, @WIP
+    \item \textbf{MuJoCo}, @WIP
+    \item \textbf{PhysX}, @WIP
+    \item \textbf{FleX}, @WIP
+\end{itemize}
+
+\subsection{Agent Representation}
+
+\todo{@WIP}
+
+\subsubsection{Kinematic trees}
+
+\todo{@WIP}
+
+\subsubsection{Model formats}
+
+\todo{@WIP}
+
+\subsubsection{Actuation models}
+
+\todo{@WIP}
+
+\subsection{Generic Framework Architecture}
+
+\todo{@WIP}
