@@ -289,7 +289,7 @@ to the role that a dataset plays in Supervised Learning.
 
 These learning environments are usually simulations of some RL tasks that we want an
 agent to learn. This simulated nature of the environment makes it easy to grab as much 
-experience as needed, and because the environment is a simulation we can usuarlly
+experience as needed, and because the environment is a simulation we can usually
 speed up the process and take huges amounts of experience for our learning algorithms.
 
 A learning environment is usually designed around the agent interacion loop mentioned
@@ -306,6 +306,7 @@ Some learning environments have become benchmarks for testing DeepRL algorithms,
 are widely used because of this standarization. Just to name a few:
 
 \begin{itemize}
+
     \item \textbf{The Arcade Learning Environment} (ALE) [@CITE], which provides a suite
            of Atari games to be used as DeepRL benchmarks. This was used in the DQN
            agent made by Deepmind [@CITE], which started the interest in DeepRL.
@@ -332,9 +333,46 @@ are widely used because of this standarization. Just to name a few:
            environments like mazes, multi-agent setups, etc. The actions are mapped to a discrete
            set of actions that the original game engine supported, and the observations consists
            mainly of the camera frames from the renderer game.
+
+           \figDeepmindLabEnvs
+
 \end{itemize}
 
 \section{Simulated Environments for Robot Locomotion}
 
-@TODO
+We will now talk a bit more about learning environments for robot locomotion tasks.
+These make use of different components to provide the simulation required for the desired
+tasks (like walking, running, standing, etc.). The main two components we will use
+to describe these environments are the underlying \textbf{physics engine} used for the simulations, 
+and the user interface exposed to the user through an appropiate \textbf{agent representation}.
 
+\subsection{Physics Engines}
+
+@WIP
+
+\begin{itemize}
+    \item \textbf{Bullet}, @WIP
+    \item \textbf{MuJoCo}, @WIP
+    \item \textbf{PhysX}, @WIP
+    \item \textbf{FleX}, @WIP
+\end{itemize}
+
+\subsection{Agent Representation}
+
+@WIP
+
+\subsubsection{Kinematic trees}
+
+@WIP
+
+\subsubsection{Model formats}
+
+@WIP
+
+\subsubsection{Actuation models}
+
+@WIP
+
+\subsection{Generic Framework Architecture}
+
+@WIP
