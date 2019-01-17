@@ -9,52 +9,60 @@
 \chapter{Current progress}
 \label{ch:current_progress}
 
-In this chapter we explain our current results in the implementation of the proposed framework and
-related tools. In section 4.1 we explain the progress made related each component proposed in the
-framework.
+\input{./chapters/chapter_5/chapter_5_figs}
 
-\section{Framework progress}
+In this chapter we discuss the current progress of the proposed framework. The implementation
+is still not in version 0.1, which should be the first fully functional version to be released
+according to the features proposed in the previous chapter. Nevertheless, the core implenentation
+needed for the multi-engine support and all other features is at a 70 percent, with the remaining
+30 percent corresponding to some additional core features, some bugs, issues, small cleanup and 
+documentation of the core functionality. We split the current discussion into the three main 
+components that have been implemented so far: core agents support, core sensors support, core 
+terrain support, and other utitilies.
 
-We first start by the model edito, whose current state is shown the following figure. We are
-at a 40\% percent progress related to this component, as the most difficult parts was the underlying
-infrastructure needed to abstract away the physics backends. We have the UI working and ready to be
-linked to the necessary commands to be implemented for the editor.
+\section{Agents support}
 
-\begin{figure}
-    \centering
-    \includegraphics[width=6in]{./chapters/imgs/img_current_progress_model_editor.png}
-    \caption[img_cp_model_editor]{Current progress of the model editor}
-    \label{fig:img_cp_model_editor}
-\end{figure}
+The implementation of the agent's core functionality has been completed to a 80\%,
+remamining only an additional implementation of the agents format provided by [@CITE].
+This implementation includes the agent's kinematic tree implementation and the integration 
+with the MuJoCo physics engine via an adapter written for this specific engine.
 
-Then, the terrain generation tools are at a 50\%, and it is working with both Bullet and Mujoco
-as physics backends. The following figures show the progress made with this components in both
-engines.
+The core implementation remains agnostic of the specific engine, which allows us
+to make support quickly for the remaining proposed physics engines via adapter code
+written once for each platform. The current supported agents are shown in Figure @FIG-5.1,
+which basically shows the support for agents made for MuJoCo via its XML representation format.
 
-\begin{figure}
-    \centering
-    \includegraphics[width=6in]{./chapters/imgs/img_current_progress_terrain_generation_1.png}
-    \caption[img_cp_terrain_generation_bullet_1]{Current progress of the terrain generation tools in Bullet}
-    \label{fig:img_cp_terrain_generation_bullet_1}
-\end{figure}
+The current implementation can be already used for experiments from C/C++. The exposed
+functionality includes the supported functionality exposed by mosts benchmarks, which
+give access to the actions via torques. The remaining part of the implementation of the core
+agent functionality should give more support for different types of actuation models, like in [@CITE].
 
-\begin{figure}
-    \centering
-    \includegraphics[width=6in]{./chapters/imgs/img_current_progress_terrain_generation_2.png}
-    \caption[img_cp_terrain_generation_bullet_2]{Current progress of the terrain generation tools in Bullet}
-    \label{fig:img_cp_terrain_generation_bullet_2}
-\end{figure}
+\figProgressAgents
 
-\begin{figure}
-    \centering
-    \includegraphics[width=6in]{./chapters/imgs/img_current_progress_terrain_generation_3.png}
-    \caption[img_cp_terrain_generation_mujoco_1]{Current progress of the terrain generation tools in MuJoCo}
-    \label{fig:img_cp_terrain_generation_mujoco_1}
-\end{figure}
+\section{Sensors support}
 
-\begin{figure}
-    \centering
-    \includegraphics[width=6in]{./chapters/imgs/img_current_progress_terrain_generation_4.png}
-    \caption[img_cp_terrain_generation_mujoco_2]{Current progress of the terrain generation tools in MuJoCo}
-    \label{fig:img_cp_terrain_generation_mujoco_2}
-\end{figure}
+The implementation of the sensors' core functionality is completed to a 70\%,
+remaining some sensors for more complicated tasks: visual inputs from a fixed camera,
+and heightmap measurements from more complicated terrains. The current supported sensor
+features shown in Figure @FIG-5.2, and consist of:
+
+\begin{itemize}
+    \item Intrinsic sensor measurements, like joints angles and velocities, bodies velocities
+          and accelerations, and bodies relative positions (to the root body).
+    \item Extrinsic sensor measurements, which consist on heightfield data from the terrain ahead,
+          taken with respect to the root body.
+\end{itemize}
+
+\figProgressSensors
+
+\section{Terrain support}
+
+The current implementation of the core terrain functionality supports procedurally generated
+terrain, similar to [@CITE]. The core functionality handles the creation of primitives from
+terrain generators, and then this is stored as requests for creation in the specific
+adapters for specific engines. The current supported engine is MuJoCo, and we plan in adding
+full support for more complex terrains (and an API to use it), and full support for the remaining
+proposed physics engines. Some screenshots of the current terrain implementations are shown
+in Figure @FIG-5.3.
+
+\figProgressTerrains
