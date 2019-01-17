@@ -23,7 +23,7 @@ Duan, Y., Chen, X., et~al. (2016).
 \newblock Benchmarking deep reinforcement learning for continuous control.
 \newblock ICML.
 
-\bibitem[\protect\astroncite{Heess et~al.}{2017}]{emergence-of-locomotion}
+\bibitem[\protect\astroncite{Heess et~al.}{2017}]{DeepmindEmergenceLocomotion}
 Heess, N., TB, D., et~al. (2017).
 \newblock Emergence of locomotion behaviours in rich environments.
 
@@ -40,10 +40,11 @@ Lee, J., Grey, M.~X., et~al. (2018).
 OpenAI (2017).
 \newblock Roboschool.
 
-\bibitem[\protect\astroncite{Peng et~al.}{2016}]{deepterrainrl}
-Peng, X.~B., Berseth, G., et~al. (2016).
-\newblock Terrain-adaptive locomotion skills using deep reinforcement learning.
-\newblock {\em ACM Transactions on Graphics (Proc. SIGGRAPH 2016)}, 35(4).
+\bibitem[\protect\astroncite{Peng et~al.}{2018}]{DeepMimic}
+Peng, X.~B., Abbeel, P., et~al. (2018).
+\newblock Deepmimic: Example-guided deep reinforcement learning of
+  physics-based character skills.
+\newblock {\em ACM Trans. Graph.}, 37(4):143:1--143:14.
 
 \bibitem[\protect\astroncite{PhysX}{}]{physX}
 PhysX.
