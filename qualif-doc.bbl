@@ -4,7 +4,7 @@
 Andrychowicz, O.~M., Baker, B., et~al. (2018).
 \newblock Learning dexterous in-hand manipulation.
 
-\bibitem[\protect\astroncite{Brockman et~al.}{2016}]{OpenAIgym}
+\bibitem[\protect\astroncite{Brockman et~al.}{2016}]{Gym}
 Brockman, G., Cheung, V., et~al. (2016).
 \newblock Openai gym.
 
@@ -18,7 +18,7 @@ Coumans, E. (2015).
 \newblock In {\em ACM SIGGRAPH 2015 Courses}, SIGGRAPH '15, New York, NY, USA.
   ACM.
 
-\bibitem[\protect\astroncite{Duan et~al.}{2016}]{rllab}
+\bibitem[\protect\astroncite{Duan et~al.}{2016}]{Rllab}
 Duan, Y., Chen, X., et~al. (2016).
 \newblock Benchmarking deep reinforcement learning for continuous control.
 \newblock ICML.
@@ -36,7 +36,7 @@ Lee, J., Grey, M.~X., et~al. (2018).
 \newblock Dart: Dynamic animation and robotics toolkit.
 \newblock Journal of Open Source Software.
 
-\bibitem[\protect\astroncite{OpenAI}{2017}]{roboschool}
+\bibitem[\protect\astroncite{OpenAI}{2017}]{Roboschool}
 OpenAI (2017).
 \newblock Roboschool.
 

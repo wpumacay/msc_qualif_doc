@@ -63,7 +63,7 @@ control, explaining each benchmark available, as well as a summary of the key ch
                 benchmarks usually expose an API for initialization and interaction with the simulated agent, as well as 
                 some other functionality for the user that returns the necessary components to train a RL agent (like observations,
                 state, action space, etc.). Some examples of these interfaces include Controlsuite \citep{Controlsuite}, 
-                OpenAI-Gym \citep{OpenAIgym}, rllab \citep{rllab}, garage \citep{garage} and unity ml-agents \citep{unity-ml-agents}.
+                OpenAI-Gym \citep{Gym}, rllab \citep{Rllab}, garage \citep{garage} and unity ml-agents \citep{unity-ml-agents}.
         \item \textbf{User code} : This is usually left for the user. Some benchmarks are part of a framework, which gives the user
                 a starting interface to implement the required RL algorithm. Some others don't include this layer of abstraction, and
                 leave the user in charge of implementing the RL agent based on the exposed API from the RL interface.
@@ -142,7 +142,7 @@ control, explaining each benchmark available, as well as a summary of the key ch
     \subsection{Rllab}
     This set of benchmarks is quite similar to the previous two. It implements its own Python wrapper for MuJoCo, and 
     builds its own RL API on top of that wrapper. This suite is a bit different to the other two, because it provides
-    a set of tested baselines of various DRL algorithms, which were compared in \cite{rllab}. The environments provided 
+    a set of tested baselines of various DRL algorithms, which were compared in \cite{Rllab}. The environments provided 
     by rllab are grouped in three categories: \textbf{classic} (figure 2.5), \textbf{locomotion} (figure 2.6) and 
     \textbf{hierarchical} (figure 2.7).
 
@@ -152,21 +152,21 @@ control, explaining each benchmark available, as well as a summary of the key ch
     \begin{figure}[!ht]
         \centering
         \includegraphics[width=5.0in]{./chapters/imgs/img_rllab_envs_classic.png}
-        \caption[rllab classic models]{Models available in the Rllab classic benchmark. Extracted from \citet{rllab}}
+        \caption[rllab classic models]{Models available in the Rllab classic benchmark. Extracted from \citet{Rllab}}
         \label{fig:rllab-envs-classic}
     \end{figure}
 
     \begin{figure}[!ht]
         \centering
         \includegraphics[width=4.5in]{./chapters/imgs/img_rllab_envs_locomotion.png}
-        \caption[rllab locomotion models]{Models available in the Rllab locomotion benchmark. Extracted from \citet{rllab}}
+        \caption[rllab locomotion models]{Models available in the Rllab locomotion benchmark. Extracted from \citet{Rllab}}
         \label{fig:rllab-envs-locomotion}
     \end{figure}
 
     \begin{figure}[!ht]
         \centering
         \includegraphics[width=5.0in]{./chapters/imgs/img_rllab_envs_hierarchical.png}
-        \caption[rllab hierarchical models]{Models available in the Rllab hierarchical benchmark. Extracted from \citet{rllab}}
+        \caption[rllab hierarchical models]{Models available in the Rllab hierarchical benchmark. Extracted from \citet{Rllab}}
         \label{fig:rllab-envs-hierarchical}
     \end{figure}
 
