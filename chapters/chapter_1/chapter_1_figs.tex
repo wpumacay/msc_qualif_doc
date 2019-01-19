@@ -66,3 +66,36 @@
         \label{fig:ch1_drl_locomotion_benchmarks}
     \end{figure}
 }
+
+\newcommand{\figEnvironmentsProposalFromTo}{
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.8\textwidth]{./chapters/chapter_1/imgs/img_ch1_environments_from_to.png}
+        \caption{Comparison of the proposed environments to environments from current benchmarks. 
+                 Left: relatively simple environments (image adapted from \citet{Gym}). 
+                 Right: relatively more complex proposed environments (images adapted from \citet{Pfnn} ).}
+        \label{fig:ch1_environments_comparison_from_to}
+    \end{figure}
+}
+
+\newcommand{\figEnvManipSimToreal}{
+    \begin{figure}
+        \centering
+        \begin{subfigure}[b]{0.45\textwidth}
+            \centering
+            \includegraphics[width=0.9\textwidth]{./chapters/chapter_1/imgs/img_ch1_openai_robot_dexterity.png}
+            \caption{}
+            \label{fig:ch1_openai_robot_dexterity}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.45\textwidth}
+            \centering
+            \includegraphics[width=0.9\textwidth]{./chapters/chapter_1/imgs/img_ch1_google_brain_minitaur_sim_to_real.png}
+            \caption{}
+            \label{fig:ch1_google_brain_minitaur_sim_to_real}
+        \end{subfigure}
+        \caption{Some examples of sim2real results: 
+                            a) Robotic hand generalizing in randomized environment \citep{OpenAISim2real}.
+                            b) Quadruped trained in simulation and deployed in real world \citep{GoogleBrainSim2Real} }
+        \label{fig:ch1_sim_to_real_approaches}
+    \end{figure}
+}

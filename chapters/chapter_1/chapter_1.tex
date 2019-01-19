@@ -13,20 +13,27 @@
 
 \input{./chapters/chapter_1/chapter_1_figs}
 
-Recent advances in the field of Deep Reinforcement Learning (DRL) have achieved good
-results in various Reinforcement Learning benchmarks, like the Atari Learning Environment (ALE), 
-and the game of Go, just to name a few. These represent discrete action spaces problems, in which 
-the action space can be defined by a finite-size set of values. More recently, this approach has also 
-been applied to continuous actions spaces, i.e. in continuous control tasks. This has given good results 
-in various continuous control benchmarks, like in \citeauthor{DeepmindEmergenceLocomotion}  and \citeauthor{DeepMimic}.
+Recent advances in the field of Deep Reinforcement Learning (DRL) have achieved impressive
+results in various complex tasks, like being able to play Atari games at a super human level \citep{DQNAtari}, 
+and beating the world's Go champion \citep{AlphaGo}, just to name a few. These represent discrete 
+action spaces problems, in which the action space can be defined by a finite-size set of values. 
+More recently, this approach has also been applied to continuous actions spaces, i.e. in continuous 
+control tasks. This has given good results in various locomotion benchmarks, like in 
+\citeauthor{DeepmindEmergenceLocomotion} and \citeauthor{DeepMimic}, shown in Figure @FIG-1.1.
 
 \figDrlLocomotionMotivation
 
-This approach is very promising because it allows the agent to come up with a controller after training in
-an environment, which reduces the need to implement highly sophisticated control pipelines. Current available 
-environments for training have been presented in various articles (and we will talk more about these in Chapter 2).
-Some benchmarks suites are shown in the following figure, and compared to the ones used in the research mentioned previously
-they are relatively simpler, consisting mostly of classic control problems and some locomotion tasks in flat terrains.
+This approach is very promising because it allows an agent to learn an appropiate controller for a given task after training in
+the simulated environment, which reduces the need to implement highly sophisticated control pipelines. Currenttly available 
+training environments have been presented in various articles, and we will talk more about these in Chapter 3.
+Some of these currently available training environments are shown in Figure @FIG-1.2.
+
+%% and compared to the ones mentioned previously (from Figure @FIG-1.1)
+%%they are much simpler, consisting mostly of classic control problems and some locomotion tasks in flat terrains.
+
+The ultimate goal of applying these techniques is to be able to develop complex behaviours, similar
+to those shown in nature by animals. However, to develop and test this complex behaviours there is a need to \textbf{create
+a wide set of rich and complex environments}, which is not provided by currently available locomotion benchmarks.
 
 \figDrlBenchmarks
 
@@ -34,47 +41,50 @@ they are relatively simpler, consisting mostly of classic control problems and s
 \section{Problem Statement}
 \label{sec:problem}
 
-Some problems arise when applying DRL to continuous control tasks, two of which are : the \textbf{exploitation} 
-of the simulated learning environment by the agent, and the \textbf{inability to transfer} learned policies into 
-the real world (reality gap).
+As explained previously, currently there are no robot locomotion benchmarks that allow
+to \textbf{create diverse learning environments}, which limits the range of behaviours that can be learned
+from scratch using Deep Reinforcement Learning techniques. There are also some other problems that arise in the
+context of learning locomotion beavirous:
 
-The first problem is mainly caused because of the current objective required from reinforcement learning agents: trying to maximize
-a cumulative reward over time. This forces the agent to extract the most reward from the environment, which will in
-turn lead to the agent exploiting the dynamics of the environment, giving rise to sub-optimal behaviours from local minima.
-The second problem is a direct consequence of the first one. As the agent exploits the dynamics of the environment, the agent will overfit
-to the given environment, and will not generalize when transferred to real life as the dynamics are different.
+\begin{itemize}
+	\item \textbf{Exploiting} the simulated environment's dynamics: 
+			This first problem is caused by the current objective required from reinforcement learning agents: try to maximize
+			a cumulative reward over time. This forces the agent to extract the most reward from the environment, which could in
+			turn lead to the agent exploiting the dynamics of the environment in a way that it could still solve the task defined by the reward function,
+			but using wierd beharious from local minima. This is specially true when designing a reward function. The reward is the signal
+			that the agent gets to improve its behaviours, so poorly engineered reward functions could lead to sub-optimal and even bad performance.
+	\item \textbf{Inability to transfer} learned  policies into the real world (reality gap):
+			The second problem is a direct consequence of the first one. As the agent exploits the 
+			dynamics of the environment, the agent will overfit to the given environment, and will 
+			not generalize when transferred to the real world as the dynamics are different.
+\end{itemize}
 
 These issues arise in the context of the current benchmarks being used to train DRL agents, which are not complex enough to
 force the agent to avoid exploiting non-general policies, or to compensate for different (or event unmodeled) dynamics of the real world.
 So, to solve part of this issue we need to build complex environments that try to account for the two already mentioned problems, like the ones
-in \citeauthor{simtoreal-quadruped} and \citeauthor{dexterity-openai}. These try to account for unmodeled dynamics and generalization by
+in \citeauthor{GoogleBrainSim2Real} and \citeauthor{OpenAISim2real}. These try to account for unmodeled dynamics and generalization by
 using randomizatio over the simulated environment and other techniques to force the learning agent not to overfit to a specific behaviour that
 only exploites some of the dynamics of the environment.
 
-
-\begin{figure}[!ht]
-	\centering
-	\includegraphics[width=6.0in,height=1.8in]{./chapters/imgs/img_reality_gap_approaches.png}
-	\caption[Reality gap approaches]{Some approaches to solve for the reality gap. 
-		a) Robotic hand generalizing in randomized environment \citep{dexterity-openai}.
-		b) Quadruped trained in simulation and deployed in real world \citep{simtoreal-quadruped} }
-	\label{fig:reality-gap-approaches}
-\end{figure}
+\figEnvManipSimToreal
 
 % @TAG: Refer to initial content and "emphazise" the objectives
 \section{Objectives}
 \label{sec:objectives}
 
 \subsection*{General Objective}
-Make a framework to build training and testing environments for continuous control tasks, and 
-evaluate the performance and generalization capabilities of current state of the art DRL algorithms.
+Make a framework to build diverse learning environments for robot locomotion tasks, and 
+evaluate the performance and generalization capabilities of current state of the art Deep 
+Reinforcement Learning algorithms.
 
 \subsection*{Specific Objectives}
 \begin{itemize}
- \item Implement software tools on top of current RL APIs and physics engines 
+ \item Implement software tools on top of current Reinforcement Learning APIs and physics engines 
        to create complex RL tasks for continuous control.
- \item Evaluate the performance of state of the art DRL algorithms in these environments.
+ \item Evaluate the performance of state of the art Deep Reinforcement Learning algorithms in these environments.
 \end{itemize}
+
+\figEnvironmentsProposalFromTo
 
 \section{Organization}
 \label{sec:organization}

@@ -1,7 +1,7 @@
 \begin{thebibliography}{}
 
-\bibitem[\protect\astroncite{Andrychowicz et~al.}{2018}]{dexterity-openai}
-Andrychowicz, O.~M., Baker, B., et~al. (2018).
+\bibitem[\protect\astroncite{Andrychowicz et~al.}{2018}]{OpenAISim2real}
+Andrychowicz, M., Baker, B., et~al. (2018).
 \newblock Learning dexterous in-hand manipulation.
 
 \bibitem[\protect\astroncite{Brockman et~al.}{2016}]{Gym}
@@ -27,6 +27,11 @@ Duan, Y., Chen, X., et~al. (2016).
 Heess, N., TB, D., et~al. (2017).
 \newblock Emergence of locomotion behaviours in rich environments.
 
+\bibitem[\protect\astroncite{Holden et~al.}{2017}]{Pfnn}
+Holden, D., Komura, T., et~al. (2017).
+\newblock Phased-functioned neural networks for character control.
+\newblock volume~36. ACM Transactions on Graphics.
+
 \bibitem[\protect\astroncite{Juliani et~al.}{2018}]{unity-ml-agents}
 Juliani, A., Berges, V.-P., et~al. (2018).
 \newblock Unity: A general platform for intelligent agents.
@@ -35,6 +40,11 @@ Juliani, A., Berges, V.-P., et~al. (2018).
 Lee, J., Grey, M.~X., et~al. (2018).
 \newblock Dart: Dynamic animation and robotics toolkit.
 \newblock Journal of Open Source Software.
+
+\bibitem[\protect\astroncite{Mnih et~al.}{2015}]{DQNAtari}
+Mnih, V., Kavukcuoglu, K., et~al. (2015).
+\newblock Human-level control through deep reinforcement learning.
+\newblock {\em Nature}, 518:529--533.
 
 \bibitem[\protect\astroncite{OpenAI}{2017}]{Roboschool}
 OpenAI (2017).
@@ -54,7 +64,12 @@ PhysX.
 RLworkgroup.
 \newblock garage. https://github.com/openai/roboschool.
 
-\bibitem[\protect\astroncite{Tan et~al.}{2018}]{simtoreal-quadruped}
+\bibitem[\protect\astroncite{Silver et~al.}{2016}]{AlphaGo}
+Silver, D., Huang, A., et~al. (2016).
+\newblock Mastering the game of go with deep neural network and tree search.
+\newblock {\em Nature}, 529:484--489.
+
+\bibitem[\protect\astroncite{Tan et~al.}{2018}]{GoogleBrainSim2Real}
 Tan, J., amd Erwin~Coumans, T.~Z., et~al. (2018).
 \newblock Sim-to-real: Learning agile locomotion for quadruped robots.
 
