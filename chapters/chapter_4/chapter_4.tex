@@ -99,6 +99,8 @@ is composed of the following components:
           tree in disk. The formats we are considering include \textit{urdf}, \textit{mjcf}, and custom
           formats through .xml and .json files. All this functionality is summarized in Figure @FIG-4.3.
 
+        \figFrameworkCoreAgent
+
     \item \textbf{Terrain representations}: these representations consist of the core terrain generator and its
           variants. These variants model the different types of terrain that one could need. In principle
           there are a few core generators, which are in charge of creating various environments. These core
@@ -110,19 +112,17 @@ is composed of the following components:
           and other minimal objects that could be needed for more specific tasks. All this functionality is
           summarized in Figure @FIG-4.4.
 
+        \figFrameworkCoreTerrain
+
     \item \textbf{Sensors representations}: these representations consist of the core sensors that will be exposed
           to the user in order to train an agent. This are also abstract, and get the information from the
           core agents and terrain generators. The type of sensors that will be implemented are: joint readings (angles 
           and speeds), body readings (relative position to root body, linear velocities and accelerations), 
           heightmap readings of the terrain, and camera readings in the form of RGB frames. The proposed sensors are shown
           in Figure @FIG-4.5.
+
+        \figFrameworkCoreSensor
 \end{itemize}
-
-\figFrameworkCoreAgent
-
-\figFrameworkCoreAgent
-
-\figFrameworkCoreAgent
 
 \subsection{Specific implementations for different backends}
 
@@ -130,27 +130,26 @@ is composed of the following components:
 
 The backend-specific functionality is in charge of instantiating the appropiate 
 resources in the given backend, like instantiating bodies and joints for the abstract 
-agents, creating the appropiate terrain resources from the terrain primitives, and storing
-the required sensor readings that will be grabbed afterwards by each abstract sensor.
+agents, creating the appropiate terrain resources from the terrain primitives, and requesting
+the sensor readings required by the abstract sensors.
 
-The approach we chose is to use adapters for the core functionality. These adapters
-will link the specific backend functionality to the abstract resource. This is why
-extra care has to be placed in flexible abstract representations because each backend
-should be able to support this functionality. Then, it is only necessary to write
-the adapters for the base abstract representations.
+The approach we chose is to use a design pattern called \textbf{bridge pattern}, which
+is a pattern often used to decouple platform specific functionality from core functionality.
+This approach is shown in Figure @FIG-4.6 (for the case of agents), and it basically
+works as follows:
 
-For example, if we had various terrain generators for specific variations that one
-might need in a specific task, all these terrain generators end up creating primitives.
-These primitives are the blueprints that the adapter can then use to instantiate that given
-terrain in the specific backend. A similar approach is used for the rest of the core
-functionality, where the adapters use the component blueprints provided by the core data structures.
-This mix of composition and adaptation is often called the \textit{Bridge pattern}, and it is
-often used when decoupling platform specific functionality from core functionality, e.g. when
-abstracting libraries for different operating systems. The user is then only exposed to
-the abstract functionality which should act as a bridge to the specific backend, as shown in
-Figure @FIG-4.6.
+\begin{itemize}
+    \item Write the core functionality (e.g. base kinematic tree agent) and any
+          required variants or types. Also write base adapter code (e.g. adapters for base kinematic tree)
+          which is the layer that will be exposed to the user.
+    \item Use composition to wrap the core functionality with the adapter functionality.
+    \item Write the required variants of the adapters corresponding to each specific backend.
+          This only has to be implemented once per core functionality (e.g. one for base kinematic tree),
+          and not many times for each variant that could exist.
+\end{itemize}
 
-%% \figBridgePattern
+
+\figBridgePattern
 
 %% @TODO: Talk about how will everything work (dlinking)
 
