@@ -157,11 +157,11 @@ Another detail to take into account is how to support multiple and swappable bac
 for the user. To achieve this we will make use of runtime library loading. This allows us
 to load the specific backend library at runtime as specified by the user, and it is an OS specific
 feature usually provided in the context of dynamic linking. To fully integrate
-this feature into the framework the only change that has to be made is to expose the user 
+this feature into the framework the have to ensure that the user is exposed
 to \textit{base adapters}, which can then be loaded with the specific adapters using runtime loading.
 This process is shown in Figure @FIG-4.7.
 
-%% \figRuntimeLibraryLoading
+\figRuntimeLibraryLoading
 
 
 %% @TODO: Explain about the proposed supported backends (mujoco, bullet, physx, flex)
@@ -173,45 +173,66 @@ create fluid manipulation tasks, MuJoCo can be used for more precise simulations
 Bullet can be used for the same tasks provided by MuJoCo, but without the need to have
 a license for extended usage.
 
-\subsection{Construction APIs}
+\subsection{Construction and User APIs}
 
-@TODO: Talk about the terrain APIs that will be provided to create terrain
+On top of the core functionality and the specific backend adapters explained earlier
+we will implement a set of APIs that will serve for constructing a task given by the user.
+These APIs will consist of the following components:
 
-@TODO: Talk about the tasks APIs that will be provided to create tasks
+\begin{itemize}
+    \item APIs for agent, terrain and sensor creation: these are high level APIs 
+          that will provide the user with the functionality to create the required
+          scene for a given task. This functionality will allow the user to create
+          a scene programmatically, or by using configuration files. The user can then
+          create a task using these APIs, or use the tasks APIs that will also be provided.
+    \item APIs for task creation: these build on top of the previously mentioned APIs,
+          and allow the user create experiments like: running, fetching, etc.. These
+          experiments will consist of the basic benchmarks we will use in our evaluation
+          experiments. However, the user can still use the APIs mentioned previuosly to
+          create new experiments.
+    \item APIs for specific backend configuration: these can be used for extra configuration
+          of specific backends, e.g. changing simulation properties on the fly (if supported
+          by the backend). The default configurations will try to make the simulations from different
+          backends as close as possible, but if extra control is needed then the user can make
+          use of these APIs to configure specific experiments.
+\end{itemize}
 
-@TODO: Talk about the user APIs that will be provided in python to the user for
-       even easier usage and experimentation
+This functionality will be implemented in C/C++ in order to be as close to the backend as possible.
+However, we will also provide with Python bindings for these APIs to allow the user to create and 
+configure experiments through Python.
 
-\section{Details of the proposed evaluations and baselines}
+\section{Details of the proposed evaluations experiments}
 
-@TODO: Talk about the algorithms to be used from the current state of the art.
+A set of experiments will be set up in order to evaluate current state of the art Deep Reinforcement
+Learning algorithms (like PPO, DDPG, etc.) in these new environments provided by the framework. These will consist of:
 
-\subsection{Base experiments}
+\begin{itemize}
+    \item \textbf{Base Experiments}: These consist of learning environments that do not have
+                                     extra functionality on top, like curricula or imitation.
+                                     The idea is to test if these current state of the art 
+                                     agents can solve these new environments without any extra help.
 
-@TODO: Talk about the vanilla experiments to be implemented, which should
-       consist of the learning environments without a given curricula (just use
-       the new environments and see how well an state-of-the-art agent does)
+    \item \textbf{Imitation Experiments}: These consist of learning environments that have an imitation 
+                                          component enabled. Only some models for some agents have the datasets
+                                          from mocap data that can be used for these tasks, so these experiments will
+                                          work for just a few of possible agent options. The idea is to
+                                          test if by enabling imitation the agent can solve these new environments.
 
-\subsection{Imitation experiments}
+    \item \textbf{Curricula experiments}: These consist of learning environments that have a curriculum component
+                                          enabled, e.g. increase the difficulty of a task during runtime.
+                                          The idea is to test if by enabling using curriculum we can get better learning,
+                                          and test different approaches to develop different curricula, and compare them as well.
+\end{itemize}
 
-@TODO: Talk about the experiments to be implenented that take into account some
-       form of imitation. This should include agents that can be learned using 
-       available mocap data and keyframe authored animations.
-
-\subsection{Hard-coded curricula experiments}
-
-@TODO: Talk about the experiments to be implemented that make use of some form
-       of curricula, e.g using simple procedural generation via random ranges.
-
-\subsection{Adaptive curricula experiments}
-
-@TODO: These experiments are some ideas that I want to ponder and see how to implement
-       in the future. As I stated in the hypothesis, we should try some form of
-       adaptive curricula that based on the performance of the agent it would create
-       the terrain and task appropiately in order to encourage better learning. This
-       would be some kind of "training-wheels" module that could be hard-coded or even 
-       learned from experience. In my mind it sounds like and actor-supervisor approach,
-       in which the supervisor sets the terrain generator paraeters using the provided API
-       according to how well the agent is doing. This could be done in stages, switching between
-       a hard-coded curricula and the adaptive curricula.
+%% \subsection{Adaptive curricula experiments}
+%% 
+%% @TODO: These experiments are some ideas that I want to ponder and see how to implement
+%%        in the future. As I stated in the hypothesis, we should try some form of
+%%        adaptive curricula that based on the performance of the agent it would create
+%%        the terrain and task appropiately in order to encourage better learning. This
+%%        would be some kind of "training-wheels" module that could be hard-coded or even 
+%%        learned from experience. In my mind it sounds like and actor-supervisor approach,
+%%        in which the supervisor sets the terrain generator paraeters using the provided API
+%%        according to how well the agent is doing. This could be done in stages, switching between
+%%        a hard-coded curricula and the adaptive curricula.
 
