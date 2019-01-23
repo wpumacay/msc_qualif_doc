@@ -15,7 +15,7 @@
 %%          * Unity's ml-agents (talk about the marathon envs)
 %%
 %%      b. DRL algorithms for robot locomotion
-%%          * Benchmarking drl in ccontrol environments (2016?)
+%%          * Benchmarking drl for continuous ccontrol (2016?)
 %%          * Trust region policy optimization
 %%          * Proximal policy optimization
 %%          * DeepTerrainRL
@@ -32,55 +32,7 @@ In this section we give an overview of the available RL benchmarks for continuou
 control, explaining each benchmark available, as well as a summary of the key characteristics
  of each one.
 
-\section{DRL benchmarks for continuous control}
-
-    \subsection{Control problems as early benchmarks}
-
-    Some of the first benchmarks consisted of simple control problems, which included :
-
-    \begin{itemize}
-        \item \textbf{Inverted Pendulum}: make a simple 1 DOF actuated pendulum reach a vertical configuration.
-        \item \textbf{Cart-pole}: make a non-actuated pendulum reach a vertical configuration by using an actuated horizontal base.
-        \item \textbf{Mountain-car}: make a car reach a top position by means of swinging up and down a valley.
-        \item \textbf{Acrobot}: make a double pendulum reach a vertical configuration by means of only the second actuated joint.
-    \end{itemize}
-
-    These early benchmarks were low dimensional \textbf{continuous} state and actions spaces, 
-    and most of them consisted of symbolic forms with no "simulation" (implementing and simulating
-    the exact model using the modeled dynamics of the task). 
-
-    \subsection{Simulated environments}
-    
-    More recently simulated environments started to be used, which built on top of current 2D and 3D
-    physics engines. These allowed to easily configurate new tasks, and also allowed to use tasks 
-    with more complicated dynamics. We will focus on these as they are the basis for the current
-    available benchmarks for continuous control. The basic structure of these benchmarks is shown in Figure 2.1, and consists of :
-
-    \begin{itemize}
-        \item \textbf{Physics Engine} : The engine used for physics simulation. Available choices are Box2D \citep{Box2D},
-                Bullet \citep{Bullet}, DART \citep{DART} and MuJoCo \citep{MuJoCo}.
-        \item \textbf{RL interface} : This is the software interface between the user and the physics engine itself. The 
-                benchmarks usually expose an API for initialization and interaction with the simulated agent, as well as 
-                some other functionality for the user that returns the necessary components to train a RL agent (like observations,
-                state, action space, etc.). Some examples of these interfaces include Controlsuite \citep{Controlsuite}, 
-                OpenAI-Gym \citep{Gym}, rllab \citep{Rllab}, garage \citep{garage} and unity ml-agents \citep{unity-ml-agents}.
-        \item \textbf{User code} : This is usually left for the user. Some benchmarks are part of a framework, which gives the user
-                a starting interface to implement the required RL algorithm. Some others don't include this layer of abstraction, and
-                leave the user in charge of implementing the RL agent based on the exposed API from the RL interface.
-    \end{itemize}
-
-    \begin{figure}[!ht]
-	\centering
-	\includegraphics[width=4.5in]{./chapters/imgs/img_base_sim_env.png}
-	\caption[Basic structure of a simulated environment]{Base architecture of simulated environments}
-	\label{fig:sim-env}
-    \end{figure}
-
 \section{Current available benchmarks}
-
-    In this section we will explain in a bit more detail the current benchmarks used for DRL research in
-    continuous control tasks. These are based on the previously mentioned architecture, and vary depending 
-    of the way each of the three main components are built.
 
     \subsection{Deepmind Control Suite}
     This suite of benchmarks consists of a Python wrapper of the MuJoCo physics engine, and a RL API on top
