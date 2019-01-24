@@ -7,7 +7,7 @@
 %%  BASIC STRUCTURE :
 %%
 %%      a. Current benchmarks for robot locomotion
-%%          * DeepMind's controlsuite
+%%          * DeepMind's ControlSuite
 %%          * OpenAI's mujoco-py
 %%          * Berkeley's garage and rllab
 %%          * Stanford's robosuite
@@ -30,130 +30,136 @@
 \chapter{Related Works}
 \label{ch:relatedWorks}
 
-In this chapter we give an overview of the state of the art in robot locomotion using 
+\input{./chapters/chapter_3/chapter_3_figs}
+
+In this chapter we will give an overview of the state of the art in robot locomotion using 
 Deep Reinforcement Learning. We discuss some currently avaiable benchmarks for these tasks,
 giving details that will help compare these current benchmarks with the proposed framework, which
-will be discusses in more detail in chapter 4. We also discuss current state of the art algorithms
+will be discussed in more detail in chapter 4. We also discuss current state of the art algorithms
 used to solve these tasks, which will be used as baselines for the experiments we will propose as part
 of the evaluation procedure.
 
 \section{Robot locomotion benchmarks}
 
-    \subsection{Deepmind Control Suite}
-    This suite of benchmarks consists of a Python wrapper of the MuJoCo physics engine, and a RL API on top
-    exposed to the user for the creation of the RL agent. This suite is separated in \textbf{models} and \textbf{tasks},
-    being a task an instance of a specific model (like humanoid, cartpole, etc.), and a task being the setup that
-    the agent must solve, e.g. stand, walk, or run in the case of the humanoid model.
-    \\
-    \\
-    As the author explain in its technical report \citep{Controlsuite}, they built a standarized RL API with 
-    the following features :
+\subsection{Deepmind ControlSuite}
 
-    \begin{itemize}
-        \item \textbf{Full observations}: the agent receives the full state as observation.
-        \item \textbf{Normalized actions}: the actions exposed to the user are in the range $\left[-1,1\right]$.
-        \item \textbf{Normalized rewards}: the rewards are set to the range $\left[ 0, 1 \right]$, and can be smooth (whole range)
-                or sparse (just the values $\left\{0,1\right\}$).
-    \end{itemize}
+This set of benchmarks were first introduced in \cite{Controlsuite}, and consists 
+of various locomotion tasks (shown in Figure @FIG-3.1), with various types of agents 
+to select from. The models available consist of xml files in the mujoco format (mjcf) 
+that are used as the blueprints to instantiate an agent. The tasks consist of the specific
+setups that the agents must solve, like walking, standing, running, etc.
 
-    Below we show a figure from the environments presented by this benchmark.
+\figBenchmarkControlSuite
 
-    \figBenchmarkControlsuite
+As described in their \href{https://arxiv.org/pdf/1801.00690.pdf}{technical report},
+some of the key features of this benchmark include:
 
-    \subsection{OpenAI Gym}
-    This set of benchmarks consists of two separate options, depending on the physics engine to be used. These options are :
+\begin{itemize}
+    \item \textbf{Full state observations}: the observations provided to the agent
+          are sufficient to recover the full state of the environment. These observations
+          include positions and velocities (of bodies and joints), touch sensor readings,
+          and some other task specific measurements. Using this information, the full state
+          of the environment can be recovered due to the simple nature of the environment 
+          (most locomotion tasks in the benchmark are flat terrain tasks, and no information
+          is hidden from the agents).
 
-    \begin{itemize}
-        \item \textbf{Mujoco-py} : A Python wrapper for MuJoCo, very similar to Controlsuite. The tasks it
-            exposes are also similar to the ones in Controlsuite, which are shown in figure 2.3 . This acts as
-            the physics backend to be used for the RL API defined by Gym itself.
-        \item \textbf{RoboSchool}: An implementation that uses PyBullet, which are bindings for the Bullet physics
-            engine. The environments exposed are a bit different to the previous suite, and are shown in figure 2.4 . It
-            also serves as a physics backend for the Gym RL API.
-    \end{itemize}
+    \item \textbf{Normalized actions}: the actions exposed to the user have been normalized 
+          in the range $\left[-1,1\right]$. These are mapped to actuators that represent
+          torques applied to joints (torque actuation model).
 
-    \begin{figure}[!ht]
-        \centering
-        \includegraphics[width=5.5in]{./chapters/imgs/img_openai_gym_mujoco_envs.png}
-        \caption[Gym Mujoco models]{Models available in the Gym-Mujoco benchmark. Extracted from \citet{Gym}}
-        \label{fig:gym-mujoco-envs}
-    \end{figure}
+    \item \textbf{Normalized rewards}: the rewards are set to the range $\left[ 0, 1 \right]$, 
+          and can be smooth (whole range) or sparse (just the values $\left\{0,1\right\}$).
 
-    \begin{figure}[!ht]
-        \centering
-        \includegraphics[width=6.0in,height=2.0in]{./chapters/imgs/img_openai_gym_roboschool_envs.png}
-        \caption[Gym RoboSchool models]{Models available in the Gym-RoboSchool benchmark. Extracted from \citet{Gym}}
-        \label{fig:gym-roboschool-envs}
-    \end{figure}
+    \item \textbf{MuJoCo backend}: MuJoCo is the underlying physics backend, and it is
+          integrated into the suite by using Python bindings generated using 
+          \href{https://github.com/deepmind/dm_control/blob/master/dm_control/autowrap/autowrap.py}{ctypes}.
+\end{itemize}
 
-    The RL API exposed by Gym is similar to the one exposed by Controlsuite. In each step taken in the environment, the API
-    returns the observation, reward, and some extra information. The user selects which More can be found in its technical report \citep{Gym}, and
-    in its repository at \url{https://github.com/openai/gym}.
+\subsection{OpenAI Gym}
 
-    \subsection{Rllab}
-    This set of benchmarks is quite similar to the previous two. It implements its own Python wrapper for MuJoCo, and 
-    builds its own RL API on top of that wrapper. This suite is a bit different to the other two, because it provides
-    a set of tested baselines of various DRL algorithms, which were compared in \cite{Rllab}. The environments provided 
-    by rllab are grouped in three categories: \textbf{classic} (figure 2.5), \textbf{locomotion} (figure 2.6) and 
-    \textbf{hierarchical} (figure 2.7).
+This set of benchmarks consists of two separate options depending on the physics 
+backend, and are used as a Python layer below the high level API provided by Gym.
+The options used as wrappers for the two physics backends available are the following:
 
-    It is compatible with Gym, by means of a wrapper on top of its environments, but as they explain in their documentation
-    website (\url{https://rllab.readthedocs.io/en/latest/user/gym_integration.html#}) this is a very different API.
+\begin{itemize}
+    \item \textbf{Mujoco-py} : A Python wrapper for MuJoCo, very similar to ControlSuite. 
+          The available tasks are similar to the ones in ControlSuite, which are shown 
+          in Figure @FIG-3.2.
 
-    \begin{figure}[!ht]
-        \centering
-        \includegraphics[width=5.0in]{./chapters/imgs/img_rllab_envs_classic.png}
-        \caption[rllab classic models]{Models available in the Rllab classic benchmark. Extracted from \citet{Rllab}}
-        \label{fig:rllab-envs-classic}
-    \end{figure}
+        \figBenchmarkOpenAIGymMujoco
 
-    \begin{figure}[!ht]
-        \centering
-        \includegraphics[width=4.5in]{./chapters/imgs/img_rllab_envs_locomotion.png}
-        \caption[rllab locomotion models]{Models available in the Rllab locomotion benchmark. Extracted from \citet{Rllab}}
-        \label{fig:rllab-envs-locomotion}
-    \end{figure}
+    \item \textbf{RoboSchool}: An implementation that uses PyBullet, which exposes 
+          the Bullet physics engine through a Python API. The environments exposed 
+          are a bit different to the previous suite, and are shown in Figure @FIG-3.3. 
 
-    \begin{figure}[!ht]
-        \centering
-        \includegraphics[width=5.0in]{./chapters/imgs/img_rllab_envs_hierarchical.png}
-        \caption[rllab hierarchical models]{Models available in the Rllab hierarchical benchmark. Extracted from \citet{Rllab}}
-        \label{fig:rllab-envs-hierarchical}
-    \end{figure}
+        \figBenchmarkOpenAIGymRoboschool
 
-    \subsection{Garage}
-    Garage is the next version of the rllab suite, and is very similar in architecture to the rllab suite, with support
-    for more environments and baselines. To this date the number of environments is similar to the ones in rllab, but is
-    being actively supported, compared to the rllab. More information can be found in its repo (\url{https://github.com/rlworkgroup/garage}).
+\end{itemize}
 
-    \subsection{Robosuite}
+The RL API exposed by Gym is similar to the one exposed by ControlSuite. 
+In each step taken in the environment, the API returns the observation, 
+reward, and some extra observations. More information can be found in its 
+technical report \citep{Gym}, and in its \href{https://github.com/openai/gym}{repository}.
+
+\subsection{Rllab and Garage}
+
+Rllab is a set of benchmarks similar to the previous two. It implements its own 
+Python wrapper for MuJoCo, and builds its own Reinforcement Learning API on top 
+of that wrapper. It provides a set of tested baselines of various Deep Reinforcement 
+Learning algorithms, which were compared in \cite{Rllab}. 
+
+The environments provided by Rllab are grouped in three categories: \textbf{classic} 
+(Figure @FIG-3.4), \textbf{locomotion} (Figure @FIG-3.5) and \textbf{hierarchical} (Figure @FIG-3.6).
+It is compatible with Gym, by means of a wrapper on top of its environments, 
+but as they explain in their documentation \href{https://rllab.readthedocs.io/en/latest/user/gym_integration.html}{website} 
+this is a very different API.
+
+\figBenchmarkRllabClassic
+
+\figBenchmarkRllabLocomotion
+
+\figBenchmarkRllabHierarchical
+
+Garage is the next version of the Rllab suite, and is very similar in architecture 
+to Rllab, with support for more environments and baselines. To this date the number 
+of environments is similar to the ones in Rllab, but is being actively supported, 
+compared to Rllab. More information can be found in its \href{https://github.com/rlworkgroup/garage}{repo}.
+
+\subsection{Robosuite}
  
-    \subsection{Gpu-Accelerated simulator}
+@TODO
 
-    \subsection{Robot simulator from Eth}
+\subsection{Gpu-Accelerated simulator}
 
-    \subsection{Unity ML-Agents}
-    This last suite \citep{unity-ml-agents} is a recent one, and consists of some ports of the previously mentioned environments, as well
-    as many more new environments that are built on top of the \citeauthor{unity} game engine. These allows to easily create new environments
-    for RL agents because of all the tools provided by the Unity3d engine.
+@TODO
 
-    One of the key differences is the type of physics engine used, which in this case is the \citeauthor{physX} (a real time physics engine
-    developed by NVIDIA for games). Compared with MuJoCo, this is less optimized for multibody dynamics. Instead, it is optimized to simulate
-    lots of objects. Another key difference is the RL API, which has the architecture shown in figure 2.8.
+\subsection{Robot simulator from Eth}
 
-    \begin{figure}[!ht]
-        \centering
-        \includegraphics[width=3.5in]{./chapters/imgs/img_unity_mlagents_api_overview.png}
-        \caption[unity ml agents overview]{Overview of the Unity ML-Agents architecture. Extracted from \citet{unity-ml-agents}}
-        \label{fig:unity-ml-agents-overview}
-    \end{figure}
+@TODO
 
-    The previous architecture is exposed to the user through the API, and the basic workflow when using
-    this suite is shown in figure 2.9.
+\subsection{Unity ML-Agents}
 
-    \begin{figure}[!ht]
-        \centering
-        \includegraphics[width=3.5in]{./chapters/imgs/img_unity_mlagents_workflow.png}
-        \caption[unity ml agents workflow]{Base workflow used in Unity ML-Agents. Extracted from \citet{unity-ml-agents}}
-        \label{fig:unity-ml-agents-workflow}
-    \end{figure}
+This last suite \citep{unity-ml-agents} is a recent one, and consists of some ports of the previously mentioned environments, as well
+as many more new environments that are built on top of the \citeauthor{unity} game engine. These allows to easily create new environments
+for RL agents because of all the tools provided by the Unity3d engine.
+
+One of the key differences is the type of physics engine used, which in this case is the \citeauthor{physX} (a real time physics engine
+developed by NVIDIA for games). Compared with MuJoCo, this is less optimized for multibody dynamics. Instead, it is optimized to simulate
+lots of objects. Another key difference is the RL API, which has the architecture shown in figure 2.8.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=3.5in]{./chapters/imgs/img_unity_mlagents_api_overview.png}
+    \caption[unity ml agents overview]{Overview of the Unity ML-Agents architecture. Extracted from \citet{unity-ml-agents}}
+    \label{fig:unity-ml-agents-overview}
+\end{figure}
+
+The previous architecture is exposed to the user through the API, and the basic workflow when using
+this suite is shown in figure 2.9.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=3.5in]{./chapters/imgs/img_unity_mlagents_workflow.png}
+    \caption[unity ml agents workflow]{Base workflow used in Unity ML-Agents. Extracted from \citet{unity-ml-agents}}
+    \label{fig:unity-ml-agents-workflow}
+\end{figure}
