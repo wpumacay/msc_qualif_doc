@@ -11,6 +11,8 @@
 %%          * OpenAI's mujoco-py
 %%          * Berkeley's garage and rllab
 %%          * Stanford's robosuite
+%%          * NVIDIA Isaac + FleX
+%%          * Eth - raisim simulator?
 %%          * UBC's terrainRlSim
 %%          * Unity's ml-agents (talk about the marathon envs)
 %%
@@ -28,11 +30,14 @@
 \chapter{Related Works}
 \label{ch:relatedWorks}
 
-In this section we give an overview of the available RL benchmarks for continuous 
-control, explaining each benchmark available, as well as a summary of the key characteristics
- of each one.
+In this chapter we give an overview of the state of the art in robot locomotion using 
+Deep Reinforcement Learning. We discuss some currently avaiable benchmarks for these tasks,
+giving details that will help compare these current benchmarks with the proposed framework, which
+will be discusses in more detail in chapter 4. We also discuss current state of the art algorithms
+used to solve these tasks, which will be used as baselines for the experiments we will propose as part
+of the evaluation procedure.
 
-\section{Current available benchmarks}
+\section{Robot locomotion benchmarks}
 
     \subsection{Deepmind Control Suite}
     This suite of benchmarks consists of a Python wrapper of the MuJoCo physics engine, and a RL API on top
@@ -53,13 +58,7 @@ control, explaining each benchmark available, as well as a summary of the key ch
 
     Below we show a figure from the environments presented by this benchmark.
 
-    \begin{figure}[!ht]
-        \centering
-        \includegraphics[width=5.5in]{./chapters/imgs/img_controlsuite_envs.png}
-        \caption[Controlsuite models]{Models available in the Controlsuite benchmark. Extracted from \citet{Controlsuite}.
-                                      Models from the BENCHMARK set of environments.}
-        \label{fig:controlsuite-envs}
-    \end{figure}
+    \figBenchmarkControlsuite
 
     \subsection{OpenAI Gym}
     This set of benchmarks consists of two separate options, depending on the physics engine to be used. These options are :
@@ -126,7 +125,13 @@ control, explaining each benchmark available, as well as a summary of the key ch
     Garage is the next version of the rllab suite, and is very similar in architecture to the rllab suite, with support
     for more environments and baselines. To this date the number of environments is similar to the ones in rllab, but is
     being actively supported, compared to the rllab. More information can be found in its repo (\url{https://github.com/rlworkgroup/garage}).
+
+    \subsection{Robosuite}
  
+    \subsection{Gpu-Accelerated simulator}
+
+    \subsection{Robot simulator from Eth}
+
     \subsection{Unity ML-Agents}
     This last suite \citep{unity-ml-agents} is a recent one, and consists of some ports of the previously mentioned environments, as well
     as many more new environments that are built on top of the \citeauthor{unity} game engine. These allows to easily create new environments

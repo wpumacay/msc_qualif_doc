@@ -8,16 +8,6 @@ Andrychowicz, M., Baker, B., et~al. (2018).
 Brockman, G., Cheung, V., et~al. (2016).
 \newblock Openai gym.
 
-\bibitem[\protect\astroncite{Catto}{2011}]{Box2D}
-Catto, E. (2011).
-\newblock Box2d: A 2d physics engine for games.
-
-\bibitem[\protect\astroncite{Coumans}{2015}]{Bullet}
-Coumans, E. (2015).
-\newblock Bullet physics simulation.
-\newblock In {\em ACM SIGGRAPH 2015 Courses}, SIGGRAPH '15, New York, NY, USA.
-  ACM.
-
 \bibitem[\protect\astroncite{Duan et~al.}{2016}]{Rllab}
 Duan, Y., Chen, X., et~al. (2016).
 \newblock Benchmarking deep reinforcement learning for continuous control.
@@ -35,11 +25,6 @@ Holden, D., Komura, T., et~al. (2017).
 \bibitem[\protect\astroncite{Juliani et~al.}{2018}]{unity-ml-agents}
 Juliani, A., Berges, V.-P., et~al. (2018).
 \newblock Unity: A general platform for intelligent agents.
-
-\bibitem[\protect\astroncite{Lee et~al.}{2018}]{DART}
-Lee, J., Grey, M.~X., et~al. (2018).
-\newblock Dart: Dynamic animation and robotics toolkit.
-\newblock Journal of Open Source Software.
 
 \bibitem[\protect\astroncite{Mnih et~al.}{2015}]{DQNAtari}
 Mnih, V., Kavukcuoglu, K., et~al. (2015).
@@ -60,10 +45,6 @@ Peng, X.~B., Abbeel, P., et~al. (2018).
 PhysX.
 \newblock Physx. https://developer.nvidia.com/physx-sdk.
 
-\bibitem[\protect\astroncite{RLworkgroup}{}]{garage}
-RLworkgroup.
-\newblock garage. https://github.com/openai/roboschool.
-
 \bibitem[\protect\astroncite{Silver et~al.}{2016}]{AlphaGo}
 Silver, D., Huang, A., et~al. (2016).
 \newblock Mastering the game of go with deep neural network and tree search.
@@ -76,10 +57,6 @@ Tan, J., amd Erwin~Coumans, T.~Z., et~al. (2018).
 \bibitem[\protect\astroncite{Tassa et~al.}{2018}]{Controlsuite}
 Tassa, Y., Doron, Y., et~al. (2018).
 \newblock Deepmind control suite.
-
-\bibitem[\protect\astroncite{Todorov et~al.}{2012}]{MuJoCo}
-Todorov, E., Erez, T., et~al. (2012).
-\newblock Mujoco: A physics engine for model-based control.
 
 \bibitem[\protect\astroncite{Unity3d}{}]{unity}
 Unity3d.
