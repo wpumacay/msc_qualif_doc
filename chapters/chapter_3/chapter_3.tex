@@ -43,7 +43,7 @@ of the evaluation procedure.
 
 \subsection{Deepmind ControlSuite}
 
-This set of benchmarks were first introduced in \cite{Controlsuite}, and consists 
+This set of benchmarks was first introduced in \cite{Controlsuite}, and consists 
 of various locomotion tasks (shown in Figure @FIG-3.1), with various types of agents 
 to select from. The models available consist of xml files in the mujoco format (mjcf) 
 that are used as the blueprints to instantiate an agent. The tasks consist of the specific
@@ -78,7 +78,8 @@ some of the key features of this benchmark include:
 \subsection{OpenAI Gym}
 
 This set of benchmarks consists of two separate options depending on the physics 
-backend, and are used as a Python layer below the high level API provided by Gym.
+backend (MuJoCo and Bullet). These two options are Python Wrappers for the supported 
+physics backends and are used as low level functionality for the high level API provided by Gym \citep{Gym}.
 The options used as wrappers for the two physics backends available are the following:
 
 \begin{itemize}
