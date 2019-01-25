@@ -4,6 +4,10 @@
 Andrychowicz, M., Baker, B., et~al. (2018).
 \newblock Learning dexterous in-hand manipulation.
 
+\bibitem[\protect\astroncite{Berseth et~al.}{2018}]{TerrainRLSim}
+Berseth, G., Peng, X.~B., et~al. (2018).
+\newblock Terrain rl simulator.
+
 \bibitem[\protect\astroncite{Brockman et~al.}{2016}]{Gym}
 Brockman, G., Cheung, V., et~al. (2016).
 \newblock Openai gym.
@@ -12,6 +16,12 @@ Brockman, G., Cheung, V., et~al. (2016).
 Duan, Y., Chen, X., et~al. (2016).
 \newblock Benchmarking deep reinforcement learning for continuous control.
 \newblock ICML.
+
+\bibitem[\protect\astroncite{Fan et~al.}{2018}]{Surreal}
+Fan, L., Zhu, Y., et~al. (2018).
+\newblock Surreal: Open-source reinforcement learning framework and robot
+  manipulation benchmark.
+\newblock In {\em Conference on Robot Learning}.
 
 \bibitem[\protect\astroncite{Heess et~al.}{2017}]{DeepmindEmergenceLocomotion}
 Heess, N., TB, D., et~al. (2017).
@@ -22,9 +32,15 @@ Holden, D., Komura, T., et~al. (2017).
 \newblock Phased-functioned neural networks for character control.
 \newblock volume~36. ACM Transactions on Graphics.
 
-\bibitem[\protect\astroncite{Juliani et~al.}{2018}]{unity-ml-agents}
+\bibitem[\protect\astroncite{Juliani et~al.}{2018}]{UnityMLAgents}
 Juliani, A., Berges, V.-P., et~al. (2018).
 \newblock Unity: A general platform for intelligent agents.
+
+\bibitem[\protect\astroncite{Liang et~al.}{2018}]{GpuSim}
+Liang, J., Makoviychuk, V., et~al. (2018).
+\newblock Gpu-accelerated robotics simulation for distributed reinforcement
+  learning.
+\newblock In {\em Conference on Robot Learning}.
 
 \bibitem[\protect\astroncite{Mnih et~al.}{2015}]{DQNAtari}
 Mnih, V., Kavukcuoglu, K., et~al. (2015).
@@ -41,9 +57,17 @@ Peng, X.~B., Abbeel, P., et~al. (2018).
   physics-based character skills.
 \newblock {\em ACM Trans. Graph.}, 37(4):143:1--143:14.
 
-\bibitem[\protect\astroncite{PhysX}{}]{physX}
-PhysX.
-\newblock Physx. https://developer.nvidia.com/physx-sdk.
+\bibitem[\protect\astroncite{Peng et~al.}{2016}]{DeepTerrainRL}
+Peng, X.~B., Berseth, G., et~al. (2016).
+\newblock Terrain-adaptive locomotion skills using deep reinforcement learning.
+\newblock {\em ACM Transactions on Graphics (Proc. SIGGRAPH 2016)}, 35(4).
+
+\bibitem[\protect\astroncite{Peng and van~de Panne}{2017}]{ActuationChoice}
+Peng, X.~B. and van~de Panne, M. (2017).
+\newblock Learning locomotion skills using deeprl: Does the choice of action
+  space matter?
+\newblock In {\em Proceedings of the ACM SIGGRAPH / Eurographics Symposium on
+  Computer Animation}, SCA '17, pages 12:1--12:13, New York, NY, USA. ACM.
 
 \bibitem[\protect\astroncite{Silver et~al.}{2016}]{AlphaGo}
 Silver, D., Huang, A., et~al. (2016).
@@ -58,7 +82,7 @@ Tan, J., amd Erwin~Coumans, T.~Z., et~al. (2018).
 Tassa, Y., Doron, Y., et~al. (2018).
 \newblock Deepmind control suite.
 
-\bibitem[\protect\astroncite{Unity3d}{}]{unity}
+\bibitem[\protect\astroncite{Unity3d}{}]{Unity}
 Unity3d.
 \newblock Unity3d. https://unity3d.com/.
 

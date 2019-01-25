@@ -12,7 +12,6 @@
 %%          * Berkeley's garage and rllab
 %%          * Stanford's robosuite
 %%          * NVIDIA Isaac + FleX
-%%          * Eth - raisim simulator?
 %%          * UBC's terrainRlSim
 %%          * Unity's ml-agents (talk about the marathon envs)
 %%
@@ -32,12 +31,16 @@
 
 \input{./chapters/chapter_3/chapter_3_figs}
 
-In this chapter we will give an overview of the state of the art in robot locomotion using 
-Deep Reinforcement Learning. We discuss some currently avaiable benchmarks for these tasks,
-giving details that will help compare these current benchmarks with the proposed framework, which
-will be discussed in more detail in chapter 4. We also discuss current state of the art algorithms
-used to solve these tasks, which will be used as baselines for the experiments we will propose as part
-of the evaluation procedure.
+In this chapter we will give an overview of the currently available benchmarks
+used for robot locomotion research. We give some high level details of the benchmarks,
+which should help understand the proposal in Chapter 4.
+
+%% In this chapter we will give an overview of the state of the art in robot locomotion using 
+%% Deep Reinforcement Learning. We discuss some currently avaiable benchmarks for these tasks,
+%% giving details that will help compare these current benchmarks with the proposed framework, which
+%% will be discussed in more detail in chapter 4. We also discuss current state of the art algorithms
+%% used to solve these tasks, which will be used as baselines for the experiments we will propose as part
+%% of the evaluation procedure.
 
 \section{Robot locomotion benchmarks}
 
@@ -107,10 +110,9 @@ technical report \citep{Gym}, and in its \href{https://github.com/openai/gym}{re
 Rllab is a set of benchmarks similar to the previous two. It implements its own 
 Python wrapper for MuJoCo, and builds its own Reinforcement Learning API on top 
 of that wrapper. It provides a set of tested baselines of various Deep Reinforcement 
-Learning algorithms, which were compared in \cite{Rllab}. 
-
-The environments provided by Rllab are grouped in three categories: \textbf{classic} 
-(Figure @FIG-3.4), \textbf{locomotion} (Figure @FIG-3.5) and \textbf{hierarchical} (Figure @FIG-3.6).
+Learning algorithms, which were presented in \cite{Rllab}. The environments provided 
+by Rllab are grouped in three categories: \textbf{classic} (Figure @FIG-3.4), 
+\textbf{locomotion} (Figure @FIG-3.5) and \textbf{hierarchical} (Figure @FIG-3.6).
 It is compatible with Gym, by means of a wrapper on top of its environments, 
 but as they explain in their documentation \href{https://rllab.readthedocs.io/en/latest/user/gym_integration.html}{website} 
 this is a very different API.
@@ -128,39 +130,57 @@ compared to Rllab. More information can be found in its \href{https://github.com
 
 \subsection{Robosuite}
  
-@TODO
+\href{https://github.com/StanfordVL/robosuite/}{Robosuite} is a set of benchmarks first 
+introduced along the \href{https://surreal.stanford.edu/}{Surreal} 
+framework by \cite{Surreal}. This set of benchmarks is more oriented towards robot manipulation,
+providing tasks that involve robot models commonly used as robotics manipulation research platforms 
+(like \textit{sawyer} and \textit{baxter}).
 
-\subsection{Gpu-Accelerated simulator}
+This set of benchmarks use MuJoCo as physics backend (through mujoco-py), and as they
+explain in their documentation, the suite provides various APIs that allow the user
+to create diverse experiments. By using its programmatical task construction API
+the user can create an specific setup with just a few lines of Python code.
+The tasks provided in the suite are shown in Figure @FIG-3.7.
 
-@TODO
+\figBenchmarksRobosuite
 
-\subsection{Robot simulator from Eth}
+\subsection{Gpu-Accelerated Simulation}
 
-@TODO
+This set of benchmarks was presented in \cite{GpuSim}, and makes use of a custom 
+physics backend developed in-house. The physics simulator is built on top of the 
+NVIDIA FleX physics engine, which focuses on accelerated GPU physics simulation. 
+This approach allows to run scenes with a large number of agents, ranging in the 
+thousands. One key detail to consider is the usage of FleX, which is a position 
+based dynamics engine. This type of simulations allows for fast simulation by trading
+accuracy. 
+
+The simulator is not yet released (as stated by the authors, it is still 
+work in progress), but will probably be released as part of the \href{https://developer.nvidia.com/isaac-sdk}{NVIDIA Isaac platform}.
+Some of the benchmarks presented are shown in Figure @FIG-3.8, and include tasks
+involving hundreds of humanoids running in environmnets from low to high complexity.
+
+\figBenchmarksGpuSim
+
+\subsection{TerrainRLSim}
+
+This set of benchmarks was presented in \cite{TerrainRLSim}, and was used in \cite{DeepTerrainRL}, 
+\cite{ActuationChoice} as the core framework. This suite uses Bullet as physics backend,
+and one key difference with the other presented works is the diversity of the tasks provided.
+The tasks provided are shown in Figure @FIG-3.9, and range from single direction obstacle courses, 
+to two dimensional traversal tasks.
+
+\figBenchmarksTerrainRLSim
 
 \subsection{Unity ML-Agents}
 
-This last suite \citep{unity-ml-agents} is a recent one, and consists of some ports of the previously mentioned environments, as well
-as many more new environments that are built on top of the \citeauthor{unity} game engine. These allows to easily create new environments
-for RL agents because of all the tools provided by the Unity3d engine.
+This set of benchmarks was presented in \cite{UnityMLAgents}, and it is a framework 
+built on top the \citeauthor{Unity} game engine, which makes use of PhysX as backend. 
+The tasks are ports of various tasks from the previous benchmarks, and can be used
+through a Python API that connects to the games that represent the tasks. The base tasks
+provided by the framework are shown in Figure @FIG-3.10. Also, there are a set of tasks
+that are provided on top of this framework through the \href{https://github.com/Unity-Technologies/marathon-envs}{Marathon Environments} 
+package, and are shown in Figure @FIG-3.11.
 
-One of the key differences is the type of physics engine used, which in this case is the \citeauthor{physX} (a real time physics engine
-developed by NVIDIA for games). Compared with MuJoCo, this is less optimized for multibody dynamics. Instead, it is optimized to simulate
-lots of objects. Another key difference is the RL API, which has the architecture shown in figure 2.8.
+\figBenchmarksUnityMLAgents
 
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width=3.5in]{./chapters/imgs/img_unity_mlagents_api_overview.png}
-    \caption[unity ml agents overview]{Overview of the Unity ML-Agents architecture. Extracted from \citet{unity-ml-agents}}
-    \label{fig:unity-ml-agents-overview}
-\end{figure}
-
-The previous architecture is exposed to the user through the API, and the basic workflow when using
-this suite is shown in figure 2.9.
-
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width=3.5in]{./chapters/imgs/img_unity_mlagents_workflow.png}
-    \caption[unity ml agents workflow]{Base workflow used in Unity ML-Agents. Extracted from \citet{unity-ml-agents}}
-    \label{fig:unity-ml-agents-workflow}
-\end{figure}
+\figBenchmarksMarathonEnvs
