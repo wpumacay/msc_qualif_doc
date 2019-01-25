@@ -220,7 +220,7 @@ and the base form of the Policy Gradients algorithms.
     \end{equation}
 \end{definition}
 
-We then can reformulate the objective we want to optimize for using this new notation.
+We  can then reformulate the objective we want to optimize for using this new notation.
 Recall that the agent tries to maximize its expected return, so we can define this as
 an objective $J$ that depends on the parameters of our policy as follows:
 
@@ -233,7 +233,7 @@ the parameters of our policy $\theta$ (recall that the agent sees what its polic
 We can then optimize for the parameters $\theta$ by computing the gradient of this
 objective function. However, directly trying to compute the gradient of this expectation
 is intractable, so we have to make use of a trick (REINFORCE trick) to be able to
-get an estimate of this gradient [@CITE-sutton-2000].
+get an estimate of this gradient [@CITE-sutton-2000]. \todo{en vez de so, usa thus, es más formal}
 
 \begin{theorem}
     For any differentiable policy $\pi_{\theta}(a|s)$, the gradient of the
@@ -244,25 +244,25 @@ get an estimate of this gradient [@CITE-sutton-2000].
     \end{equation}
 \end{theorem}
 
-The resulting expression from the previous theoreom needs no information of the model.
+The resulting expression from the previous theorem needs no information of the model.
 The only requirement is for the policy to be differentiable. We can compute this expected
 gradient by using samples, and then apply gradient ascent in the parameters space to optimize 
 the parameters $\theta$ of our policy.
 
 The intuition of this algorithm is that it is increasing the probability of selecting
 the actions that yielded good results (from the trajectories that gave good returns), 
-and decreasing the probability of selectiong the actions that yielded bad results. This
+and decreasing the probability of selecting the actions that yielded bad results. This
 is shown in the Figure @FIG-2.7.
 
 \figRlPolicyGradientsIntuition
 
 \subsection{Deep Learning and RL}
-
-As already explained earlier, we make use of function approximation to parametrize
-some component of our RL setup. In value based methods we usually parametrize the
-Action-value function as $Q_{\theta}$, and in policy based methods we parametrize
+\todo{toda esta subsection no tiene referencias}
+As already explained earlier, we make use of function approximation to parameterize
+some component of our RL setup. In value based methods we usually parameterize the
+Action-value function as $Q_{\theta}$, and in policy based methods we parameterize
 the policy as $\pi_{\theta}$. These parametrization can be made by using various
-function approximators, like \textit{linear models}, \textit{fourier basis}, 
+function approximators \todo{revisa si existe esta palabra, creo que seria mejor approximations}, like \textit{linear models}, \textit{fourier basis}, 
 \textit{decision trees}, \textit{radial basis functions}, etc..
 
 Deep learning is used in this context to provide function approximators via Deep
@@ -278,7 +278,7 @@ and previous works that used different function approximators is that in previou
 the use of function approximators was decoupled from the representation given to the mode.
 The representation was given by features that where hand engineered by the researcher, and then
 combined with the function approximator chosen for the task. The approach that DeepRL follows is 
-different in the sense that we learn the representation via the Deep models we use as function approximators.
+different in the sense that we learn the representation via the Deep models we use as function approximators. \todo{se esta usando excesivamente la palabra approximator en este parrafo}
 
 \section{Simulated Learning Environments}
 
@@ -290,9 +290,9 @@ to the role that a dataset plays in Supervised Learning.
 These learning environments are usually simulations of some RL tasks that we want an
 agent to learn. This simulated nature of the environment makes it easy to grab as much 
 experience as needed, and because the environment is a simulation we can usually
-speed up the process and take huges amounts of experience for our learning algorithms.
+speed up the process and take huge amounts of experience for our learning algorithms.
 
-A learning environment is usually designed around the agent interacion loop mentioned
+A learning environment is usually designed around the agent interaction loop mentioned
 at the beginning of this chapter. This defines the basic API that such an environment
 has to provide:
 
@@ -315,7 +315,7 @@ are widely used because of this standarization. Just to name a few:
            this state. Some of these registers are loaded with the score of the game
            and can be retrieved to be exposed to the user. The observations consist
            of frames from the rendered game, which are also exposed to the user. The actions
-           are mapped into the appropiate register that the emulator expects in order
+           are mapped into the appropriate register that the emulator expects in order
            to apply the joystick controls in the game.
 
            \figALEgames
@@ -332,7 +332,7 @@ are widely used because of this standarization. Just to name a few:
            of the Quake game engine, from \textit{Id Software}. It provides various challenging
            environments like mazes, multi-agent setups, etc. The actions are mapped to a discrete
            set of actions that the original game engine supported, and the observations consists
-           mainly of the camera frames from the renderer game.
+           mainly of the camera frames from the rendered game.
 
            \figDeepmindLabEnvs
 
@@ -345,12 +345,12 @@ These make use of different components to provide the simulation required for th
 tasks (like walking, running, standing, etc.). The main components we will use
 to describe these environments are the underlying \textbf{physics engine} used for the simulations, 
 the internal agent representation of an agent by using \textbf{kinematic trees}, and the
-the underlying representation of the agent actions we can apply by using an appropiate \textbf{actuation model}.
+the underlying representation of the agent actions we can apply by using an appropriate \textbf{actuation model}.
 
 \subsection{Physics Engines}
 
 The physics engine is the component in charge of simulating the environment by doing the
-required collision checkings and applying the dynamics to the simulated objects. These
+required collision checking and applying the dynamics to the simulated objects. These
 physics engines vary according to the application needed and the methods used for solving
 the underlying problems required for the simulations. A brief summary of the steps involved are
 shown in Figure @FIG-2.13.
@@ -358,7 +358,7 @@ shown in Figure @FIG-2.13.
 \figPhysicsEngineLoop
 
 Different physics engines make changes in different parts of this general pipeline.
-The changes are made based on some tradeoffs that depend on the application. That's
+The changes are made based on some trade-offs that depend on the application. That's
 why some engines are more suited for applications like games (by reducing accuracy for speed)
 and some other are more suited for robotics applications (by being more accurate in 
 contact calculations, actuation models, etc.). Some available physics engines are 
@@ -377,13 +377,13 @@ listed below:
 
     \item \textbf{PhysX} [@CITE], developed by NVIDIA, is a physics engine used
           mostly in games, and integrated into game engines like Unity [@CITE] and Unreal [@CITE].
-          It has recently been released as opensource, and version 4.0 has new features
+          It has recently been released as open source, and version 4.0 has new features
           that allow to simulate robotics applications more accurately.
 
     \item \textbf{FleX} [@CITE], developed also by NVIDIA, is a GPU particle-physics engine,
           it uses position-based dynamics (unlike the others which are force-based), which is
           more visually pleasing, but not accurate to simulate the real world. The advantage is
-          that is posible to simulate large scenes easily and with very few compute resources.
+          that is possible to simulate large scenes easily and with very few compute resources.
           For example, in [@CITE] the authors (also from NVIDIA) developed a simulator based on
           this physics engine, and they show that they can simulate large scene with hundreds of
           agents.
@@ -423,11 +423,11 @@ can behave very different given the same input. Some actuation models are listed
 \end{itemize}
 
 For more details in actuation models, see [@CITE]. Some physics engines don't support 
-various of this actuation models, leaving the user with the responsability to implement
+various of this actuation models, leaving the user with the responsibility to implement
 these models using the primitives provided, which usually consist in torques (like the authors
 of [@CITE] did in its implementation). Figure @FIG-2.15 shows these actuation models 
 (adapted from [@CITE]).
 
 \figActuationModels
 
-
+\todo{deberias colocar una seccion de consideraciones finales para hacer un pequeño resumen del capitulo presentado y presentar lo que será visto en el siguiente de forma breve}

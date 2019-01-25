@@ -23,10 +23,10 @@ control tasks. This has given good results in various locomotion benchmarks, lik
 
 \figDrlLocomotionMotivation
 
-This approach is very promising because it allows an agent to learn an appropiate controller for a given task after training in
-the simulated environment, which reduces the need to implement highly sophisticated control pipelines. Currenttly available 
+This approach is very promising because it allows an agent to learn an appropriate controller for a given task after training in
+the simulated environment, which reduces the need to implement highly sophisticated control pipelines. Currently available 
 training environments have been presented in various articles, and we will talk more about these in Chapter 3.
-Some of these currently available training environments are shown in Figure @FIG-1.2.
+Some of these training environments are shown in Figure @FIG-1.2.
 
 %% and compared to the ones mentioned previously (from Figure @FIG-1.1)
 %%they are much simpler, consisting mostly of classic control problems and some locomotion tasks in flat terrains.
@@ -49,7 +49,7 @@ that arise in the context of learning locomotion behaviours:
 \begin{itemize}
 	\item \textbf{Exploitation} of the dynamics of the simulated environments: 
 			Because of the nature of the objective the agents try to optimize for, they usually
-			end up developing behavious that cheat by exploiting some specific aspects of the environment
+			end up developing behaviours that cheat by exploiting some specific aspects of the environment
 			and getting stuck sub-optimal behaviours, e.g. walking in very unnatural way in walking tasks.
 			This is specially true when designing a reward function. The reward is the signal
 			that the agent gets to improve its behaviours, so poorly engineered reward functions could lead to sub-optimal and even bad performance.
@@ -62,7 +62,7 @@ that arise in the context of learning locomotion behaviours:
 			not generalize when transferred to the real world.
 \end{itemize}
 
-Some approaches used to deal with this issues are related to controlling the learning 
+Some approaches used to deal with these issues are related to controlling the learning 
 environments itself, like in \citeauthor{GoogleBrainSim2Real} and \citeauthor{OpenAISim2real} (Figure @FIG-1.3). 
 These try to account for unmodeled dynamics and generalization by using randomization
 over the simulated environment and other techniques to force the learning agent not to 
@@ -70,7 +70,7 @@ overfit to a specific behaviour that only exploits some of the dynamics of the e
 
 Then, one approach that can be used to solve these issues is to have a framework
 that provides researchers with the tools required to create these diverse environments
-and have full control over them. Furthermose, such a framework could be used to develop
+and have full control over them. Furthermore, such a framework could be used to develop
 environments in a progressive way via a \textbf{curriculum} (proposed in @CITE). Based on
 all this, we formulate the following hypothesis:
 
@@ -83,7 +83,7 @@ all this, we formulate the following hypothesis:
 We will focus in testing half of this hypothesis by implementing the required framework
 to create these diverse environments, and evaluating current state of the art Deep RL algorithms
 to these new environments. As future work we will try to deal with the full hypothesis, by
-trying to develop appropiate curricula.
+trying to develop appropriate curricula.
 
 \figEnvManipSimToreal
 
@@ -94,16 +94,28 @@ trying to develop appropiate curricula.
 \label{sec:objectives}
 
 \subsection*{General Objective}
-Make a framework to build diverse learning environments for locomotion tasks (as shown in Figure @FIG-1.4), 
+Develop a framework that allows the creation of diverse learning environments for locomotion tasks (as shown in Figure @FIG-1.4), 
 and evaluate the performance and generalization capabilities of current state of the art Deep 
 Reinforcement Learning algorithms.
+\todo{redacta mejor el objetivo, make y build tienen significados similares, tal vez sea mejor develop a framework that allow us to build...}
 
 \subsection*{Specific Objectives}
 \begin{itemize}
- \item Implement software tools on top of current Reinforcement Learning APIs and physics engines 
-       to create complex RL tasks for continuous control.
- \item Evaluate the performance of state of the art Deep Reinforcement Learning algorithms in these environments.
+ \item Implement an abstract core framework for robot locomotion, decoupled from any
+       concrete physics engine currently available.
+ \item Implement wrapper functionality for the integration of various 
+       currently available physics engines following a common API.
+ \item Implement a set of APIs that allows to create diverse and complex
+       environments, and create diverse tasks using these environments.
+ \item Implement user APIs via Python bindings to allow users to easily interact
+       with the framework, set up experiments and train agents using current Deep Learning Frameworks.
+ \item Make the necessary documentation for the whole framework to allow further
+       development of this framework and adoption as a standardized benchmark 
+       for robot locomotion.
+ \item Evaluate the performance of state of the art Deep Reinforcement Learning algorithms
+       in these environments.
 \end{itemize}
+\todo{solo hay dos objetivos específicos?}
 
 \section{Organization}
 \label{sec:organization}
@@ -121,4 +133,10 @@ The structure of this proposal is as follows :
 		  including: architecture of the framework, core features to be implemented, etc.
 	\item \textbf{Chapter 5 - Current progress}: we discuss the current state of the implementation
 		  of the proposed framework.
+    \item \textbf{Chapter 6 - Discussion}: finally, in this chapter we present
+          a discussion on the whole proposal and the road-map that we are 
+          following towards the objectives proposed earlier.
+		  
+		  \todo{Seria bueno un capítulo de conclusiones}
+		 
 \end{itemize}
