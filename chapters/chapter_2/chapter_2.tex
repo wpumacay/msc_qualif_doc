@@ -59,9 +59,9 @@ real-world robotics platforms [@CITE,@CITE], just to name a few.
 
 \figdrlsamplesThird
 
-Let's start \todo{Parece un poco informal usar Let's start, usa otra frase o simplemente sácala} 
-by defining Reinforcement Learning and classic solutions methods, and then
-see how Deep Learning fits into this framework by providing a way to capture representation
+\todo{Parece un poco informal usar Let's start, usa otra frase o simplemente sácala} 
+In the followings subsections we define Reinforcement Learning, present classic solutions methods, and then
+discuss how Deep Learning fits into this framework by providing a way to capture representation
 in the context of function approximation.
 
 \subsection{Reinforcement Learning}
@@ -232,8 +232,7 @@ Where $p(\tau;\theta)$ is a probability distribution of trajectories, induced by
 the parameters of our policy $\theta$ (recall that the agent sees what its policy allows).
 We can then optimize for the parameters $\theta$ by computing the gradient of this
 objective function. However, directly trying to compute the gradient of this expectation
-is intractable, so we have to make use of a trick (REINFORCE trick) to be able to
-get an estimate of this gradient [@CITE-sutton-2000]. \todo{en vez de so, usa thus, es más formal}
+is intractable, thus we make use of a mathematical trick (REINFORCE trick) to get an estimate of this gradient [@CITE-sutton-2000]. \todo{en vez de so, usa thus, es más formal}
 
 \begin{theorem}
     For any differentiable policy $\pi_{\theta}(a|s)$, the gradient of the

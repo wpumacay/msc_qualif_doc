@@ -44,8 +44,7 @@ proposal for this thesis. We split the discussion in this chapter into the follo
 
 \section{Details of the proposed framework}
 
-The framework proposed consists basically of a multi-backend framework with some
-APIs exposed to the user to handle tasks creation and setup. The framework is multi-backend
+The framework proposed consists basically of a multi-backend framework with exposed user APIs for task creation and configuration\todo{creation and setup tasks}. The framework is multi-backend
 in the sense that it provides the user with the ability to choose to run their experiments
 in a range of supported physics backends, like MuJoCo, Bullet, PhysX and FleX. We take
 this approach to provide the user with more flexibility on the choice of the platform because
@@ -67,7 +66,7 @@ when creating a task with the proposed framework is shown in Figure @FIG-4.1, wh
 \figFrameworkFlow
 
 In order to take into account the features proposed (multi-backend and diverse environment
-creation) we decided to use the architecture shown in Figure @FIG-4.2. We separete the core
+creation) we decided to use the architecture shown in Figure @FIG-4.2. We separate the core
 functionality into different modules, and create adapters for each backend (similar to wrappers) 
 around the base structures in each core module. These adapters are in charge of instantiating the
 necessary resources required by the base core structures. The framework then exposes the core
@@ -91,7 +90,7 @@ terrain and sensors, which are decoupled from the specific backends to be used. 
 is composed of the following components:
 
 \begin{itemize}
-    \item \textbf{Agents representations}: these representations consist of the core kinematric tree and its
+    \item \textbf{Agents representations}: these representations consist of the core kinematic \todo{kinematic?} tree and its
           variants. These variants could in principle model different situations that could be needed
           for some specific task. All these representations are abstract, and their components (bodies, 
           joints, collisions, etc.) are decoupled from the specific resources provided in the backends.
@@ -115,7 +114,7 @@ is composed of the following components:
         \figFrameworkCoreTerrain
 
     \item \textbf{Sensors representations}: these representations consist of the core sensors that will be exposed
-          to the user in order to train an agent. This are also abstract, and get the information from the
+          to the user in order to train an agent. These are also abstract, and get the information from the
           core agents and terrain generators. The type of sensors that will be implemented are: joint readings (angles 
           and speeds), body readings (relative position to root body, linear velocities and accelerations), 
           heightmap readings of the terrain, and camera readings in the form of RGB frames. The proposed sensors are shown
@@ -186,9 +185,9 @@ These APIs will consist of the following components:
           a scene programmatically, or by using configuration files. The user can then
           create a task using these APIs, or use the tasks APIs that will also be provided.
     \item APIs for task creation: these build on top of the previously mentioned APIs,
-          and allow the user create experiments like: running, fetching, etc.. These
+          and allow the user create experiments like: running, fetching, etc. These
           experiments will consist of the basic benchmarks we will use in our evaluation
-          experiments. However, the user can still use the APIs mentioned previuosly to
+          experiments. However, the user can still use the APIs mentioned previously to
           create new experiments.
     \item APIs for specific backend configuration: these can be used for extra configuration
           of specific backends, e.g. changing simulation properties on the fly (if supported
