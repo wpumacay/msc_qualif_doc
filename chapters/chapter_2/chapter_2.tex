@@ -65,15 +65,12 @@ discuss how Deep Learning fits into this framework by providing a way to capture
 in the context of function approximation.
 
 \subsection{Reinforcement Learning}
+
 \todo{En toda esta subsección no vi una referencia, por lo menos indicar en que autor te basaste para escribirla}
-Reinforcement Learning is an overloaded term that encloses both a \textbf{learning approach}
-and the \textbf{algorithms} that solve problems in this framework. RL as a learning approach \todo{mejor decir directamente que is a learning paradigm like}
-is a learning paradigm , like supervised and unsupervised learning, 
-\todo{Aqui colocar un punto y comenzar con Unlike learning from ... en vez de with the difference...} 
-with the difference that
-instead of learning from a labeled dataset (like in supervised learning) or learning an underlying
-structure of unlabeled incoming data (like in unsupervised learning), in RL we learn by interactions
-with an environment.
+Reinforcement Learning is an overloaded term that encloses both a \textbf{learning paradign}
+and the \textbf{algorithms} that solve problems in this framework. Reinforcement Learning \todo{mejor decir directamente que is a learning paradigm like}
+is a learning paradigm, like supervised and unsupervised learning, but unlike these other paradigms \todo{Aqui colocar un punto y comenzar con Unlike learning from ... en vez de with the difference...} 
+in Reinforcement Learning an agent has to learn by interactions with an environment.
 
 In Figure @FIG-2.4 we show the Agent-Environment interaction loop. This represents
 the way an agent in a certain \textbf{state} $S_{t}$ (a certain modeled configuration) interacts 
@@ -97,10 +94,10 @@ that we can use to model sequential decision making problems with uncertainties.
     \end{itemize}
 \end{definition}
 
-We have already talked \todo{discussed} about some of the components of an MDP (state, action, reward).
+We have already discussed \todo{discussed} some of the components of an MDP (state, action, reward).
 The remaining components consist of: a transition model of the environment, $P(s'|s,a)$
 which basically models the environment's dynamics into a single conditional probability
-distribution, and a discount factor $\gamma$ that models that \todo{that .. that no suena muy bien} rewards in the future might have
+distribution, and a discount factor $\gamma$ used to take into account that rewards in the future might have \todo{that .. that no suena muy bien}
 less importance than rewards now (discounting like when dealing with money). Some examples 
 of problems in RL formulated in the MDP framework are shown in Figure @FIG-2.5.
 

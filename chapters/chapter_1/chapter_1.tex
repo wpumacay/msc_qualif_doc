@@ -19,17 +19,14 @@ and beating the world's Go champion \citep{AlphaGo}, just to name a few. These r
 action spaces problems, in which the action space can be defined by a finite-size set of values. 
 More recently, this approach has also been applied to continuous actions spaces, i.e. in continuous 
 control tasks. This has given good results in various locomotion benchmarks, like in 
-\citeauthor{DeepmindEmergenceLocomotion} and \citeauthor{DeepMimic}, shown in Figure @FIG-1.1.
+\citeauthor{DeepmindEmergenceLocomotion} and \citeauthor{DeepMimic}, shown in Figure ~\ref{fig:ch1_motivation_drl_locomotion}.
 
 \figDrlLocomotionMotivation
 
 This approach is very promising because it allows an agent to learn an appropriate controller for a given task after training in
 the simulated environment, which reduces the need to implement highly sophisticated control pipelines. Currently available 
 training environments have been presented in various articles, and we will talk more about these in Chapter 3.
-Some of these training environments are shown in Figure @FIG-1.2.
-
-%% and compared to the ones mentioned previously (from Figure @FIG-1.1)
-%%they are much simpler, consisting mostly of classic control problems and some locomotion tasks in flat terrains.
+Some of these training environments are shown in Figure ~\ref{fig:ch1_drl_locomotion_benchmarks}.
 
 The ultimate goal of applying these techniques is to be able to develop complex behaviours, similar
 to those shown in nature by animals. However, to develop and test this complex behaviours there is a need to \textbf{create
@@ -37,7 +34,6 @@ a wide set of rich and complex environments}, which is not provided by currently
 
 \figDrlBenchmarks
 
-% @TAG: Refer to content above and "formalize" a bit more
 \section{Problem Statement}
 \label{sec:problem}
 
@@ -47,23 +43,23 @@ from scratch using Deep Reinforcement Learning techniques. Besides, there are so
 that arise in the context of learning locomotion behaviours:
 
 \begin{itemize}
-	\item \textbf{Exploitation} of the dynamics of the simulated environments: 
-			Because of the nature of the objective the agents try to optimize for, they usually
-			end up developing behaviours that cheat by exploiting some specific aspects of the environment
-			and getting stuck sub-optimal behaviours, e.g. walking in very unnatural way in walking tasks.
-			This is specially true when designing a reward function. The reward is the signal
-			that the agent gets to improve its behaviours, so poorly engineered reward functions could lead to sub-optimal and even bad performance.
-	\item \textbf{Inability to transfer} learned  policies into the real world:
-			In general, policies learned in simulation do not transfer directly to a real world robotics
-			platform. This is because of discrepancies between the dynamics of the simulation and
-			the dynamics of the real world, which is usually called the \textbf{reality gap}.
-			This issue is also a direct consequence of the previous one. As the agent exploits the 
-			dynamics of the simulation, it will overfit to the given environment, and will 
-			not generalize when transferred to the real world.
+    \item \textbf{Exploitation} of the dynamics of the simulated environments: 
+            Because of the nature of the objective the agents try to optimize for, they usually
+            end up developing behaviours that cheat by exploiting some specific aspects of the environment
+            and getting stuck sub-optimal behaviours, e.g. walking in very unnatural way in walking tasks.
+            This is specially true when designing a reward function. The reward is the signal
+            that the agent gets to improve its behaviours, so poorly engineered reward functions could lead to sub-optimal and even bad performance.
+    \item \textbf{Inability to transfer} learned  policies into the real world:
+            In general, policies learned in simulation do not transfer directly to a real world robotics
+            platform. This is because of discrepancies between the dynamics of the simulation and
+            the dynamics of the real world, which is usually called the \textbf{reality gap}.
+            This issue is also a direct consequence of the previous one. As the agent exploits the 
+            dynamics of the simulation, it will overfit to the given environment, and will 
+            not generalize when transferred to the real world.
 \end{itemize}
 
 Some approaches used to deal with these issues are related to controlling the learning 
-environments itself, like in \citeauthor{GoogleBrainSim2Real} and \citeauthor{OpenAISim2real} (Figure @FIG-1.3). 
+environments itself, like in \citeauthor{GoogleBrainSim2Real} and \citeauthor{OpenAISim2real} (Figure ~\ref{fig:ch1_sim_to_real_approaches}).
 These try to account for unmodeled dynamics and generalization by using randomization
 over the simulated environment and other techniques to force the learning agent not to 
 overfit to a specific behaviour that only exploits some of the dynamics of the environment.
@@ -71,13 +67,13 @@ overfit to a specific behaviour that only exploits some of the dynamics of the e
 Then, one approach that can be used to solve these issues is to have a framework
 that provides researchers with the tools required to create these diverse environments
 and have full control over them. Furthermore, such a framework could be used to develop
-environments in a progressive way via a \textbf{curriculum} (proposed in @CITE). Based on
-all this, we formulate the following hypothesis:
+environments in a progressive way via a \textbf{curriculum} \citep{CurriculumLearningBengio},
+Based on all this, we formulate the following hypothesis:
 
 \begin{hypothesis}
-	By having control of the learning environment we can control the learning procedure
-	of an agent in such a way that it can develop complex and robust behaviours to solve
-	the tasks presented, and also generalize to other environments.
+    By having control of the learning environment we can control the learning procedure
+    of an agent in such a way that it can develop complex and robust behaviours to solve
+    the tasks presented, and also generalize to other environments.
 \end{hypothesis}
 
 We will focus in testing half of this hypothesis by implementing the required framework
@@ -89,12 +85,11 @@ trying to develop appropriate curricula.
 
 \figEnvironmentsProposalFromTo
 
-% @TAG: Refer to initial content and "emphazise" the objectives
 \section{Objectives}
 \label{sec:objectives}
 
 \subsection*{General Objective}
-Develop a framework that allows the creation of diverse learning environments for locomotion tasks (as shown in Figure @FIG-1.4), 
+Develop a framework that allows the creation of diverse learning environments for locomotion tasks (as shown in Figure ~\ref{fig:ch1_environments_comparison_from_to}), 
 and evaluate the performance and generalization capabilities of current state of the art Deep 
 Reinforcement Learning algorithms.
 \todo{redacta mejor el objetivo, make y build tienen significados similares, tal vez sea mejor develop a framework that allow us to build...}
@@ -123,20 +118,20 @@ Reinforcement Learning algorithms.
 The structure of this proposal is as follows :
 
 \begin{itemize}
-	\item \textbf{Chapter 2 - Related background}: we present the necessary background and
-		  terminology used throught this document.
-	\item \textbf{Chapter 3 - Related works}: we discuss the currently available benchmarks by
-		  analyzing the provided functionality and use cases. We also discuss some
-		  state of the art algorithms used with these benchmarks, which will be
-		  implemented and evaluated with the proposed framework.
-	\item \textbf{Chapter 4 - Proposal in depth}: we discuss more details of the proposed framework,
-		  including: architecture of the framework, core features to be implemented, etc.
-	\item \textbf{Chapter 5 - Current progress}: we discuss the current state of the implementation
-		  of the proposed framework.
+    \item \textbf{Chapter 2 - Related background}: we present the necessary background and
+          terminology used throught this document.
+    \item \textbf{Chapter 3 - Related works}: we discuss the currently available benchmarks by
+          analyzing the provided functionality and use cases. We also discuss some
+          state of the art algorithms used with these benchmarks, which will be
+          implemented and evaluated with the proposed framework.
+    \item \textbf{Chapter 4 - Proposal in depth}: we discuss more details of the proposed framework,
+          including: architecture of the framework, core features to be implemented, etc.
+    \item \textbf{Chapter 5 - Current progress}: we discuss the current state of the implementation
+          of the proposed framework.
     \item \textbf{Chapter 6 - Discussion}: finally, in this chapter we present
           a discussion on the whole proposal and the road-map that we are 
           following towards the objectives proposed earlier.
-		  
-		  \todo{Seria bueno un capítulo de conclusiones}
-		 
+          
+          \todo{Seria bueno un capítulo de conclusiones}
+         
 \end{itemize}

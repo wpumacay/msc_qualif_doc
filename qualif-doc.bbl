@@ -4,6 +4,12 @@
 Andrychowicz, M., Baker, B., et~al. (2018).
 \newblock Learning dexterous in-hand manipulation.
 
+\bibitem[\protect\astroncite{Bengio et~al.}{2009}]{CurriculumLearningBengio}
+Bengio, Y., Louradour, J., et~al. (2009).
+\newblock Curriculum learning.
+\newblock In {\em Proceedings of the 26th annual international conference on
+  machine learning}, pages 41--48. ACM.
+
 \bibitem[\protect\astroncite{Berseth et~al.}{2018}]{TerrainRLSim}
 Berseth, G., Peng, X.~B., et~al. (2018).
 \newblock Terrain rl simulator.
