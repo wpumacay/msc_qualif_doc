@@ -48,10 +48,12 @@ understand the following chapters in this document. These include:
 At a very high level Deep Reinforcement Learning (DeepRL) could be thought as a combination 
 of current Deep Learning (DL) models and techniques, with the framework of Reinforcement 
 Learning (RL), to solve complex RL problems. This combination has given impressive 
-results over the past few years, like being able to play a suite of atari games [@CITE], 
-beating the world Go champion [@CITE], making simulated characters develop locomotion
-skills [@CITE,@CITE,@CITE], and being able to learn manipulation and locomotion tasks in 
-real-world robotics platforms [@CITE,@CITE], just to name a few.
+results over the past few years, like being able to play a suite of atari games \citep{DQNAtari}, 
+beating the world Go champion \citep{AlphaGo}, making simulated characters develop locomotion
+skills [\citeauthor{DeepmindEmergenceLocomotion},\citeauthor{DeepTerrainRL},\citeauthor{DeepMimic}], 
+and being able to learn manipulation and locomotion tasks in 
+real-world robotics platforms [\citeauthor{EndToEndVisuoMotorPolicies},\citeauthor{ScalableDeepRL},\citeauthor{GoogleBrainSim2Real}],
+just to name a few.
 
 \figdrlsamplesFirst
 
@@ -229,7 +231,7 @@ Where $p(\tau;\theta)$ is a probability distribution of trajectories, induced by
 the parameters of our policy $\theta$ (recall that the agent sees what its policy allows).
 We can then optimize for the parameters $\theta$ by computing the gradient of this
 objective function. However, directly trying to compute the gradient of this expectation
-is intractable, thus we make use of a mathematical trick (REINFORCE trick) to get an estimate of this gradient [@CITE-sutton-2000]. \todo{en vez de so, usa thus, es más formal}
+is intractable, thus we make use of a mathematical trick (REINFORCE trick) to get an estimate of this gradient \citep{PGSutton}. \todo{en vez de so, usa thus, es más formal}
 
 \begin{theorem}
     For any differentiable policy $\pi_{\theta}(a|s)$, the gradient of the

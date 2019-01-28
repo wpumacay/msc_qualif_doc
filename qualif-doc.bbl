@@ -18,6 +18,10 @@ Berseth, G., Peng, X.~B., et~al. (2018).
 Brockman, G., Cheung, V., et~al. (2016).
 \newblock Openai gym.
 
+\bibitem[\protect\astroncite{Coumans}{2014}]{ErwinCowmansMlcp}
+Coumans, E. (2014).
+\newblock Exploring mlcp solvers and featherstone.
+
 \bibitem[\protect\astroncite{Duan et~al.}{2016}]{Rllab}
 Duan, Y., Chen, X., et~al. (2016).
 \newblock Benchmarking deep reinforcement learning for continuous control.
@@ -41,6 +45,16 @@ Holden, D., Komura, T., et~al. (2017).
 \bibitem[\protect\astroncite{Juliani et~al.}{2018}]{UnityMLAgents}
 Juliani, A., Berges, V.-P., et~al. (2018).
 \newblock Unity: A general platform for intelligent agents.
+
+\bibitem[\protect\astroncite{Kalashnikov et~al.}{2018}]{ScalableDeepRL}
+Kalashnikov, D., Irpan, A., et~al. (2018).
+\newblock Qt-opt: Scalable deep reinforcement learning for vision-based robotic
+  manipulation.
+\newblock In {\em Conference of Robot Learning}.
+
+\bibitem[\protect\astroncite{Levine et~al.}{2016}]{EndToEndVisuoMotorPolicies}
+Levine, S., Finn, C., et~al. (2016).
+\newblock End-to-end training of deep visuomotor policies.
 
 \bibitem[\protect\astroncite{Liang et~al.}{2018}]{GpuSim}
 Liang, J., Makoviychuk, V., et~al. (2018).
@@ -79,6 +93,12 @@ Peng, X.~B. and van~de Panne, M. (2017).
 Silver, D., Huang, A., et~al. (2016).
 \newblock Mastering the game of go with deep neural network and tree search.
 \newblock {\em Nature}, 529:484--489.
+
+\bibitem[\protect\astroncite{Sutton et~al.}{2000}]{PGSutton}
+Sutton, R., McAllester, D., et~al. (2000).
+\newblock Policy gradient methods for reinforcement learning with function
+  approximation.
+\newblock {\em NIPS}.
 
 \bibitem[\protect\astroncite{Tan et~al.}{2018}]{GoogleBrainSim2Real}
 Tan, J., amd Erwin~Coumans, T.~Z., et~al. (2018).
