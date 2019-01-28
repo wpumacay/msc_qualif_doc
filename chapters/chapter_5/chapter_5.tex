@@ -13,17 +13,18 @@
 
 In this chapter we discuss the current progress of the proposed framework. The implementation
 is still not in version 0.1, which should be the first fully functional version to be released
-according to the features proposed in the previous chapter. Nevertheless, the core implenentation
-needed for the multi-engine support and all other features is at a 70 percent, with the remaining
+according to the features proposed in the previous chapter. Nevertheless, the core implementation
+needed for the multi-engine support and all other features is at a 70 percent, \todo{Creo que debes colocar porcentajes, como demuestras que estas en un 70 y no 60?}
+with the remaining
 30 percent corresponding to some additional core features, some bugs, issues, small cleanup and 
 documentation of the core functionality. We split the current discussion into the three main 
 components that have been implemented so far: core agents support, core sensors support, core 
-terrain support, and other utitilies.
+terrain support, and other utilities.
 
 \section{Agents support}
 
 The implementation of the agent's core functionality has been completed to a 80\%,
-remamining only an additional implementation of the agents format provided by [@CITE].
+remaining only an additional implementation of the agents format provided by [@CITE].
 This implementation includes the agent's kinematic tree implementation and the integration 
 with the MuJoCo physics engine via an adapter written for this specific engine.
 
@@ -33,7 +34,7 @@ written once for each platform. The current supported agents are shown in Figure
 which basically shows the support for agents made for MuJoCo via its XML representation format.
 
 The current implementation can be already used for experiments from C/C++. The exposed
-functionality includes the supported functionality exposed by mosts benchmarks, which
+functionality includes the supported functionality exposed by most benchmarks, which
 give access to the actions via torques. The remaining part of the implementation of the core
 agent functionality should give more support for different types of actuation models, like in [@CITE].
 
@@ -66,3 +67,5 @@ proposed physics engines. Some screenshots of the current terrain implementation
 in Figure @FIG-5.3.
 
 \figProgressTerrains
+
+\todo{deberías cerrar el capítulo con una discusión breve de lo que se hizo}
