@@ -4,6 +4,16 @@
 Andrychowicz, M., Baker, B., et~al. (2018).
 \newblock Learning dexterous in-hand manipulation.
 
+\bibitem[\protect\astroncite{Beattie et~al.}{2016}]{DeepmindLab}
+Beattie, C., Leibo, J.~Z., et~al. (2016).
+\newblock Deepmind lab.
+
+\bibitem[\protect\astroncite{{Bellemare} et~al.}{2013}]{BellemareALE}
+{Bellemare}, M.~G., {Naddaf}, Y., et~al. (2013).
+\newblock The arcade learning environment: An evaluation platform for general
+  agents.
+\newblock {\em Journal of Artificial Intelligence Research}, 47:253--279.
+
 \bibitem[\protect\astroncite{Bengio et~al.}{2009}]{CurriculumLearningBengio}
 Bengio, Y., Louradour, J., et~al. (2009).
 \newblock Curriculum learning.
@@ -22,6 +32,12 @@ Brockman, G., Cheung, V., et~al. (2016).
 Coumans, E. (2014).
 \newblock Exploring mlcp solvers and featherstone.
 
+\bibitem[\protect\astroncite{Coumans}{2015}]{Bullet}
+Coumans, E. (2015).
+\newblock Bullet physics simulation.
+\newblock In {\em ACM SIGGRAPH 2015 Courses}, SIGGRAPH '15, New York, NY, USA.
+  ACM.
+
 \bibitem[\protect\astroncite{Duan et~al.}{2016}]{Rllab}
 Duan, Y., Chen, X., et~al. (2016).
 \newblock Benchmarking deep reinforcement learning for continuous control.
@@ -32,6 +48,11 @@ Fan, L., Zhu, Y., et~al. (2018).
 \newblock Surreal: Open-source reinforcement learning framework and robot
   manipulation benchmark.
 \newblock In {\em Conference on Robot Learning}.
+
+\bibitem[\protect\astroncite{Featherstone}{1987}]{Featherstone}
+Featherstone, R. (1987).
+\newblock {\em Robot Dynamics Algorithms}.
+\newblock Springer.
 
 \bibitem[\protect\astroncite{Heess et~al.}{2017}]{DeepmindEmergenceLocomotion}
 Heess, N., TB, D., et~al. (2017).
@@ -66,6 +87,15 @@ Liang, J., Makoviychuk, V., et~al. (2018).
 Mnih, V., Kavukcuoglu, K., et~al. (2015).
 \newblock Human-level control through deep reinforcement learning.
 \newblock {\em Nature}, 518:529--533.
+
+\bibitem[\protect\astroncite{NVIDIA}{a}]{FleX}
+NVIDIA.
+\newblock Flex. https://developer.nvidia.com/flex.
+
+\bibitem[\protect\astroncite{NVIDIA}{b}]{PhysX}
+NVIDIA.
+\newblock Physx: A multi-platform physics solution.
+  https://developer.nvidia.com/physx-sdk.
 
 \bibitem[\protect\astroncite{OpenAI}{2017}]{Roboschool}
 OpenAI (2017).
@@ -108,8 +138,16 @@ Tan, J., amd Erwin~Coumans, T.~Z., et~al. (2018).
 Tassa, Y., Doron, Y., et~al. (2018).
 \newblock Deepmind control suite.
 
-\bibitem[\protect\astroncite{Unity3d}{}]{Unity}
-Unity3d.
+\bibitem[\protect\astroncite{Todorov et~al.}{2012}]{MuJoCo}
+Todorov, E., Erez, T., et~al. (2012).
+\newblock Mujoco: A physics engine for model-based control.
+
+\bibitem[\protect\astroncite{Unity}{}]{Unity}
+Unity.
 \newblock Unity3d. https://unity3d.com/.
+
+\bibitem[\protect\astroncite{Unreal}{}]{Unreal}
+Unreal.
+\newblock Unreal engine. https://www.unrealengine.com/.
 
 \end{thebibliography}

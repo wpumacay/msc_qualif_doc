@@ -305,9 +305,9 @@ are widely used because of this standarization. Just to name a few:
 
 \begin{itemize}
 
-    \item \textbf{The Arcade Learning Environment} (ALE) [@CITE], which provides a suite
+    \item \textbf{The Arcade Learning Environment} (ALE) \citep{BellemareALE}, which provides a suite
            of Atari games to be used as DeepRL benchmarks. This was used in the DQN
-           agent made by Deepmind [@CITE], which started the interest in DeepRL.
+           agent made by Deepmind \citep{DQNAtari}, which started the interest in DeepRL.
            The core of the environment is an emulator for the Atari 2600 games, and
            it has functionality to access registers from the emulated game, and return
            this state. Some of these registers are loaded with the score of the game
@@ -318,7 +318,7 @@ are widely used because of this standarization. Just to name a few:
 
            \figALEgames
 
-    \item \textbf{OpenAI Gym} [@CITE]. This toolkit provides various learning environments
+    \item \textbf{OpenAI Gym} \citep{Gym}. This toolkit provides various learning environments
            as benchmarks for RL algorithms. It contains simple benchmarks, starting from simple
            toy problems like gridworlds, and it also contains more complicated benchmarks like
            games (like Atari 2600 games), robotics manipulation tasks and also various
@@ -326,7 +326,7 @@ are widely used because of this standarization. Just to name a few:
 
            \figOpenAIEnvs
 
-    \item \textbf{Deepmind Lab} [@CITE], which is a 3D learning environment built on top
+    \item \textbf{Deepmind Lab} \citep{DeepmindLab}, which is a 3D learning environment built on top
            of the Quake game engine, from \textit{Id Software}. It provides various challenging
            environments like mazes, multi-agent setups, etc. The actions are mapped to a discrete
            set of actions that the original game engine supported, and the observations consists
@@ -363,26 +363,26 @@ contact calculations, actuation models, etc.). Some available physics engines ar
 listed below:
 
 \begin{itemize}
-    \item \textbf{MuJoCo} [@CITE], developed by Emo Todorov, is a recent physics engine
+    \item \textbf{MuJoCo} \citep{MuJoCo}, developed by Emo Todorov, is a recent physics engine
           used for robotics applications, and widely used for RL locomotion benchmarks through
-          various python packages made by various researchers, like Deepmind's controlsuite [@CITE],
+          various python packages made by various researchers, like Deepmind's controlsuite \citep{Controlsuite},
           Berkeley's Rllab, OpenAI's mujoco-py, etc. This engine is closed source and it
           requires a license for continuous use.
 
-    \item \textbf{Bullet} [@CITE], developed by Erwin Cowmans, is a very popular opensouce
+    \item \textbf{Bullet} \citep{Bullet}, developed by Erwin Cowmans, is a very popular opensouce
           physics engine. It provides both C/C++ and Python APIs, and it's been used in packages
-          like OpenAI's Roboschool [@CITE], and in research in [@CITE,@CITE].
+          like OpenAI's Roboschool \citep{Roboschool}, and in research in \cite{DeepTerrainRL} and \cite{DeepMimic}.
 
-    \item \textbf{PhysX} [@CITE], developed by NVIDIA, is a physics engine used
-          mostly in games, and integrated into game engines like Unity [@CITE] and Unreal [@CITE].
+    \item \textbf{PhysX} \citep{PhysX}, developed by NVIDIA, is a physics engine used
+          mostly in games, and integrated into game engines like \citeauthor{Unity} and \citeauthor{Unreal}.
           It has recently been released as open source, and version 4.0 has new features
           that allow to simulate robotics applications more accurately.
 
-    \item \textbf{FleX} [@CITE], developed also by NVIDIA, is a GPU particle-physics engine,
+    \item \textbf{FleX} \citep{FleX}, developed also by NVIDIA, is a GPU particle-physics engine,
           it uses position-based dynamics (unlike the others which are force-based), which is
           more visually pleasing, but not accurate to simulate the real world. The advantage is
           that is possible to simulate large scenes easily and with very few compute resources.
-          For example, in [@CITE] the authors (also from NVIDIA) developed a simulator based on
+          For example, in \cite{GpuSim} the authors (also from NVIDIA) developed a simulator based on
           this physics engine, and they show that they can simulate large scene with hundreds of
           agents.
 \end{itemize}
@@ -398,7 +398,7 @@ Figure @FIG-2.14.
 This data structure is usually used for character animation, because by traversing 
 the tree we can propagate the world positions and orientations of each body. In the
 case of robot locomotion is used internally by the engine to do internal calculations,
-some of them related to computing forces and torques using the Featherstone algorithm [@CITE],
+some of them related to computing forces and torques using the Featherstone algorithm \citep{Featherstone},
 which allows to compute these forces using $O(n)$ cost, where $n$ is the number of
 links in the kinematic tree.
 
@@ -420,11 +420,11 @@ can behave very different given the same input. Some actuation models are listed
           related to an actuated joint.
 \end{itemize}
 
-For more details in actuation models, see [@CITE]. Some physics engines don't support 
+For more details in actuation models, see \cite{ActuationChoice}. Some physics engines don't support 
 various of this actuation models, leaving the user with the responsibility to implement
 these models using the primitives provided, which usually consist in torques (like the authors
-of [@CITE] did in its implementation). Figure @FIG-2.15 shows these actuation models 
-(adapted from [@CITE]).
+of \citep{DeepmindEmergenceLocomotion} did in its implementation). Figure @FIG-2.15 shows these actuation models 
+(adapted from \cite{ActuationChoice}).
 
 \figActuationModels
 
