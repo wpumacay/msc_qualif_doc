@@ -49,7 +49,7 @@ which should help understand the proposal in Chapter 4.
 \subsection{Deepmind ControlSuite}
 
 This set of benchmarks was first introduced in \cite{Controlsuite}, and consists 
-of various locomotion tasks (shown in Figure @FIG-3.1), with various types of agents 
+of various locomotion tasks (shown in Figure ~\ref{fig:ch3_controlsuite}), with various types of agents 
 to select from. The models available consist of xml files in the mujoco format (mjcf) 
 that are used as the blueprints to instantiate an agent. The tasks consist of the specific
 setups that the agents must solve, like walking, standing, running, etc.
@@ -90,13 +90,13 @@ The options used as wrappers for the two physics backends available are the foll
 \begin{itemize}
     \item \textbf{Mujoco-py} : A Python wrapper for MuJoCo, very similar to ControlSuite. 
           The available tasks are similar to the ones in ControlSuite, which are shown 
-          in Figure @FIG-3.2.
+          in Figure ~\ref{fig:ch3_openaigym_mujoco}.
 
         \figBenchmarkOpenAIGymMujoco
 
     \item \textbf{RoboSchool}: An implementation that uses PyBullet, which exposes 
           the Bullet physics engine through a Python API. The environments exposed 
-          are a bit different to the previous suite, and are shown in Figure @FIG-3.3. 
+          are a bit different to the previous suite, and are shown in Figure ~\ref{fig:ch3_openaigym_roboschool}. 
 
         \figBenchmarkOpenAIGymRoboschool
 
@@ -113,10 +113,11 @@ Rllab is a set of benchmarks similar to the previous two. It implements its own
 Python wrapper for MuJoCo, and builds its own Reinforcement Learning API on top 
 of that wrapper. It provides a set of tested baselines of various Deep Reinforcement 
 Learning algorithms, which were presented in \cite{Rllab}. The environments provided 
-by Rllab are grouped in three categories: \textbf{classic} (Figure @FIG-3.4), 
-\textbf{locomotion} (Figure @FIG-3.5) and \textbf{hierarchical} (Figure @FIG-3.6).
-It is compatible with Gym, by means of a wrapper on top of its environments, 
-but as they explain in their documentation \href{https://rllab.readthedocs.io/en/latest/user/gym_integration.html}{website} 
+by Rllab are grouped in three categories: \textbf{classic} (Figure ~\ref{fig:ch3_rllab_classic}), 
+\textbf{locomotion} (Figure ~\ref{fig:ch3_rllab_locomotion}) and \textbf{hierarchical} 
+(Figure ~\ref{fig:ch3_rllab_hierarchical}). It is compatible with Gym, by means of 
+a wrapper on top of its environments, but as they explain in their documentation 
+\href{https://rllab.readthedocs.io/en/latest/user/gym_integration.html}{website} 
 this is a very different API.
 
 \figBenchmarkRllabClassic
@@ -142,7 +143,7 @@ This set of benchmarks use MuJoCo as physics backend (through mujoco-py), and as
 explain in their documentation, the suite provides various APIs that allow the user
 to create diverse experiments. By using its programmatical task construction API
 the user can create an specific setup with just a few lines of Python code.
-The tasks provided in the suite are shown in Figure @FIG-3.7.
+The tasks provided in the suite are shown in Figure ~\ref{fig:ch3_robosuite}.
 
 \figBenchmarksRobosuite
 
@@ -157,8 +158,9 @@ based dynamics engine. This type of simulations allows for fast simulation by tr
 accuracy. 
 
 The simulator is not yet released (as stated by the authors, it is still 
-work in progress), but will probably be released as part of the \href{https://developer.nvidia.com/isaac-sdk}{NVIDIA Isaac platform}.
-Some of the benchmarks presented are shown in Figure @FIG-3.8, and include tasks
+work in progress), but will probably be released as part of the 
+\href{https://developer.nvidia.com/isaac-sdk}{NVIDIA Isaac platform}. Some of the 
+benchmarks presented are shown in Figure ~\ref{fig:ch3_gpusim}, and include tasks
 involving hundreds of humanoids running in environments from low to high complexity.
 
 \figBenchmarksGpuSim
@@ -168,8 +170,8 @@ involving hundreds of humanoids running in environments from low to high complex
 This set of benchmarks was presented in \cite{TerrainRLSim}, and was used in \cite{DeepTerrainRL}, 
 \cite{ActuationChoice} as the core framework. This suite uses Bullet as physics backend,
 and one key difference with the other presented works is the diversity of the tasks provided.
-The tasks provided are shown in Figure @FIG-3.9, and range from single direction obstacle courses, 
-to two dimensional traversal tasks.
+The tasks provided are shown in Figure ~\ref{fig:ch3_terrainrlsim}, and range from 
+single direction obstacle courses, to two dimensional traversal tasks.
 
 \figBenchmarksTerrainRLSim
 
@@ -179,9 +181,10 @@ This set of benchmarks was presented in \cite{UnityMLAgents}, and it is a framew
 built on top the \citeauthor{Unity} game engine, which makes use of PhysX as backend. 
 The tasks are ports of various tasks from the previous benchmarks, and can be used
 through a Python API that connects to the games that represent the tasks. The base tasks
-provided by the framework are shown in Figure @FIG-3.10. Also, there are a set of tasks
-that are provided on top of this framework through the \href{https://github.com/Unity-Technologies/marathon-envs}{Marathon Environments} 
-package, and are shown in Figure @FIG-3.11.
+provided by the framework are shown in Figure ~\ref{fig:ch3_unity_ml_agents}. Also, 
+there are a set of tasks that are provided on top of this framework through the 
+\href{https://github.com/Unity-Technologies/marathon-envs}{Marathon Environments} 
+package, and are shown in Figure ~\ref{fig:ch3_marathon_envs}.
 
 \figBenchmarksUnityMLAgents
 

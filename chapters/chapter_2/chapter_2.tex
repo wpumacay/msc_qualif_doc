@@ -74,7 +74,7 @@ and the \textbf{algorithms} that solve problems in this framework. Reinforcement
 is a learning paradigm, like supervised and unsupervised learning, but unlike these other paradigms \todo{Aqui colocar un punto y comenzar con Unlike learning from ... en vez de with the difference...} 
 in Reinforcement Learning an agent has to learn by interactions with an environment.
 
-In Figure @FIG-2.4 we show the Agent-Environment interaction loop. This represents
+In Figure ~\ref{fig:ch2_rlloop} we show the Agent-Environment interaction loop. This represents
 the way an agent in a certain \textbf{state} $S_{t}$ (a certain modeled configuration) interacts 
 with its environments by means of some \textbf{action} $A_{t}$, and models how the environment 
 responds by giving the agent a \textbf{reward} $R_{t+1}$ (basically a score for its interaction) 
@@ -101,7 +101,7 @@ The remaining components consist of: a transition model of the environment, $P(s
 which basically models the environment's dynamics into a single conditional probability
 distribution, and a discount factor $\gamma$ used to take into account that rewards in the future might have \todo{that .. that no suena muy bien}
 less importance than rewards now (discounting like when dealing with money). Some examples 
-of problems in RL formulated in the MDP framework are shown in Figure @FIG-2.5.
+of problems in RL formulated in the MDP framework are shown in Figure ~\ref{fig:ch2_mdps_samples}.
 
 \figMdpSamples
 
@@ -144,7 +144,7 @@ by the state of the agent. To formalize this, let's \todo{usa algo más formal} 
 
 \figRlPolicies
 
-Figure @FIG-2.6 shows the differences between an stochastic policy and a deterministic
+Figure ~\ref{fig:ch2_rl_policies_differences} shows the differences between an stochastic policy and a deterministic
 policy. We can reformulate the objective of the agent into the following: \textit{An agent's objective
 in the RL setup is to maximize the expected return $\mathbb{E} \lbrace G_{t} \rbrace$ it
 can get from its interactions with the environment by finding the best policy $\pi$, which
@@ -159,7 +159,7 @@ we call optimal policy, and denote by $\pi^{*}$}
 \figRlMethodsLandspace
 
 To solve an MDP there are various methods that can be used. Most of them are
-summarized in the categories shown in Figure @FIG-2.7. These include:
+summarized in the categories shown in Figure ~\ref{fig:ch2_rl_policies_differences}. These include:
 
 \begin{itemize}
     \item \textbf{Value based methods}, which try to solve for some auxiliary
@@ -250,7 +250,7 @@ the parameters $\theta$ of our policy.
 The intuition of this algorithm is that it is increasing the probability of selecting
 the actions that yielded good results (from the trajectories that gave good returns), 
 and decreasing the probability of selecting the actions that yielded bad results. This
-is shown in the Figure @FIG-2.7.
+is shown in the Figure ~\ref{fig:ch2_rl_pg_intuition}.
 
 \figRlPolicyGradientsIntuition
 
@@ -264,8 +264,9 @@ function approximators \todo{revisa si existe esta palabra, creo que seria mejor
 \textit{decision trees}, \textit{radial basis functions}, etc..
 
 Deep learning is used in this context to provide function approximators via Deep
-Neural Networks, as shown in Figure @FIG-2.8. In this case, our $\theta$ parameters are the weights of a neural
-network used to represent our policy. We can use the machinery from before (Policy Gradients)
+Neural Networks, as shown in Figure ~\ref{fig:ch2_rl_policy_parametrization}. 
+In this case, our $\theta$ parameters are the weights of a neural network used 
+to represent our policy. We can use the machinery from before (Policy Gradients)
 to optimize for the parameters of our network.
 
 \figRlPolicyParametrization
@@ -351,7 +352,7 @@ The physics engine is the component in charge of simulating the environment by d
 required collision checking and applying the dynamics to the simulated objects. These
 physics engines vary according to the application needed and the methods used for solving
 the underlying problems required for the simulations. A brief summary of the steps involved are
-shown in Figure @FIG-2.13.
+shown in Figure ~\ref{fig:ch2_physics_engines_loop}.
 
 \figPhysicsEngineLoop
 
@@ -393,7 +394,7 @@ A kinematic tree is the internal data structure used to hold the information of
 an agent composed of links (bodies) and joints (constraints). Each node in the 
 tree represents a link of the agent, and it connects to other nodes according to
 the joints shared between these nodes. An example of a kinematic tree is shown in
-Figure @FIG-2.14. 
+Figure ~\ref{fig:ch2_kinematic_tree_representation}. 
 
 This data structure is usually used for character animation, because by traversing 
 the tree we can propagate the world positions and orientations of each body. In the
@@ -423,8 +424,8 @@ can behave very different given the same input. Some actuation models are listed
 For more details in actuation models, see \cite{ActuationChoice}. Some physics engines don't support 
 various of this actuation models, leaving the user with the responsibility to implement
 these models using the primitives provided, which usually consist in torques (like the authors
-of \citep{DeepmindEmergenceLocomotion} did in its implementation). Figure @FIG-2.15 shows these actuation models 
-(adapted from \cite{ActuationChoice}).
+of \citep{DeepmindEmergenceLocomotion} did in its implementation). Figure ~\ref{fig:ch2_actuation_models} 
+shows these actuation models (adapted from \cite{ActuationChoice}).
 
 \figActuationModels
 

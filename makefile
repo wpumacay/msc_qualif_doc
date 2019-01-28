@@ -15,6 +15,7 @@ spell::
 	ispell ./chapters/chapter_3/chapter_3.tex
 	ispell ./chapters/chapter_4/chapter_4.tex
 	ispell ./chapters/chapter_5/chapter_5.tex
+	ispell ./chapters/chapter_6/chapter_6.tex
 
 clean::
 	rm -fv *.aux *.log *.bbl *.blg *.toc *.out *.lot *.lof $(DOC_NAME).pdf

@@ -24,19 +24,19 @@ terrain support, and other utilities.
 \section{Agents support}
 
 The implementation of the agent's core functionality has been completed to a 80\%,
-remaining only an additional implementation of the agents format provided by [@CITE].
+remaining only an additional implementation of the agents format provided by \cite{TerrainRLSim}.
 This implementation includes the agent's kinematic tree implementation and the integration 
 with the MuJoCo physics engine via an adapter written for this specific engine.
 
 The core implementation remains agnostic of the specific engine, which allows us
 to make support quickly for the remaining proposed physics engines via adapter code
-written once for each platform. The current supported agents are shown in Figure @FIG-5.1,
+written once for each platform. The current supported agents are shown in Figure ~\ref{fig:ch5_progress_agents},
 which basically shows the support for agents made for MuJoCo via its XML representation format.
 
 The current implementation can be already used for experiments from C/C++. The exposed
 functionality includes the supported functionality exposed by most benchmarks, which
 give access to the actions via torques. The remaining part of the implementation of the core
-agent functionality should give more support for different types of actuation models, like in [@CITE].
+agent functionality should give more support for different types of actuation models, like in \cite{ActuationChoice}.
 
 \figProgressAgents
 
@@ -45,7 +45,7 @@ agent functionality should give more support for different types of actuation mo
 The implementation of the sensors' core functionality is completed to a 70\%,
 remaining some sensors for more complicated tasks: visual inputs from a fixed camera,
 and heightmap measurements from more complicated terrains. The current supported sensor
-features shown in Figure @FIG-5.2, and consist of:
+features shown in Figure ~\ref{fig:ch5_progress_sensors}, and consist of:
 
 \begin{itemize}
     \item Intrinsic sensor measurements, like joints angles and velocities, bodies velocities
@@ -59,12 +59,13 @@ features shown in Figure @FIG-5.2, and consist of:
 \section{Terrain support}
 
 The current implementation of the core terrain functionality supports procedurally generated
-terrain, similar to [@CITE]. The core functionality handles the creation of primitives from
-terrain generators, and then this is stored as requests for creation in the specific
-adapters for specific engines. The current supported engine is MuJoCo, and we plan in adding
-full support for more complex terrains (and an API to use it), and full support for the remaining
-proposed physics engines. Some screenshots of the current terrain implementations are shown
-in Figure @FIG-5.3.
+terrain, similar to \cite{DeepmindEmergenceLocomotion}. The core functionality handles 
+the creation of primitives from terrain generators, and then this is stored as 
+requests for creation in the specific adapters for specific engines. The current 
+supported engine is MuJoCo, and we plan in adding full support for more complex 
+terrains (and an API to use it), and full support for the remaining proposed physics 
+engines. Some screenshots of the current terrain implementations are shown
+in Figure ~\ref{fig:ch5_progress_terrain}.
 
 \figProgressTerrains
 

@@ -38,6 +38,11 @@ Coumans, E. (2015).
 \newblock In {\em ACM SIGGRAPH 2015 Courses}, SIGGRAPH '15, New York, NY, USA.
   ACM.
 
+\bibitem[\protect\astroncite{Coumans and Bai}{2019}]{PyBullet}
+Coumans, E. and Bai, Y. (2016--2019).
+\newblock Pybullet, a python module for physics simulation for games, robotics
+  and machine learning.
+
 \bibitem[\protect\astroncite{Duan et~al.}{2016}]{Rllab}
 Duan, Y., Chen, X., et~al. (2016).
 \newblock Benchmarking deep reinforcement learning for continuous control.
@@ -111,6 +116,12 @@ Peng, X.~B., Abbeel, P., et~al. (2018).
 Peng, X.~B., Berseth, G., et~al. (2016).
 \newblock Terrain-adaptive locomotion skills using deep reinforcement learning.
 \newblock {\em ACM Transactions on Graphics (Proc. SIGGRAPH 2016)}, 35(4).
+
+\bibitem[\protect\astroncite{Peng et~al.}{2017}]{DeepLoco}
+Peng, X.~B., Berseth, G., et~al. (2017).
+\newblock Deeploco: Dynamic locomotion skills using hierarchical deep
+  reinforcement learning.
+\newblock {\em ACM Trans. Graph.}, 36(4):41:1--41:13.
 
 \bibitem[\protect\astroncite{Peng and van~de Panne}{2017}]{ActuationChoice}
 Peng, X.~B. and van~de Panne, M. (2017).

@@ -44,12 +44,14 @@ proposal for this thesis. We split the discussion in this chapter into the follo
 
 \section{Details of the proposed framework}
 
-The framework proposed consists basically of a multi-backend framework with exposed user APIs for task creation and configuration\todo{creation and setup tasks}. The framework is multi-backend
+The framework proposed consists basically of a multi-backend framework with exposed user APIs 
+for task creation and configuration \todo{creation and setup tasks}. The framework is multi-backend
 in the sense that it provides the user with the ability to choose to run their experiments
 in a range of supported physics backends, like MuJoCo, Bullet, PhysX and FleX. We take
 this approach to provide the user with more flexibility on the choice of the platform because
 each backend has specific advantages and disadvantages. A description of the steps involved 
-when creating a task with the proposed framework is shown in Figure @FIG-4.1, which consist of:
+when creating a task with the proposed framework is shown in Figure ~\ref{fig:ch4_proposed_framework_flow}, 
+which consist of:
 
 \begin{itemize}
     \item \textbf{User functionality} to describe the task. A description of the task is given by 
@@ -66,13 +68,14 @@ when creating a task with the proposed framework is shown in Figure @FIG-4.1, wh
 \figFrameworkFlow
 
 In order to take into account the features proposed (multi-backend and diverse environment
-creation) we decided to use the architecture shown in Figure @FIG-4.2. We separate the core
-functionality into different modules, and create adapters for each backend (similar to wrappers) 
-around the base structures in each core module. These adapters are in charge of instantiating the
-necessary resources required by the base core structures. The framework then exposes the core
-functionality (which is linked to the backend specific functionality) to the user via the tasks
-that were created. The user can then interact with all aspects of the simulation, e.g. setting
-control commands, via these created tasks.
+creation) we decided to use the architecture shown in Figure ~\ref{fig:ch4_proposed_framework_architecture}. 
+We separate the core functionality into different modules, and create adapters for 
+each backend (similar to wrappers) around the base structures in each core module. 
+These adapters are in charge of instantiating the necessary resources required by the 
+base core structures. The framework then exposes the core functionality (which is linked 
+to the backend specific functionality) to the user via the tasks that were created. 
+The user can then interact with all aspects of the simulation, e.g. setting control 
+commands, via these created tasks.
 
 Notice that there is a similar group of adapters that are used by the rendering backend. We
 decided to take the same multi-backend approach for the visualizer because there are various situations
@@ -96,7 +99,7 @@ is composed of the following components:
           joints, collisions, etc.) are decoupled from the specific resources provided in the backends.
           These representations are also decoupled from the specific format used to store the kinematic
           tree in disk. The formats we are considering include \textit{urdf}, \textit{mjcf}, and custom
-          formats through .xml and .json files. All this functionality is summarized in Figure @FIG-4.3.
+          formats through .xml and .json files. All this functionality is summarized in Figure ~\ref{fig:ch4_core_agent_functionality}.
 
         \figFrameworkCoreAgent
 
@@ -109,7 +112,7 @@ is composed of the following components:
           be used to create the desired terrain resources using the selected backend. These primitives are the minimal
           terrain resource that can be used, and consist of geometric primitives, mesh objects representing heightmaps,
           and other minimal objects that could be needed for more specific tasks. All this functionality is
-          summarized in Figure @FIG-4.4.
+          summarized in Figure ~\ref{fig:ch4_core_terrain_functionality}.
 
         \figFrameworkCoreTerrain
 
@@ -118,7 +121,7 @@ is composed of the following components:
           core agents and terrain generators. The type of sensors that will be implemented are: joint readings (angles 
           and speeds), body readings (relative position to root body, linear velocities and accelerations), 
           heightmap readings of the terrain, and camera readings in the form of RGB frames. The proposed sensors are shown
-          in Figure @FIG-4.5.
+          in Figure ~\ref{fig:ch4_core_sensor_functionality}.
 
         \figFrameworkCoreSensor
 \end{itemize}
@@ -134,8 +137,8 @@ the sensor readings required by the abstract sensors.
 
 The approach we chose is to use a design pattern called \textbf{bridge pattern}, which
 is a pattern often used to decouple platform specific functionality from core functionality.
-This approach is shown in Figure @FIG-4.6 (for the case of agents), and it basically
-works as follows:
+This approach is shown in Figure ~\ref{fig:ch4_bridge_pattern} (for the case of agents), 
+and it basically works as follows:
 
 \begin{itemize}
     \item Write the core functionality (e.g. base kinematic tree agent) and any
@@ -158,7 +161,7 @@ to load the specific backend library at runtime as specified by the user, and it
 feature usually provided in the context of dynamic linking. To fully integrate
 this feature into the framework the have to ensure that the user is exposed
 to \textit{base adapters}, which can then be loaded with the specific adapters using runtime loading.
-This process is shown in Figure @FIG-4.7.
+This process is shown in Figure ~\ref{fig:ch4_runtime_library_loading}.
 
 \figRuntimeLibraryLoading
 
