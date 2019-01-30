@@ -78,6 +78,11 @@ Kalashnikov, D., Irpan, A., et~al. (2018).
   manipulation.
 \newblock In {\em Conference of Robot Learning}.
 
+\bibitem[\protect\astroncite{Legg and Hutter}{2007}]{UniversalIntelligence}
+Legg, S. and Hutter, M. (2007).
+\newblock Universal intelligence: A definition of machine intelligence.
+\newblock {\em Minds and Machines}.
+
 \bibitem[\protect\astroncite{Levine et~al.}{2016}]{EndToEndVisuoMotorPolicies}
 Levine, S., Finn, C., et~al. (2016).
 \newblock End-to-end training of deep visuomotor policies.

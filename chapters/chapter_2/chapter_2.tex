@@ -150,7 +150,7 @@ in the RL setup is to maximize the expected return $\mathbb{E} \lbrace G_{t} \rb
 can get from its interactions with the environment by finding the best policy $\pi$, which
 we call optimal policy, and denote by $\pi^{*}$}
 
-\begin{equation}
+\begin{equation} \label{eq:rl_objective}
     \pi^{*} = \arg \max_{\pi} \mathbb{E}_{\pi} \lbrace G_{t} \rbrace
 \end{equation}
 
@@ -183,6 +183,7 @@ methods are usually very sample inefficient (They need a lot of interaction samp
 able to learn).
 
 \subsection{Policy Optimization}
+\label{ref:subs:ch2:PolicyBasedMethods}
 
 As described earlier, policy based methods try to solve for the parameters $\theta$
 of a parametrized policy $\pi_{\theta}$ such that this policy maximizes the expected
@@ -346,7 +347,7 @@ to describe these environments are the underlying \textbf{physics engine} used f
 the internal agent representation of an agent by using \textbf{kinematic trees}, and the
 the underlying representation of the agent actions we can apply by using an appropriate \textbf{actuation model}.
 
-\subsection{Physics Engines}
+\subsection{Physics Engines} \label{subsec:physics_engines}
 
 The physics engine is the component in charge of simulating the environment by doing the
 required collision checking and applying the dynamics to the simulated objects. These

@@ -30,17 +30,89 @@
 
 \input{./chapters/chapter_4/chapter_4_figs}
 
-As explained in chapter 1, where we presented the proposal, this thesis is mainly
-focused in making a framework for evaluation of Deep Reinforcement Learning based agents
-in diverse and complex environments. This chapter will give more details about the 
+As explained in Chapter 1, this thesis is focused  in developing a framework for 
+the creation of diverse and complex environments that serve as locomotion tasks 
+for Deep Reinforcement Learning agents. This chapter will give more details about the 
 proposal for this thesis. We split the discussion in this chapter into the following two sections: 
 
 \begin{itemize}
+    \item Details of the approach, where we discuss the core ideas that form the base 
+          of this proposal.
     \item Details of the proposed framework, where we discuss the core functionality 
           of the framework, the architecture to be used, and the extends of the framework.
     \item Details of the evaluation experiments, where we discuss the proposed experiments
           that will be implemented as part of this thesis.
 \end{itemize}
+
+\section{Details of the approach}
+
+%% @TODO: Talk about: proposed universal intelligence measure from 2007
+%% @TODO: Talk sbout: nature of algorithms and sample efficiency (why some not work).
+%%                    Also the graph of complexity and how nature might work.
+%% @TODO: Talk about: curriculum learning and how it helps speed up learning.
+%% @TODO: Talk about: u in E, how we model it and control it using the proposed.
+%% @TODO: Talk about: some final details of some choices we have made (conference feedback, etc.)
+
+The main objective of this thesis is related to the idea of a \textbf{measure of intelligence},
+proposed by \cite{UniversalIntelligence}. The proposed measure can be expressed as follows:
+
+\begin{centerItalic}
+    "Intelligence measures an agent's ability to achieve goals in a 
+     wide range of environments"
+\end{centerItalic}
+
+This measure is proposed in the context of the Reinforcement Learning framework, in
+which an agent learns by interacting with an environments and its objective is to maximize
+the expected return it gets from these interactions (see equation ~\ref{eq:rl_objective}).
+This idea is presented by the authors with the equation shown in Figure ~\ref{fig:ch4_measure_of_intelligence}, 
+which defines the measure proposed as a sum of the expected future return $V^{\pi}_{\mu}$ 
+that an agent gets in an environment $\mu \in E$, penalizing the return with a weight 
+given by the complexity of the environment $2^{-K(\mu)}$.
+
+\figMeasureIntelligence
+
+The idea that we borrow from this measure is related to the environments. This measure
+takes into account the effects of the performance of an agent given by $\pi$ in a wide range of
+environments $\mu \sim E$, and the approach we take is to delevop the tools necessary
+to create this wide range of environments of varying complexity, and then evaluate the 
+performance of various agents $\pi$ that use current state of the art DeepRL algorithms.
+
+The main objective is also related to  \textbf{curriculum learning}, introduced
+by \cite{CurriculumLearningBengio}. The idea proposed is that we can get better
+learning by presenting the training data in a specific way, starting from simple
+examples and then progressing towards more complicated ones. This idea is used
+in our proposal for the generation of the environments $\mu \in E$, which are
+created ranging from low to high difficulty. This approach was already used in 
+\cite{DeepmindEmergenceLocomotion}, where the terrain generated for the tasks was 
+procedurally generated with an increasing level of difficulty.
+
+We borrowed these two ideas to define the approach that we will take for testing
+the hypothesis presented in Section ~\ref{sec:problem}:
+
+\begin{centerItalic}
+    Develop a framework to create a wide range of locomotion environments and present 
+    them to DeepRL agents with curricula of increasing difficulty.
+\end{centerItalic}
+
+For our approach there is a clear distinction between environments and tasks. A task
+defines a distribution of possible environments, and environments are samples from
+this distribution. For example, a task like walking on terrain in a given direction 
+(like in \cite{DeepTerrainRL}) defines a range of environments whose distribution
+is parameterized with the parameters of the procedural generator.
+
+For this thesis we will define the tasks similarly, and parameterize them using
+procedural terrain generation. As a follow up work we plan to learn the underlying 
+distribution of these tasks by using a generative model. This is one of the reasons
+why we chose to have full control over the environment creation pipeline. We want
+to have as much control as possible for these parameterized tasks, and potentially
+make more experiments with different creation mechanisms and curricula.
+
+Finally, one key aspect that we also consider is the range of support that we want the
+framework to have. A key aspect of the proposal was to serve as a standard benchmark
+for locomotion, and to be adopted by the research community. To achieve this we take
+into account the backend support (physics engine), by providing users the ability
+to choose between the backend (explained in Section ~\ref{subsec:physics_engines}) 
+that satisfies the requirements they have.
 
 \section{Details of the proposed framework}
 
