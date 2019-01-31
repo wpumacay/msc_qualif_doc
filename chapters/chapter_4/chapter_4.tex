@@ -37,11 +37,11 @@ proposal for this thesis. We split the discussion in this chapter into the follo
 three sections: 
 
 \begin{itemize}
-    \item Details of the approach, where we discuss some core ideas of the proposal.
-    \item Details of the proposed framework, where we discuss the core functionality 
-          of the framework, the architecture to be used, and the scope of the framework.
-    \item Details of the evaluation experiments, where we discuss the proposed experiments
-          that will be implemented as part of the proposed evaluation.
+    \item Details of the approach, where we discuss some core ideas of the proposal and
+          how we plan to implement it at a high level.
+    \item Details of the proposed framework, where we discuss more technical details about
+          the core functionality of the framework, the architecture to be used, 
+          and the scope of the framework.
 \end{itemize}
 
 \section{Details of the approach}
@@ -79,7 +79,7 @@ performance of various agents $\pi$ that use current state of the art DeepRL alg
 
 The main objective is also related to  \textbf{curriculum learning}, introduced
 by \cite{CurriculumLearningBengio}. The idea proposed is that we can get better
-learning by presenting the training data in a specific way, starting from simple
+learning by presenting the training data in a specific order, starting from simple
 examples and then progressing towards more complicated ones. This idea is used
 in our proposal for the generation of the environments $\mu \in E$, which are
 created ranging from low to high difficulty. This approach was already used in 
@@ -107,12 +107,65 @@ why we chose to have full control over the environment creation pipeline. We wan
 to have as much control as possible for these parameterized tasks, and potentially
 make more experiments with different creation mechanisms and curricula.
 
+The evaluation experiments considered for the scope of this thesis will consist of
+the following environment variations:
+
+\begin{itemize}
+    \item \textbf{Baseline experiments}: these are basic environments that will serve
+          as testing environments for the baselines to be implemented based in current
+          state of the art DeepRL algorithms used in locomotion.
+
+        \figTerrainParameterizationZero
+
+    \item \textbf{Perturbation experiments}: these variations consist of environments
+        in which we will perturb the agent in various ways to test for robustness. Some
+        of the perturbations we will consider are agent parameter perturbations (actuator
+        params, bodies properties, etc.), terrain parameter perturbations (friction,
+        restitution), and throwing obstacles at the agent.
+
+        \figTerrainParameterizationOne
+
+    \item \textbf{Forward terrain generation}: these variations will modify the generated
+        terrain in the forward direction, very similar to \citeauthor{DeepmindEmergenceLocomotion}
+        and \citeauthor{DeepTerrainRL}. We will use procedural generation to achieve this
+        results, with some differences to previous approaches: the small section can have
+        variations, and perturbations can also be used in this variations.
+
+        \figTerrainParameterizationTwo
+
+    \item \textbf{Forward in all directions}: these are similar to the previous type of 
+        variations, but instead of using only the forward direction we curve towards the direction
+        of a virtual target that can move in all directions in 3D. This is similar to
+        creating terrain in the neighborhood of a 3D curve that is constantly moving.
+
+        \figTerrainParameterizationThree
+
+    \item \textbf{Static 3D scene with subtasks}: these variations consist of a 3D terrain
+        generated from a static scene. Subtasks are going to be define for the agent to solve,
+        and the ones we are considering are target following and object collection.
+
+        \figTerrainParameterizationFour
+\end{itemize}
+
+The agents that will be used for the experiments consist of some agents used in current
+benchmarks: walker and humanoid models from \cite{Controlsuite} (Figure ~\ref{fig:ch4_agents_experiments_1}), 
+dog and humanoid models from \cite{TerrainRLSim} (Figure ~\ref{fig:ch4_agents_experiments_2}), 
+and the laikago model from \cite{PyBullet} (Figure ~\ref{fig:ch4_agents_experiments_3}).
+
+\figAgentsExperimentsOne
+
+\figAgentsExperimentsTwo
+
+\figAgentsExperimentsThree
+
 Finally, one key aspect that we also consider is the range of support that we want the
 framework to have. A key aspect of the proposal was to serve as a standard benchmark
 for locomotion, and to be adopted by the research community. To achieve this we take
 into account the backend support (physics engine), by providing users the ability
 to choose between the backend (explained in Section ~\ref{subsec:physics_engines}) 
-that satisfies the requirements they have.
+that satisfies the requirements they have. The physics backends that we will support
+for the scope of this thesis are: \textbf{MuJoCo} \citep{MuJoCo}, and \textbf{Bullet} 
+\citep{Bullet} for an license-free version.
 
 \section{Details of the proposed framework}
 
@@ -275,28 +328,28 @@ This functionality will be implemented in C/C++ in order to be as close to the b
 However, we will also provide with Python bindings for these APIs to allow the user to create and 
 configure experiments through Python.
 
-\section{Details of the proposed evaluations experiments}
-
-A set of experiments will be set up in order to evaluate current state of the art Deep Reinforcement
-Learning algorithms (like PPO, DDPG, etc.) in these new environments provided by the framework. These will consist of:
-
-\begin{itemize}
-    \item \textbf{Base Experiments}: These consist of learning environments that do not have
-                                     extra functionality on top, like curricula or imitation.
-                                     The idea is to test if these current state of the art 
-                                     agents can solve these new environments without any extra help.
-
-    \item \textbf{Imitation Experiments}: These consist of learning environments that have an imitation 
-                                          component enabled. Only some models for some agents have the datasets
-                                          from mocap data that can be used for these tasks, so these experiments will
-                                          work for just a few of possible agent options. The idea is to
-                                          test if by enabling imitation the agent can solve these new environments.
-
-    \item \textbf{Curricula experiments}: These consist of learning environments that have a curriculum component
-                                          enabled, e.g. increase the difficulty of a task during runtime.
-                                          The idea is to test if by enabling using curriculum we can get better learning,
-                                          and test different approaches to develop different curricula, and compare them as well.
-\end{itemize}
+%% \section{Details of the proposed evaluations experiments}
+%% 
+%% A set of experiments will be set up in order to evaluate current state of the art Deep Reinforcement
+%% Learning algorithms (like PPO, DDPG, etc.) in these new environments provided by the framework. These will consist of:
+%% 
+%% \begin{itemize}
+%%     \item \textbf{Base Experiments}: These consist of learning environments that do not have
+%%                                      extra functionality on top, like curricula or imitation.
+%%                                      The idea is to test if these current state of the art 
+%%                                      agents can solve these new environments without any extra help.
+%% 
+%%     \item \textbf{Imitation Experiments}: These consist of learning environments that have an imitation 
+%%                                           component enabled. Only some models for some agents have the datasets
+%%                                           from mocap data that can be used for these tasks, so these experiments will
+%%                                           work for just a few of possible agent options. The idea is to
+%%                                           test if by enabling imitation the agent can solve these new environments.
+%% 
+%%     \item \textbf{Curricula experiments}: These consist of learning environments that have a curriculum component
+%%                                           enabled, e.g. increase the difficulty of a task during runtime.
+%%                                           The idea is to test if by enabling using curriculum we can get better learning,
+%%                                           and test different approaches to develop different curricula, and compare them as well.
+%% \end{itemize}
 
 %% \subsection{Adaptive curricula experiments}
 %% 
