@@ -33,15 +33,15 @@
 As explained in Chapter 1, this thesis is focused  in developing a framework for 
 the creation of diverse and complex environments that serve as locomotion tasks 
 for Deep Reinforcement Learning agents. This chapter will give more details about the 
-proposal for this thesis. We split the discussion in this chapter into the following two sections: 
+proposal for this thesis. We split the discussion in this chapter into the following 
+three sections: 
 
 \begin{itemize}
-    \item Details of the approach, where we discuss the core ideas that form the base 
-          of this proposal.
+    \item Details of the approach, where we discuss some core ideas of the proposal.
     \item Details of the proposed framework, where we discuss the core functionality 
-          of the framework, the architecture to be used, and the extends of the framework.
+          of the framework, the architecture to be used, and the scope of the framework.
     \item Details of the evaluation experiments, where we discuss the proposed experiments
-          that will be implemented as part of this thesis.
+          that will be implemented as part of the proposed evaluation.
 \end{itemize}
 
 \section{Details of the approach}
@@ -130,8 +130,8 @@ which consist of:
           the agents to be used, terrain generation configurations, sensors to be used, etc. This configuration
           can be passed by the user via a configuration file or programmatically.
     \item \textbf{Core functionality} used to create core data structures that will be used by the framework.
-          The core data structures used involve the agents, terrain generators, sensors, and tasks. These are
-          abstract in the sense that are not dependent of the specific backend (backend agnostic).
+          The core data structures used involve the agents, terrain generators, sensors, and the type of tasks. 
+          These are abstract in the sense that are not dependent of the specific backend (backend agnostic).
     \item \textbf{Backend-specific functionality} used to instantiate the required core representations
           into the specific resources needed for each backend. We model these are some set of \textbf{adapters}
           that can be \textbf{swapped} (dynamically loaded) depending of the choice of backend.
@@ -165,7 +165,7 @@ terrain and sensors, which are decoupled from the specific backends to be used. 
 is composed of the following components:
 
 \begin{itemize}
-    \item \textbf{Agents representations}: these representations consist of the core kinematic \todo{kinematic?} tree and its
+    \item \textbf{Agents representations}: these representations consist of the core kinematic tree and its
           variants. These variants could in principle model different situations that could be needed
           for some specific task. All these representations are abstract, and their components (bodies, 
           joints, collisions, etc.) are decoupled from the specific resources provided in the backends.

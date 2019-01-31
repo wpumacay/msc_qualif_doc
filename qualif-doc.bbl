@@ -105,7 +105,6 @@ NVIDIA.
 \bibitem[\protect\astroncite{NVIDIA}{b}]{PhysX}
 NVIDIA.
 \newblock Physx: A multi-platform physics solution.
-  https://developer.nvidia.com/physx-sdk.
 
 \bibitem[\protect\astroncite{OpenAI}{2017}]{Roboschool}
 OpenAI (2017).
