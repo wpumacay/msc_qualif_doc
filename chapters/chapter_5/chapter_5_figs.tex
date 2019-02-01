@@ -5,19 +5,19 @@
 \newcommand{\figSupportedAgents}{
     \begin{figure}[!ht]
         \centering
-        \begin{subfigure}[b]{0.3\textwidth}
+        \begin{subfigure}[b]{0.32\textwidth}
             \centering
-            \includegraphics[width=0.9\textwidth]{./chapters/chapter_5/imgs/img_ch5_agents_controlsuite_walker.png}
+            \includegraphics[width=1.0\textwidth]{./chapters/chapter_5/imgs/img_ch5_agents_controlsuite_walker.png}
             \caption{}
         \end{subfigure}
-        \begin{subfigure}[b]{0.3\textwidth}
+        \begin{subfigure}[b]{0.32\textwidth}
             \centering
-            \includegraphics[width=0.9\textwidth]{./chapters/chapter_5/imgs/img_ch5_agents_controlsuite_humanoid.png}
+            \includegraphics[width=1.0\textwidth]{./chapters/chapter_5/imgs/img_ch5_agents_controlsuite_humanoid.png}
             \caption{}
         \end{subfigure}
-        \begin{subfigure}[b]{0.3\textwidth}
+        \begin{subfigure}[b]{0.32\textwidth}
             \centering
-            \includegraphics[width=0.9\textwidth]{./chapters/chapter_5/imgs/img_ch5_agents_pybullet_laikago.png}
+            \includegraphics[width=1.0\textwidth]{./chapters/chapter_5/imgs/img_ch5_agents_pybullet_laikago.png}
             \caption{}
         \end{subfigure}
         \caption{Current agents supported in the framework. Walker (a) and humanoid (b) 
@@ -26,6 +26,36 @@
     \end{figure}
 }
 
+\newcommand{\figSupportedTerrain}{
+    \begin{figure}[!ht]
+        \centering
+        \includegraphics[width=0.9\textwidth]{./chapters/chapter_5/imgs/img_ch5_terrains_sample.png}
+        \caption{Terrain generators that are currently supported in the framework: 
+                 variable height using profiles, and obstacle course similar to
+                 the terrain used in \citeauthor{DeepmindEmergenceLocomotion}.}
+        \label{fig:ch5_current_supported_terrain}
+    \end{figure}
+}
+
+\newcommand{\figSupportedSensors}{
+    \begin{figure}[!ht]
+        \centering
+        \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+            \includegraphics[width=1.0\textwidth]{./chapters/chapter_5/imgs/img_ch5_sensors_1.png}
+            \caption{}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.45\textwidth}
+            \centering
+            \includegraphics[width=1.0\textwidth]{./chapters/chapter_5/imgs/img_ch5_sensors_2.png}
+            \caption{}
+        \end{subfigure}
+        \caption{Current sensors supported in the framework. a) Intrinsic measurements
+                 from the joints and bodies of the agent. b) Extrinsic measurements
+                 from the terrain using heightfields.}
+        \label{fig:ch5_current_supported_sensors}
+    \end{figure}
+}
 
 \newcommand{\figProgressAgents}{
     \begin{figure}

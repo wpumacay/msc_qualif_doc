@@ -22,9 +22,9 @@ MuJoCo, one of the two backends that we will support. All the implementations
 are available in github, in the following repositories:
 
 \begin{itemize}
-    \item \textbf{Core functionality}, which is the repository that serves as the
+    \item \textbf{Core functionality}: the repository that serves as the
           core dependency for the framework. It can be found \href{https://github.com/wpumacay/tysocCore}{here}.
-    \item \textbf{MuJoCo implementation}, which is the repository with the
+    \item \textbf{MuJoCo implementation}: the repository with the
           adapter code for MuJoCo as the specific backend. It can be found
           \href{https://github.com/wpumacay/tysocMjc}{here}.
 \end{itemize}
@@ -57,9 +57,16 @@ available are the following:
            for forward running tasks using variable height terrain generated from a
            profile, connected by boxes as primitives.
 
+           \figSupportedTerrain
+    \newpage
     \item \textbf{Sensors core functionality}: We implemented the core sensors
           functionality and made sure that this implementation was decoupled from
           the backend, following the bridge approach mentioned in section ~\ref{fig:ch4_bridge_pattern}.
+          The sensors currently supported by the framework consist of intrinsic
+          measurements from joints and bodies, and extrinsic readings from the
+          terrain using heightfields.
+
+          \figSupportedSensors
 
 \end{itemize}
 
@@ -125,6 +132,7 @@ in Figure ~\ref{fig:ch5_progress_terrain}.
 
 \figProgressTerrains
 
+%% @TODO: Add a discussion here
 \todo{deberías cerrar el capítulo con una discus ión breve de lo que se hizo}
 
 \tableAgentFormatsSupport
