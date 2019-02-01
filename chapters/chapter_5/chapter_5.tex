@@ -10,18 +10,44 @@
 \label{ch:current_progress}
 
 \input{./chapters/chapter_5/chapter_5_figs}
+\input{./chapters/chapter_5/chapter_5_tables}
 
-In this chapter we discuss the current progress of the proposed framework. The implementation
-is still not in version 0.1, which should be the first fully functional version to be released
-according to the features proposed in the previous chapter. Nevertheless, the core implementation
-needed for the multi-engine support and all other features is at a 70 percent, \todo{Creo que debes colocar porcentajes, como demuestras que estas en un 70 y no 60?}
-with the remaining
-30 percent corresponding to some additional core features, some bugs, issues, small cleanup and 
-documentation of the core functionality. We split the current discussion into the three main 
-components that have been implemented so far: core agents support, core sensors support, core 
-terrain support, and other utilities.
+In this chapter we discuss the current progress of the proposed framework. 
+The implementation is still not in version 0.1, which should be the first 
+fully functional version to be released according to the features proposed 
+in the previous chapter. Nevertheless, the core functionality, which is related
+to the abstract representations (section ~\ref{subsec:ch4_core_functionality}),
+is working and almost completed. There is also a working implementation for
+MuJoCo, one of the two backends that we will support.
 
-\section{Core support}
+All the implementations are available in github, in the following repositories:
+
+\begin{itemize}
+    \item \textbf{Core functionality}, which is the repository that serves as the
+          core dependency for the framework. It can be found \href{https://github.com/wpumacay/tysocCore}{here}.
+    \item \textbf{MuJoCo implementation}, which is the repository with the
+          adapter code for MuJoCo as the specific backend. It can be found
+          \href{https://github.com/wpumacay/tysocMjc}{here}.
+\end{itemize}
+
+\section{Core functionality}
+
+As previously mentioned we already have a working implementation of the core
+functionality supporting part of the proposed agent formats, the appropriate
+abstractions for the terrain and sensors, and this is decoupled of the specific
+backend we used for testing. The key points currently available are:
+
+\begin{itemize}
+    \item \textbf{Agent core functionality}: We implemented the core kinematic 
+            tree (see Figure ~\ref{fig:ch4_core_agent_functionality}), and currently
+            have support for the \textbf{mjcf} and \textbf{urdf} agent formats.
+            We have also support for three agents from the proposed agents list:
+            walker and humanoid from Controlsuite, and laikago from PyBullet. These
+            are shown in the Figure below.
+
+            \figSupportedAgents
+
+\end{itemize}
 
 @TODO: talk about the impl. of the core kintree and currently supported formats
 @TODO: make a table to list done and todos in this feature
@@ -83,3 +109,6 @@ in Figure ~\ref{fig:ch5_progress_terrain}.
 \figProgressTerrains
 
 \todo{deberías cerrar el capítulo con una discus ión breve de lo que se hizo}
+
+\tableAgentFormatsSupport
+\tableBackendsSupport
