@@ -81,59 +81,71 @@ available are the following:
 As previously mentioned, the current backend that the framework supports is the
 MuJoCo physics engine. The implementation was made with the bridge approach shown
 in Figure ~\ref{fig:ch4_bridge_pattern}, and extra care was taken to ensure not
-to couple backend specific features in the core framework. The support for this 
-current backend is shown in the next sections.
+to couple backend specific features in the core framework. 
 
-\subsection*{Agents support}
-
-The implementation of the agent's core functionality has been completed to a 80\%,
-remaining only an additional implementation of the agents format provided by \cite{TerrainRLSim}.
-This implementation includes the agent's kinematic tree implementation and the integration 
-with the MuJoCo physics engine via an adapter written for this specific engine.
-
-The core implementation remains agnostic of the specific engine, which allows us
-to make support quickly for the remaining proposed physics engines via adapter code
-written once for each platform. The current supported agents are shown in Figure ~\ref{fig:ch5_progress_agents},
-which basically shows the support for agents made for MuJoCo via its XML representation format.
-
-The current implementation can be already used for experiments from C/C++. The exposed
-functionality includes the supported functionality exposed by most benchmarks, which
-give access to the actions via torques. The remaining part of the implementation of the core
-agent functionality should give more support for different types of actuation models, like in \cite{ActuationChoice}.
-
-\figProgressAgents
-
-\subsection*{Sensors support}
-
-The implementation of the sensors' core functionality is completed to a 70\%,
-remaining some sensors for more complicated tasks: visual inputs from a fixed camera,
-and heightmap measurements from more complicated terrains. The current supported sensor
-features shown in Figure ~\ref{fig:ch5_progress_sensors}, and consist of:
+Although this section will look as a repetition of the previous section, recall
+that this functionality is specific for a specific backend. Currently we just have
+one backend, but in the next few months we expect to have the full implementation
+for all proposed backends, and some slight details will appear for each one. The 
+current support for the MuJoCo backend contains the following:
 
 \begin{itemize}
-    \item Intrinsic sensor measurements, like joints angles and velocities, bodies velocities
-          and accelerations, and bodies relative positions (to the root body).
-    \item Extrinsic sensor measurements, which consist on heightfield data from the terrain ahead,
-          taken with respect to the root body.
+    \item \textbf{Agent support}: This implementation allows the instantiation of 
+          various agents using the MuJoCo backend. There is also support for setting 
+          control commands through the C/C++ low-level API, which allows to do 
+          experiments similar to current benchmarks that also use MuJoCo. For a reference 
+          video visit \href{https://youtu.be/5zv5SK0o92I}{this} link.
+
+    \item \textbf{Terrain support}: The framework currently allows the instantiation 
+          of the two core terrain generators using the MuJoCo backend. For a reference 
+          video visit \href{https://youtu.be/xWdNFGlhlOA}{this} link.
+
+    \item \textbf{Sensors support}: The implementation allows the user to take 
+          measurements from the instantiated agents in the mujoco backend. Both
+          types sensors mentioned earlier are supported. For reference 
+          videos visit \href{https://youtu.be/-EJMER5AGRQ}{this} and 
+          \href{https://youtu.be/c0R81VBZ72o}{this} links for extrinsic and intrinsic
+           measurements respectively.
+
+    \item \textbf{Instantiation support}: The current approach for instantiating
+          with the MuJoCo backend consists of making use of XML injection. The
+          current MuJoCo API only allows to create a simulation through an XML
+          file that is compiled at initialization, and unlike other backends there
+          is currently no runtime creation API. 
+
+          In order to achieve the desired functionality we inject all the simulation
+          resources into an XML that MuJoCo can then use to instantiate the scene,
+          and making heavy use of object pools to reuse the resources that are
+          defined in the XML file. A sample generated XML with all resources can
+          be found \href{https://github.com/wpumacay/tysocMjc/blob/master/res/xml/workspace.xml}{here}
+          (which is a big XML file), and a sample model for an agent can be found
+          \href{https://github.com/wpumacay/tysocMjc/blob/master/res/templates/mjcf/walker.xml}{here}.
+
+          The approach of using core functionality separated from backend specific
+          functionality helps a lot in this situation because we do not have to
+          couple the specific instantiation mechanisms (like in MuJoCo) to other
+          mechanisms (like in Bullet and PhysX), and in the case that MuJoCo launches
+          a release in the future with runtime creation support we can easily change
+          the adapter code once and all other backend options will not need to be
+          changed at all.
+
+    \item \textbf{Visualizer support}: In order to test the correctness of the
+          implementation we need an interactive mechanism to view the simulation.
+          The framework is designed to be renderer agnostic, and currently we support
+          two types of renderers: a custom redenrer using OpenGL, and the provided
+          MuJoCo renderer. This two options are shown in Figure ~\ref{fig:ch5_current_supported_visualizers}.
+
+          We plan to implement also a variation of our custom renderer based on
+          EGL, which allows to create a rendering context without an active windowing
+          system, like the case of running experiments in the cloud (Amazon Web Services,
+          Google Cloud, etc.). This feature will be important in the case of running
+          experiments in a cluster, which is very likely because DeepRL algorithms
+          tend to need lots of samples, and distributed setups is usually a good
+          option to speed up experimentation.
+
+          \figSupportedVisualizers
+
 \end{itemize}
-
-\figProgressSensors
-
-\subsection*{Terrain support}
-
-The current implementation of the core terrain functionality supports procedurally generated
-terrain, similar to \cite{DeepmindEmergenceLocomotion}. The core functionality handles 
-the creation of primitives from terrain generators, and then this is stored as 
-requests for creation in the specific adapters for specific engines. The current 
-supported engine is MuJoCo, and we plan in adding full support for more complex 
-terrains (and an API to use it), and full support for the remaining proposed physics 
-engines. Some screenshots of the current terrain implementations are shown
-in Figure ~\ref{fig:ch5_progress_terrain}.
-
-\figProgressTerrains
 
 %% @TODO: Add a discussion here
 \todo{deberías cerrar el capítulo con una discus ión breve de lo que se hizo}
-
-\tableAgentFormatsSupport
-\tableBackendsSupport
