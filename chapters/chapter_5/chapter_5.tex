@@ -18,9 +18,8 @@ fully functional version to be released according to the features proposed
 in the previous chapter. Nevertheless, the core functionality, which is related
 to the abstract representations (section ~\ref{subsec:ch4_core_functionality}),
 is working and almost completed. There is also a working implementation for
-MuJoCo, one of the two backends that we will support.
-
-All the implementations are available in github, in the following repositories:
+MuJoCo, one of the two backends that we will support. All the implementations 
+are available in github, in the following repositories:
 
 \begin{itemize}
     \item \textbf{Core functionality}, which is the repository that serves as the
@@ -33,32 +32,50 @@ All the implementations are available in github, in the following repositories:
 \section{Core functionality}
 
 As previously mentioned we already have a working implementation of the core
-functionality supporting part of the proposed agent formats, the appropriate
-abstractions for the terrain and sensors, and this is decoupled of the specific
-backend we used for testing. The key points currently available are:
+functionality supporting part of the proposed agent formats, and the appropriate
+abstractions for the terrain and sensors. This functionality is decoupled of the 
+specific backend we used for instantiating the simulation. The key components currently 
+available are the following:
 
 \begin{itemize}
     \item \textbf{Agent core functionality}: We implemented the core kinematic 
-            tree (see Figure ~\ref{fig:ch4_core_agent_functionality}), and currently
-            have support for the \textbf{mjcf} and \textbf{urdf} agent formats.
-            We have also support for three agents from the proposed agents list:
+            tree (explained previously in Figure ~\ref{fig:ch4_core_agent_functionality}), 
+            and made sure that this implementation was decoupled from the backend by
+            following the bridge approach mentioned in section ~\ref{fig:ch4_bridge_pattern}.
+            We currently have support for the \textbf{mjcf} and \textbf{urdf} agent 
+            formats. We have also support for three agents from the proposed agents list:
             walker and humanoid from Controlsuite, and laikago from PyBullet. These
             are shown in the Figure below.
 
             \figSupportedAgents
 
+    \item \textbf{Terrain core functionality}: We implemented the abstract terrain
+           functionality (explained previously in Figure ~\ref{fig:ch4_core_terrain_functionality}),
+           and also two simple procedural terrain generators: one for forward running
+           tasks with terrain generated using boxes as primitives, similar to the
+           terrain used in \cite{DeepmindEmergenceLocomotion}, and the other also
+           for forward running tasks using variable height terrain generated from a
+           profile, connected by boxes as primitives.
+
+    \item \textbf{Sensors core functionality}: We implemented the core sensors
+          functionality and made sure that this implementation was decoupled from
+          the backend, following the bridge approach mentioned in section ~\ref{fig:ch4_bridge_pattern}.
+
 \end{itemize}
 
-@TODO: talk about the impl. of the core kintree and currently supported formats
-@TODO: make a table to list done and todos in this feature
+%% @TODO: talk about the visualizer, and the two implemented options.
+%% @TODO: make a table to list done and todos in this feature
 
-@TODO: talk about the visualizer, and the two implemented options.
-@TODO: make a table to list done and todos in this feature
+%% @TODO: talk about the backends supported so far
+%% @TODO: make a table to list done and todos in this feature
 
-@TODO: talk about the backends supported so far
-@TODO: make a table to list done and todos in this feature
+\section{Simulation features}
 
-\section{Features}
+As previously mentioned, the current backend that the framework supports is the
+MuJoCo physics engine. The implementation was made with the bridge approach shown
+in Figure ~\ref{fig:ch4_bridge_pattern}, and extra care was taken to ensure not
+to couple backend specific features in the core framework. The support for this 
+current backend is shown in the next sections.
 
 \subsection*{Agents support}
 
