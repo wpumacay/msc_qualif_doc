@@ -134,6 +134,15 @@ Peng, X.~B. and van~de Panne, M. (2017).
 \newblock In {\em Proceedings of the ACM SIGGRAPH / Eurographics Symposium on
   Computer Animation}, SCA '17, pages 12:1--12:13, New York, NY, USA. ACM.
 
+\bibitem[\protect\astroncite{Schulman et~al.}{2015}]{TRPO}
+Schulman, J., Levine, S., et~al. (2015).
+\newblock Trust region policy optimization.
+\newblock ICML.
+
+\bibitem[\protect\astroncite{Schulman et~al.}{2017}]{PPO}
+Schulman, J., Wolski, F., et~al. (2017).
+\newblock Proximal policy optimization algorithms.
+
 \bibitem[\protect\astroncite{Silver et~al.}{2016}]{AlphaGo}
 Silver, D., Huang, A., et~al. (2016).
 \newblock Mastering the game of go with deep neural network and tree search.
