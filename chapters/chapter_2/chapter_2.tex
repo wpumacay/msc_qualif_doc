@@ -284,17 +284,11 @@ Finally, this algorithm can be rewritten as an optimization process by defining 
 loss function shown in Equation ~\ref{eq:ch2_vpg_loss}. By computing the gradient 
 of this loss function we obtain the policy gradient from Equation ~\ref{eq:ch2_vanilla_policy_gradient}.
 This "supervised" view of the problem can help when implementing the algorithm
-using Neural Networks and current autodifferentiation packages, like \href{https://tensorflow.org}{Tensorflow}
-and \href{https://pytorch.org}{PyTorch}. We will discuss in the next chapter how
-various algorithms formulate the RL problem as an optimization in a similar way,
-but adding various constraints to ensure that the algorithm effectively uses the
-noise estimates it gets from the collected samples.
+using Neural Networks (to parameterize the policy) and current autodifferentiation 
+packages, like \href{https://tensorflow.org}{Tensorflow} and \href{https://pytorch.org}{PyTorch}. 
 
 \begin{equation} \label{eq:ch2_vpg_loss}
-    L^{PG} = \frac{1}{N} 
-                    \sum_{i=1}^{N} \sum_{t=0}^{T^{(i)}} 
-                            \log \pi_{\theta} 
-                                    ( a_{t}^{(i)} | s_{t}^{(i)} ) \hat A_{t}
+    L^{PG} = \mathbb{\hat E}_{t} \lbrace \log \pi_{\theta} (a_{t} | s_{t}) \hat A_{t} \rbrace
 \end{equation}
 
 \subsection{Deep Learning and RL}
@@ -342,6 +336,8 @@ has to provide:
     \item A \textbf{reward} to give to the agent because of the action taken.
     \item A \textbf{state} (or observation) to give to the agent because of the action taken.
 \end{itemize}
+
+\newpage
 
 Some learning environments have become standard benchmarks for testing DeepRL algorithms, 
 and are widely used because of this standarization. Some of these benchmarks are shown below:

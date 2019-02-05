@@ -1,3 +1,88 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %   Algorithms for chapter 3
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\algNaturalPolicyGradients}{
+\begin{algorithm}
+
+\caption{Natural Policy Gradients algorithm. Adapted from \href{https://spinningup.openai.com/en/latest/algorithms/trpo.html}{source}}
+\label{alg:natural_policy_gradients}
+
+    \begin{algorithmic}[1]
+    \REQUIRE Initial policy parameters $\theta_{0}$
+
+    \FOR{$k=1,2,\hdots $}
+        \STATE Collect trajectories using policy $\pi_{\theta_{k}}$
+        \STATE Compute advantage estimates $\hat A_{t}$
+        \STATE Compute policy gradient estimate $\hat g_{k}$
+        \STATE Compute an estimate of the Fisher information matrix $\hat F_{k}$
+        \STATE Apply Natural Policy Gradient Update
+                \begin{equation*}
+                    \theta_{k+1} = \theta_{k} + 
+                                   \sqrt{\frac{2\epsilon}{\hat g_{k}^{T} \hat F^{-1}_{k} \hat g_{k}}}
+                                   \hat F^{-1}_{k} \hat g_{k}
+                \end{equation*}
+    \ENDFOR
+
+    \end{algorithmic}
+
+\end{algorithm}
+}
+
+\newcommand{\algTRPO}{
+\begin{algorithm}
+
+\caption{Trust Region Policy Optimization algorithm. Adapted from \href{https://spinningup.openai.com/en/latest/algorithms/trpo.html}{source}}
+\label{alg:trpo}
+
+    \begin{algorithmic}[1]
+    \REQUIRE Initial policy parameters $\theta_{0}$
+
+    \FOR{$k=1,2,\hdots $}
+        \STATE Collect trajectories using policy $\pi_{\theta_{k}}$
+        \STATE Compute advantage estimates $\hat A_{t}$
+        \STATE Compute policy gradient estimate $\hat g_{k}$
+        \STATE Compute an estimate of the Fisher information matrix $\hat F_{k}$
+        \STATE Use the conjugate gradient algorithm to compute
+                \begin{equation*}
+                    \hat x_{k} \approx \hat F^{-1}_{k} \hat g_{k}
+                \end{equation*}
+        \STATE Update the policy by using the following update rule
+                \begin{equation*}
+                    \theta_{k+1} = \theta_{k} + \alpha^{j}
+                                   \sqrt{\frac{2\epsilon}{\hat x_{k}^{T} \hat F_{k} \hat x_{k}}}
+                                   \hat x_{k}
+                \end{equation*}
+                where $\alpha^{j}$ is chosen using line search 
+                while satisfying the KL-divergence constraint
+    \ENDFOR
+
+    \end{algorithmic}
+
+\end{algorithm}
+}
+
+\newcommand{\algPPO}{
+\begin{algorithm}
+
+\caption{Proximal Policy Optimization algorithm. Adapted from \href{https://spinningup.openai.com/en/latest/algorithms/trpo.html}{source}}
+\label{alg:trpo}
+
+    \begin{algorithmic}[1]
+    \REQUIRE Initial policy parameters $\theta_{0}$
+
+    \FOR{$k=1,2,\hdots $}
+        \STATE Collect trajectories using policy $\pi_{\theta_{k}}$
+        \STATE Compute advantage estimates $\hat A_{t}$
+        \STATE Update the policy by maximizing the PPO-Clip objective
+                \begin{equation*}
+                    \theta_{k+1} = \arg \max_{\theta} \frac{1}{N} \sum_{i=1}^{N} \sum_{t=0}^{T^{(i)}} 
+                                                L^{CLIP}(\theta_{k})
+                \end{equation*}
+                using sthocastic gradient ascent or similar opitmizer.
+    \ENDFOR
+
+    \end{algorithmic}
+
+\end{algorithm}
+}

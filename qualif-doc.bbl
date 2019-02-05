@@ -72,6 +72,11 @@ Holden, D., Komura, T., et~al. (2017).
 Juliani, A., Berges, V.-P., et~al. (2018).
 \newblock Unity: A general platform for intelligent agents.
 
+\bibitem[\protect\astroncite{Kakade}{2002}]{NaturalPolicyGradient}
+Kakade, S. (2002).
+\newblock A natural policy gradient.
+\newblock Advances in Neural Information Processing Systems.
+
 \bibitem[\protect\astroncite{Kalashnikov et~al.}{2018}]{ScalableDeepRL}
 Kalashnikov, D., Irpan, A., et~al. (2018).
 \newblock Qt-opt: Scalable deep reinforcement learning for vision-based robotic

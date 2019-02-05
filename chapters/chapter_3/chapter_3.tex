@@ -35,6 +35,7 @@
 \label{ch:relatedWorks}
 
 \input{./chapters/chapter_3/chapter_3_figs}
+\input{./chapters/chapter_3/chapter_3_algs}
 
 \todo{Me preocupa un poco que la revision sea solo de herramientas, osea está muy orientado a eso, puede ser un punto en contra para un evaluador}
 
@@ -43,17 +44,6 @@ used in locomotion tasks, which will be the baselines we will evaluate with the 
 framework. We also discuss various recent works in locomotion which also apply 
 these algorithms. Finally we give an overview of the current benchmarks being
 used for locomotion tasks.
-
-%% In this chapter we will give an overview of the currently available benchmarks
-%% used for robot locomotion research. We give some high level details of the benchmarks,
-%% which should help understand the proposal in Chapter 4.
-
-%% In this chapter we will give an overview of the state of the art in robot locomotion using 
-%% Deep Reinforcement Learning. We discuss some currently avaiable benchmarks for these tasks,
-%% giving details that will help compare these current benchmarks with the proposed framework, which
-%% will be discussed in more detail in chapter 4. We also discuss current state of the art algorithms
-%% used to solve these tasks, which will be used as baselines for the experiments we will propose as part
-%% of the evaluation procedure.
 
 \section{Deep RL algorithms for locomotion} \label{sec:ch3_deeprl_algorithms}
 
@@ -66,11 +56,7 @@ which include:
     \item \textbf{Step size selection}: The step size is of major importance in DeepRL,
           because the data the agent gets, which is then used for learning, is obtained
           using the policy, which is changed every gradient update step. Besides, the advantage
-          signal that we estimate is very noisy, and this can lead to bad updates. Large
-          step sizes could potentially lead to policy changes that leave the agent in
-          a situation from which it might never recover, and very small step sizes
-          can lead to very inefficient use of the sampled trajectories, because all
-          the data is being used for just a single small gradient update.
+          signal that we estimate is very noisy, and this can lead to bad updates.
 
     \item \textbf{Sample efficiency}: The vanilla version of policy gradients uses
           the sampled data for only a single gradient estimation and update. This is
@@ -79,30 +65,137 @@ which include:
           computationally expensive.
 \end{itemize}
 
+To address these issues one approach is to turn the RL problem into a small 
+optimization problem for each policy update. One simple way to achieve this
+result is to use the loss function from ~\ref{eq:ch2_vpg_loss}, which allows to
+reuse the collected data as much as possible until convergence. This results
+in the following small optimization problem.
+
+\begin{equation}
+    \theta_{new} = \arg \max_{\theta} \mathbb{\hat E}_{t} 
+                        \left [
+                            \log \pi_{\theta}(a_{t}|s_{t}) \hat A_{t}
+                        \right ]
+\end{equation}
+
+Unfortunately we cannot use this update until convergence, because of the issues
+mentioned before. To avoid updating the policy too much we place a constraint in
+the optimization problem by forcing small changes in the policy parameters. We also
+makes a change in the loss function, and instead of using the simpler loss $L^{PG}$
+we use a loss $L^{IS}$, which is derived using importance sampling (both result in
+the same gradient). This results in the following constrained optimization problem.
+
+\begin{align}
+    \theta_{new} = \arg \max_{\theta} \mathbb{\hat E}_{t} 
+                        \left [
+                            \frac{\pi_{\theta}(a_{t}|s_{t})}
+                                 {\pi_{\theta_{old}}(a_{t}|s_{t})} \hat A_{t}
+                        \right ] \nonumber \\
+    \textit{subject to: } 
+                \Vert \theta - \theta_{old} \Vert_{2} \leq \delta
+\end{align}
+
+Even though we have a constrained the optimization problem with an threshold in the
+eucliden distance of the policy parameters, this usually does not yield the desired
+results. For example, suppose we have a stochastic policy over a discrete action
+space of two actions, parameterized using a single parameter  $\theta$ and a sigmoid 
+function $\sigma$ in the following form.
+
+\begin{gather*}
+    \pi_{\theta}(a) = 
+            \begin{cases}
+                \sigma(\theta)          & a = 1 \\
+                1 - \sigma({\theta})    & a = 2
+            \end{cases}
+\end{gather*}
+
+Two fixed changes in the policy parameter $\theta$ give very different changes in
+the output probabilities of the policy. The following figure shows this issue for
+the case of $\Delta \theta=2$, applied in $\theta$ 0, 2 and 4.
+
+\figPolicyChanges
+
 \subsection{Natural Policy Gradients}
 
+A better policy update was proposed by \cite{NaturalPolicyGradient}, in which
+the authors proposed using the natural gradient instead of the a simple gradient 
+update.
 
+\begin{equation}
+    \tilde{\nabla}_{\theta} J(\theta) = F^{-1}(\theta) \nabla_{\theta} J(\theta)
+\end{equation}
+
+This update makes use of the \textit{Fisher Information Matrix} $F$, which is used
+to compensate the effects mentioned previously. This update also arises by reformulating
+the small optimization problem into the following form:
+
+\begin{align} \label{eq:}
+    \theta_{new} = \arg \max_{\theta} \mathbb{\hat E}_{t} 
+                        \left [
+                            \frac{\pi_{\theta}(a_{t}|s_{t})}
+                                 {\pi_{\theta_{old}}(a_{t}|s_{t})} \hat A_{t}
+                        \right ] \nonumber \\
+    \textit{subject to: } 
+                \bar{D}_{KL}(\theta||\theta_{old}) \leq \delta
+\end{align}
+
+The only difference is the change of the euclidean constraint in parameter space
+to the constraint in the KL-divergence of the parameterized probability distributions,
+which ensures that the changes in parameter space made do not change the resulting 
+distribution over action drastically. By solving this optimization problem using
+linearization (Taylor Expansions) we obtain the following algorithm.
+
+\algNaturalPolicyGradients
 
 \subsection{Trust Region Policy Optimization (TRPO)}
 
-%% @TODO: start by stating difficulties in vanilla policy gradients
-%%        -> non-stationary data
-%%        -> wrong initial advantages
-%%        -> no improvement guarantees
+The previous algorithm requires the inversion of the Fisher information matrix, which
+is costly depending on the size of the parameters space (how big is the function approximator).
+Also, it does not give theoretical improvement guarantees about the results, although
+it provided better updates than the Vanilla Policy Gradient. \cite{TRPO} introduced
+important changes that allow to solve the inversion issue, and also provided theoretical 
+improvement guarantees on the policy updates (each update is guaranteed to improve performance).
+The changes they introduced are listed below, and the resulting algorithm in shown in
+Algorithm ~\ref{alg:trpo}.
 
-\cite{TRPO}
+\begin{itemize}
+    \item Use the \textbf{conjugate gradient method} to avoid computing the inverse.
+    \item Perform \textbf{line search} in the step size to make the largest update
+          that satisfies the KL constraint.
+\end{itemize}
 
-\begin{equation}
-    foo
-\end{equation}
+\algTRPO
+
+Some results (from the authors) of this algorithm in locomotion tasks and video game playing tasks 
+can be found in the following \href{https://youtu.be/jeid0wIrSn4}{link}.
 
 \subsection{Proximal Policy Optimization (PPO)}
 
-\cite{PPO}
+This algorithm was introduced by \cite{PPO}, and it also tries to make the biggest
+update possible while satisfying the same constraints and using all the data collected
+for that optimization step. The authors proposed a simpler algorithm that requires
+only an optimization over a surrogate loss function that approximates the behaviour
+of the KL constraint. This loss in shown in the following equation. 
 
 \begin{equation}
-    bar
+    L^{CLIP}(\theta) = \min \left ( \frac{\pi_{\theta}(a|s)}{\pi_{\theta_{old}}(a|s)} A^{\pi_{old}},
+                                clip \left ( 
+                                \frac{\pi_{\theta}(a|s)}{\pi_{\theta_{old}}(a|s)},
+                                1-\epsilon, 1+\epsilon
+                                     \right ) A^{\pi_{old}} \right )
 \end{equation}
+
+By using this loss in the optimization problem the resulting algorithm solves a similar
+objective to TRPO, but without formulating the constrained optimization problem nor
+using second order optimization, which is slightly costly in the TRPO implementations.
+The resulting algorithm is shown below.
+
+\algPPO
+
+Some results (from the authors) of this algorithm in locomotion tasks and video game playing tasks 
+can be found in the following \href{https://blog.openai.com/openai-baselines-ppo/}{link}.
+
+\newpage
 
 \section{DeepRL applied to locomotion}
 
@@ -126,7 +219,7 @@ diverse and complicated environments.
 
 \subsection{DeepMimic}
 
-
+\newpage
 
 \section{DeepRL locomotion benchmarks}
 

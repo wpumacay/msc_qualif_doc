@@ -22,11 +22,11 @@
                                      ( a_{t}^{(i)} | s_{t}^{(i)} )
                                         \vert_{\theta = \theta_{k}} \hat A_{t}
                 \end{equation*}
-        \STATE Apply policy update using SGD as
+        \STATE Apply policy update using SGA as
                 \begin{equation*}
                     \theta_{k+1} = \theta_{k} + \alpha \hat g
                 \end{equation*}
-               or using another gradient descent algorithm.
+               or using another gradient ascent algorithm.
     \ENDFOR
 
     \end{algorithmic}
