@@ -24,6 +24,7 @@
 \label{ch:background}
 
 \input{./chapters/chapter_2/chapter_2_figs}
+\input{./chapters/chapter_2/chapter_2_algs}
 
 In this chapter we we will give an overview of the core concepts needed to
 understand the following chapters in this document. These include:
@@ -239,7 +240,7 @@ is intractable, thus we make use of a mathematical trick (REINFORCE trick) to ge
     objective function $J(\theta) = \sum_{\tau} p(\tau;\theta) G(\tau)$ 
     can be computed using the following policy gradient.
     \begin{equation}
-        \nabla_{\theta} J(\theta) = \mathbb{E}_{\pi_{\theta}} \lbrace G(\tau) \nabla_{\theta} \log \pi_{\theta} \rbrace
+        \nabla_{\theta} J(\theta) = \mathbb{E}_{\pi_{\theta}} \lbrace G(\tau) \nabla_{\theta} \log \pi_{\theta} (\tau) \rbrace
     \end{equation}
 \end{theorem}
 
@@ -254,6 +255,30 @@ and decreasing the probability of selecting the actions that yielded bad results
 is shown in the Figure ~\ref{fig:ch2_rl_pg_intuition}.
 
 \figRlPolicyGradientsIntuition
+
+The \textbf{Vanilla Policy Gradients} algorithms uses an estimate of this gradient
+$\hat g$ to update the parameters $\theta$ of a parameterized policy. It computes
+an estimate by using Monte Carlo estimation from sampled trajectories collected from
+the policy. This estimate is shown in the following equation.
+
+\begin{equation}
+  \hat g \approx \frac{1}{N} 
+                    \sum_{i=1}^{N} \sum_{t=0}^{T^{(i)}} 
+                            \nabla_{\theta} \log \pi_{\theta} 
+                                            ( a_{t}^{(i)} | s_{t}^{(i)} ) \hat A_{t}
+\end{equation}
+
+The return over a trajectory $G_{\tau}$ was replaced with an \textbf{Advantage Estimate}
+$\hat A_{t}$, which is similar in intuition to the previous quantity, but it helps
+by reducing the variance of this estimates of how good a trajectory is. This update
+is then used in the \textit{Vanilla Policy Gradient algorithm}, shown below.
+
+\algVanillaPolicyGradients
+
+This algorithm forms the basis of various state of the art DeepRL algorithms, which
+make various changes to account for issues that arise using this basic version of 
+Policy Gradients. Some of these changes are the step size selection, and sample
+efficiency, which will be addressed by the algorithms discussed in Chapter ~\ref{sec:ch3_deeprl_algorithms}.
 
 \subsection{Deep Learning and RL}
 \todo{toda esta subsection no tiene referencias}
@@ -279,6 +304,8 @@ the use of function approximators was decoupled from the representation given to
 The representation was given by features that where hand engineered by the researcher, and then
 combined with the function approximator chosen for the task. The approach that DeepRL follows is 
 different in the sense that we learn the representation via the Deep models we use as function approximators. \todo{se esta usando excesivamente la palabra approximator en este parrafo}
+
+\newpage
 
 \section{Simulated Learning Environments}
 

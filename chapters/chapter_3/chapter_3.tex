@@ -6,7 +6,19 @@
 %%
 %%  BASIC STRUCTURE :
 %%
-%%      a. Current benchmarks for robot locomotion
+%%      a. DeepRL algorithms
+%%          * Natural Policy Gradients
+%%          * Trust region policy optimization
+%%          * Proximal Policy Optimization
+%%
+%%      b. DeepRL and robot locomotion
+%%          * Benchmarking drl for continuous ccontrol (2016?)
+%%          * DeepTerrainRL
+%%          * DeepLoco
+%%          * DeepMimic
+%%          * Emergence of locomotion in rich and complex environments
+%%
+%%      c. Current benchmarks for robot locomotion
 %%          * DeepMind's ControlSuite
 %%          * OpenAI's mujoco-py
 %%          * Berkeley's garage and rllab
@@ -15,14 +27,6 @@
 %%          * UBC's terrainRlSim
 %%          * Unity's ml-agents (talk about the marathon envs)
 %%
-%%      b. DRL algorithms for robot locomotion
-%%          * Benchmarking drl for continuous ccontrol (2016?)
-%%          * Trust region policy optimization
-%%          * Proximal policy optimization
-%%          * DeepTerrainRL
-%%          * DeepLoco
-%%          * DeepMimic
-%%          * Emergence of locomotion in rich and complex environments
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -33,9 +37,16 @@
 \input{./chapters/chapter_3/chapter_3_figs}
 
 \todo{Me preocupa un poco que la revision sea solo de herramientas, osea está muy orientado a eso, puede ser un punto en contra para un evaluador}
-In this chapter we will give an overview of the currently available benchmarks
-used for robot locomotion research. We give some high level details of the benchmarks,
-which should help understand the proposal in Chapter 4.
+
+In this chapter we will give an overview of current state of the art DeepRL algorithms
+used in locomotion tasks, which will be the baselines we will evaluate with the proposed
+framework. We also discuss various recent works in locomotion which also apply 
+these algorithms. Finally we give an overview of the current benchmarks being
+used for locomotion tasks.
+
+%% In this chapter we will give an overview of the currently available benchmarks
+%% used for robot locomotion research. We give some high level details of the benchmarks,
+%% which should help understand the proposal in Chapter 4.
 
 %% In this chapter we will give an overview of the state of the art in robot locomotion using 
 %% Deep Reinforcement Learning. We discuss some currently avaiable benchmarks for these tasks,
@@ -44,7 +55,64 @@ which should help understand the proposal in Chapter 4.
 %% used to solve these tasks, which will be used as baselines for the experiments we will propose as part
 %% of the evaluation procedure.
 
-\section{Robot locomotion benchmarks}
+\section{Deep RL algorithms for locomotion} \label{sec:ch3_deeprl_algorithms}
+
+In this section we discuss current state of the art algorithms used for locomotion 
+tasks. Most of these algorithms are \textbf{Policy Based} algorithms (or variants), 
+which were introduced in section \ref{ref:subs:ch2:PolicyBasedMethods}. These
+variants address various problems with the standard Vanilla Policy Gradient algorithm
+by using more sophisticated optimization procedures.
+
+\subsection{Natural Policy Gradients}
+
+
+
+\subsection{Trust Region Policy Optimization (TRPO)}
+
+%% @TODO: start by stating difficulties in vanilla policy gradients
+%%        -> non-stationary data
+%%        -> wrong initial advantages
+%%        -> no improvement guarantees
+
+\cite{TRPO}
+
+\begin{equation}
+    foo
+\end{equation}
+
+\subsection{Proximal Policy Optimization (PPO)}
+
+\cite{PPO}
+
+\begin{equation}
+    bar
+\end{equation}
+
+\section{DeepRL applied to locomotion}
+
+In this last section we discuss current state of the art results of DeepRL in
+locomotion tasks. These served as the inspiration for this proposal to the extent
+that most of this proposal serves as an extension of these results to more 
+diverse and complicated environments.
+
+
+\subsection{Benchmarking DeepRL for Continuous Control}
+
+
+\subsection{DeepTerrainRL}
+
+
+\subsection{DeepLoco}
+
+
+\subsection{Emergence of Locomotion}
+
+
+\subsection{DeepMimic}
+
+
+
+\section{DeepRL locomotion benchmarks}
 
 \subsection{Deepmind ControlSuite}
 
@@ -189,59 +257,3 @@ package, and are shown in Figure ~\ref{fig:ch3_marathon_envs}.
 \figBenchmarksUnityMLAgents
 
 \figBenchmarksMarathonEnvs
-
-\newpage
-
-\section{Deep RL algorithms for locomotion}
-
-In this section we discuss current state of the art algorithms used for locomotion 
-tasks. Most of these algorithms are \textbf{Policy Based} algorithms (or variants), 
-which were introduced in section \ref{ref:subs:ch2:PolicyBasedMethods}. These
-variants address various problems with the standard Vanilla Policy Gradient algorithm
-by using more sophisticated optimization procedures.
-
-\subsection{Trust Region Policy Optimization (TRPO)}
-
-%% @TODO: start by stating difficulties in vanilla policy gradients
-%%        -> non-stationary data
-%%        -> wrong initial advantages
-%%        -> no improvement guarantees
-
-\cite{TRPO}
-
-\begin{equation}
-    foo
-\end{equation}
-
-\subsection{Proximal Policy Optimization (PPO)}
-
-\cite{PPO}
-
-\begin{equation}
-    bar
-\end{equation}
-
-\section{DeepRL applied to locomotion}
-
-In this last section we discuss current state of the art results of DeepRL in
-locomotion tasks. These served as the inspiration for this proposal to the extent
-that most of this proposal serves as an extension of these results to more 
-diverse and complicated environments.
-
-
-\subsection{Benchmarking DeepRL for Continuous Control}
-
-
-\subsection{DeepTerrainRL}
-
-
-\subsection{DeepLoco}
-
-
-\subsection{Emergence of Locomotion}
-
-
-\subsection{DeepMimic}
-
-
-
