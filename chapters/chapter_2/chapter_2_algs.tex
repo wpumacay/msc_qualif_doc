@@ -15,17 +15,17 @@
         \STATE Collect trajectories using policy $\pi_{\theta_{k}}$
         \STATE Compute advantage estimates $\hat A_{t}$
         \STATE Compute policy gradient estimate as
-                \begin{equation}
+                \begin{equation*}
                     \hat g \approx \frac{1}{N} 
                          \sum_{i=1}^{N} \sum_{t=0}^{T^{(i)}} 
                              \nabla_{\theta} \log \pi_{\theta} 
                                      ( a_{t}^{(i)} | s_{t}^{(i)} )
                                         \vert_{\theta = \theta_{k}} \hat A_{t}
-                \end{equation}
+                \end{equation*}
         \STATE Apply policy update using SGD as
-                \begin{equation}
+                \begin{equation*}
                     \theta_{k+1} = \theta_{k} + \alpha \hat g
-                \end{equation}
+                \end{equation*}
                or using another gradient descent algorithm.
     \ENDFOR
 

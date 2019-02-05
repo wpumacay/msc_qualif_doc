@@ -57,11 +57,27 @@ used for locomotion tasks.
 
 \section{Deep RL algorithms for locomotion} \label{sec:ch3_deeprl_algorithms}
 
-In this section we discuss current state of the art algorithms used for locomotion 
-tasks. Most of these algorithms are \textbf{Policy Based} algorithms (or variants), 
-which were introduced in section \ref{ref:subs:ch2:PolicyBasedMethods}. These
-variants address various problems with the standard Vanilla Policy Gradient algorithm
-by using more sophisticated optimization procedures.
+Current state of the art DeepRL algorithms used in locomotion tasks are \textbf{Policy Based} 
+algorithms (or variants), which were introduced in section ~\ref{ref:subs:ch2:PolicyBasedMethods}. 
+These variants address various problems with the standard Vanilla Policy Gradient algorithm,
+which include:
+
+\begin{itemize}
+    \item \textbf{Step size selection}: The step size is of major importance in DeepRL,
+          because the data the agent gets, which is then used for learning, is obtained
+          using the policy, which is changed every gradient update step. Besides, the advantage
+          signal that we estimate is very noisy, and this can lead to bad updates. Large
+          step sizes could potentially lead to policy changes that leave the agent in
+          a situation from which it might never recover, and very small step sizes
+          can lead to very inefficient use of the sampled trajectories, because all
+          the data is being used for just a single small gradient update.
+
+    \item \textbf{Sample efficiency}: The vanilla version of policy gradients uses
+          the sampled data for only a single gradient estimation and update. This is
+          very inefficient because the data sampled from the environment usually involves
+          running the simulation for various episodes, which in some cases is very 
+          computationally expensive.
+\end{itemize}
 
 \subsection{Natural Policy Gradients}
 

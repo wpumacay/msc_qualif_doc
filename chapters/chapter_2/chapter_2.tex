@@ -261,7 +261,7 @@ $\hat g$ to update the parameters $\theta$ of a parameterized policy. It compute
 an estimate by using Monte Carlo estimation from sampled trajectories collected from
 the policy. This estimate is shown in the following equation.
 
-\begin{equation}
+\begin{equation} \label{eq:ch2_vanilla_policy_gradient}
   \hat g \approx \frac{1}{N} 
                     \sum_{i=1}^{N} \sum_{t=0}^{T^{(i)}} 
                             \nabla_{\theta} \log \pi_{\theta} 
@@ -279,6 +279,23 @@ This algorithm forms the basis of various state of the art DeepRL algorithms, wh
 make various changes to account for issues that arise using this basic version of 
 Policy Gradients. Some of these changes are the step size selection, and sample
 efficiency, which will be addressed by the algorithms discussed in Chapter ~\ref{sec:ch3_deeprl_algorithms}.
+
+Finally, this algorithm can be rewritten as an optimization process by defining the
+loss function shown in Equation ~\ref{eq:ch2_vpg_loss}. By computing the gradient 
+of this loss function we obtain the policy gradient from Equation ~\ref{eq:ch2_vanilla_policy_gradient}.
+This "supervised" view of the problem can help when implementing the algorithm
+using Neural Networks and current autodifferentiation packages, like \href{https://tensorflow.org}{Tensorflow}
+and \href{https://pytorch.org}{PyTorch}. We will discuss in the next chapter how
+various algorithms formulate the RL problem as an optimization in a similar way,
+but adding various constraints to ensure that the algorithm effectively uses the
+noise estimates it gets from the collected samples.
+
+\begin{equation} \label{eq:ch2_vpg_loss}
+    L^{PG} = \frac{1}{N} 
+                    \sum_{i=1}^{N} \sum_{t=0}^{T^{(i)}} 
+                            \log \pi_{\theta} 
+                                    ( a_{t}^{(i)} | s_{t}^{(i)} ) \hat A_{t}
+\end{equation}
 
 \subsection{Deep Learning and RL}
 \todo{toda esta subsection no tiene referencias}
@@ -305,8 +322,6 @@ The representation was given by features that where hand engineered by the resea
 combined with the function approximator chosen for the task. The approach that DeepRL follows is 
 different in the sense that we learn the representation via the Deep models we use as function approximators. \todo{se esta usando excesivamente la palabra approximator en este parrafo}
 
-\newpage
-
 \section{Simulated Learning Environments}
 
 One key component of the RL framework (and one that seems to be trivial) is the learning
@@ -318,8 +333,7 @@ These learning environments are usually simulations of some RL tasks that we wan
 agent to learn. This simulated nature of the environment makes it easy to grab as much 
 experience as needed, and because the environment is a simulation we can usually
 speed up the process and take huge amounts of experience for our learning algorithms.
-
-A learning environment is usually designed around the agent interaction loop mentioned
+These learning environments are usually designed around the agent interaction loop mentioned
 at the beginning of this chapter. This defines the basic API that such an environment
 has to provide:
 
@@ -329,8 +343,8 @@ has to provide:
     \item A \textbf{state} (or observation) to give to the agent because of the action taken.
 \end{itemize}
 
-Some learning environments have become benchmarks for testing DeepRL algorithms, and
-are widely used because of this standarization. Just to name a few:
+Some learning environments have become standard benchmarks for testing DeepRL algorithms, 
+and are widely used because of this standarization. Some of these benchmarks are shown below:
 
 \begin{itemize}
 
