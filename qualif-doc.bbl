@@ -4,6 +4,12 @@
 Andrychowicz, M., Baker, B., et~al. (2018).
 \newblock Learning dexterous in-hand manipulation.
 
+\bibitem[\protect\astroncite{Bagnell and Schneider}{2003}]{TNPG2}
+Bagnell, J. A.~D. and Schneider, J. (2003).
+\newblock Covariant policy search.
+\newblock In {\em Proceeding of the International Joint Conference on Artifical
+  Intelligence}.
+
 \bibitem[\protect\astroncite{Beattie et~al.}{2016}]{DeepmindLab}
 Beattie, C., Leibo, J.~Z., et~al. (2016).
 \newblock Deepmind lab.
@@ -98,6 +104,10 @@ Liang, J., Makoviychuk, V., et~al. (2018).
   learning.
 \newblock In {\em Conference on Robot Learning}.
 
+\bibitem[\protect\astroncite{Lillicrap et~al.}{2015}]{DDPG}
+Lillicrap, T., Hun, J., et~al. (2015).
+\newblock Continuous control with deep reinforcement learning.
+
 \bibitem[\protect\astroncite{Mnih et~al.}{2015}]{DQNAtari}
 Mnih, V., Kavukcuoglu, K., et~al. (2015).
 \newblock Human-level control through deep reinforcement learning.
@@ -139,6 +149,15 @@ Peng, X.~B. and van~de Panne, M. (2017).
 \newblock In {\em Proceedings of the ACM SIGGRAPH / Eurographics Symposium on
   Computer Animation}, SCA '17, pages 12:1--12:13, New York, NY, USA. ACM.
 
+\bibitem[\protect\astroncite{Peters et~al.}{2012}]{TNPG1}
+Peters, J., Vijayakumar, S., et~al. (2012).
+\newblock Policy gradient methods for robot control.
+
+\bibitem[\protect\astroncite{Rubinstein}{1999}]{CrossEntropyMethods}
+Rubinstein, R. (1999).
+\newblock The cross-entropy method for combinatorial and continuous
+  optimization.
+
 \bibitem[\protect\astroncite{Schulman et~al.}{2015}]{TRPO}
 Schulman, J., Levine, S., et~al. (2015).
 \newblock Trust region policy optimization.
@@ -159,6 +178,11 @@ Sutton, R., McAllester, D., et~al. (2000).
   approximation.
 \newblock {\em NIPS}.
 
+\bibitem[\protect\astroncite{Szita and Lörincz}{2007}]{CrossEntropyTetris}
+Szita, I. and Lörincz, A. (2007).
+\newblock Learning tetris using the noisy cross-entropy method.
+\newblock {\em Neural computation}, 18:2936--41.
+
 \bibitem[\protect\astroncite{Tan et~al.}{2018}]{GoogleBrainSim2Real}
 Tan, J., amd Erwin~Coumans, T.~Z., et~al. (2018).
 \newblock Sim-to-real: Learning agile locomotion for quadruped robots.
@@ -178,5 +202,11 @@ Unity.
 \bibitem[\protect\astroncite{Unreal}{}]{Unreal}
 Unreal.
 \newblock Unreal engine. https://www.unrealengine.com/.
+
+\bibitem[\protect\astroncite{Williams}{1992}]{REINFORCE}
+Williams, R. (1992).
+\newblock Simple statistical gradient-following algorithms for connectionist
+  reinforcement learning.
+\newblock 8:229--256.
 
 \end{thebibliography}

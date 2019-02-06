@@ -199,14 +199,28 @@ can be found in the following \href{https://blog.openai.com/openai-baselines-ppo
 
 \section{DeepRL applied to locomotion}
 
-In this last section we discuss current state of the art results of DeepRL in
-locomotion tasks. These served as the inspiration for this proposal to the extent
-that most of this proposal serves as an extension of these results to more 
-diverse and complicated environments.
-
+In this section we discuss current state of the art results of DeepRL in locomotion 
+tasks. These served as the inspiration for this proposal which serves in part as an 
+extension of these results to more diverse and diverse environments.
 
 \subsection{Benchmarking DeepRL for Continuous Control}
 
+\cite{Rllab} presented a benchmark suite for continuous control tasks, which is
+known as \textbf{Rllab} (discussed in section ~\ref{subsec:ch3_rllab}). They 
+introduced this benchmark along with some baselines that consisted of implementations of 
+various state of the art algorithms in that time, like Trust Region Policy Optimization 
+(\citeauthor{TRPO}), Truncated Natural Policy Gradients (\citeauthor{NaturalPolicyGradient}, 
+\citeauthor{TNPG1}, \citeauthor{TNPG2}), and Deep Deterministic Policy Gradients \citep{DDPG}, 
+as well as some base algorithms like Vanilla Policy Gradients (\citeauthor{REINFORCE}, 
+\citeauthor{PGSutton}), and some derivate-free algorithms like Cross-Entropy methods 
+(\citeauthor{CrossEntropyMethods}, \citeauthor{CrossEntropyTetris}).
+
+Our proposal is similar to this work, in the sense that we propose a new set of
+benchmarks and a set of corresponding baselines tested in this new environments.
+A key difference is that this benchmark consists of simple environments, mostly
+in flat terrain, although they also proposed some other environments that have a
+more hierarchical structure, and some that have partial observability. For more
+details of the benchmark itself, please refer to section ~\ref{subsec:ch3_rllab}.
 
 \subsection{DeepTerrainRL}
 
@@ -284,7 +298,7 @@ In each step taken in the environment, the API returns the observation,
 reward, and some extra observations. More information can be found in its 
 technical report \citep{Gym}, and in its \href{https://github.com/openai/gym}{repository}.
 
-\subsection{Rllab and Garage}
+\subsection{Rllab and Garage} \label{subsec:ch3_rllab}
 
 Rllab is a set of benchmarks similar to the previous two. It implements its own 
 Python wrapper for MuJoCo, and builds its own Reinforcement Learning API on top 
