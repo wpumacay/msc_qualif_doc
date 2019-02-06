@@ -224,6 +224,66 @@ details of the benchmark itself, please refer to section ~\ref{subsec:ch3_rllab}
 
 \subsection{DeepTerrainRL}
 
+\cite{DeepTerrainRL} presented very promising results for locomotion of simulated
+characters. Their agents were able to traverse complex terrain using very natural
+behaviours (see Figure ~\ref{fig:ch3_deepterrainrl}). Some footage of their results
+can be found in \href{https://xbpeng.github.io/projects/DeepTerrainRL/}{this} link.
+Some key aspects of this work consist of:
+
+\figDeepTerrainRL
+\figDeepTerrainRLcharacterFeatures
+\figDeepTerrainRLMACE
+
+\begin{itemize}
+    \item \textbf{High dimensional features}: the authors used a high dimensional 
+          state representation as the input to the policies of the agent.
+          This is different from previous work were they relied on hand crafted
+          features engineered to complete the specific task. These features (shown in
+          Figure ~\ref{fig:ch3_deepterrainrl_state_features}) consisted on character 
+          features (links positions and velocities), and terrain features (1D heightfield 
+          of the terrain ahead).
+
+
+    \item \textbf{Usage of multiple actor policies}: the authors used an approach
+          called Mixture of Actors and Critics Experts, in which the use various
+          actor policies that are used in specific situations, given by the decisions 
+          of the critics. This approach is shown in Figure ~\ref{fig:ch3_deepterrainrl_mace},
+          and it is shown in action in Figure ~\ref{fig:ch3_deepterrainrl}, where the
+          color of the trail that the agent leaves corresponds to the choice of actor
+          used for that specific situation.
+
+    \item \textbf{Parameterized FSM controller}: the authors used a
+          finite state machine as a controller for the agent, and each actor
+          chosen for the specific situation has to set 29 parameters of this
+          FSM, like leg forces, PD joint targets, and speed feedback gains.
+
+    \item \textbf{Complex terrain}: the approach presented by the authors
+          worked in their proposed environments, which consisted in complex terrain
+          generated along a fixed direction. The authors developed a simulator on
+          top of Bullet, which allowed them to create complex tasks that were then
+          used in future research (\cite{ActuationChoice}, \cite{DeepLoco}, \cite{DeepMimic})
+          and would be later open sourced into a package called TerrainRLSim \citep{TerrainRLSim}.
+
+    \item \textbf{Initialization}: the resulting policies are not learned from scratch.
+          The authors used an initialization procedure to obtain a set of working
+          behaviours (walking, jumping) that served as the basis for the training
+          of the agents. The policies are also very structured (using a FSM controller),
+          and although giving good results this structure is hand engineered. Some
+          example of the initialization can be found \href{https://youtu.be/8qQmL3f2fd8?t=587}{here}.
+
+    \item \textbf{Network architecture}: finally, the actors and critics for each
+          agent were parameterized using deep neural networks, which processed the
+          high dimensional state representation and output the corresponding results
+          for the actors and critics (see Figure ~\ref{fig:ch3_deepterrainrl_architecture}).
+          The terrain features are processed using convolutional layers, and then
+          the resulting features are concatenated to the character features. These
+          feature vectors are then used by fully connected layers that branch out
+          to each actor and critic. Note that the actors and critics share weights
+          up until the concatenation step of character and extracted terrain feature vectors.
+
+          \figDeepTerrainRLArchitecture
+
+\end{itemize}
 
 \subsection{DeepLoco}
 

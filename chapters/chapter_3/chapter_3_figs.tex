@@ -49,6 +49,78 @@
     \end{figure}
 }
 
+\newcommand{\figDeepTerrainRL}{
+    \begin{figure}[!ht]
+        \centering
+        \begin{subfigure}[b]{0.7\textwidth}
+            \centering
+            \includegraphics[width=0.9\textwidth]{./chapters/chapter_3/imgs/img_ch3_deepterrainrl_1.png}
+            \caption{}
+        \end{subfigure}
+
+        \centering
+        \begin{subfigure}[b]{0.7\textwidth}
+            \centering
+            \includegraphics[width=0.9\textwidth]{./chapters/chapter_3/imgs/img_ch3_deepterrainrl_2.png}
+            \caption{}
+        \end{subfigure}
+
+        \centering
+        \begin{subfigure}[b]{0.7\textwidth}
+            \centering
+            \includegraphics[width=0.9\textwidth]{./chapters/chapter_3/imgs/img_ch3_deepterrainrl_3.png}
+            \caption{}
+        \end{subfigure}
+
+        \caption{Agents from \citeauthor{DeepTerrainRL} traversing complicated environments.}
+        \label{fig:ch3_deepterrainrl}
+    \end{figure}
+}
+
+\newcommand{\figDeepTerrainRLcharacterFeatures}{
+    \begin{figure}[!ht]
+        \centering
+        \begin{subfigure}[b]{0.4\textwidth}
+            \centering
+            \includegraphics[width=0.9\textwidth]{./chapters/chapter_3/imgs/img_ch3_deepterrainrl_character_features.png}
+            \caption{}
+        \end{subfigure}
+
+        \centering
+        \begin{subfigure}[b]{0.8\textwidth}
+            \centering
+            \includegraphics[width=1.0\textwidth]{./chapters/chapter_3/imgs/img_ch3_deepterrainrl_terrain_features.png}
+            \caption{}
+        \end{subfigure}
+
+        \caption{State representation for the agent. 
+                    a) Character features from agent's bodies. 
+                    b) Terrain features from the terrain ahead of the agent.}
+        \label{fig:ch3_deepterrainrl_state_features}
+    \end{figure}
+}
+
+\newcommand{\figDeepTerrainRLMACE}{
+    \begin{figure}[!ht]
+        \centering
+        \includegraphics[width=0.5\textwidth]{./chapters/chapter_3/imgs/img_ch3_deepterrainrl_mace.png}
+        \caption{Mixture of Actors and Critics Experts (MACE). This approach uses various
+                 actor policies, which are used according to the decisions given by
+                 the critics networks. Extracted from \href{https://youtu.be/8qQmL3f2fd8?t=312}{here}.}
+        \label{fig:ch3_deepterrainrl_mace}
+    \end{figure}
+}
+
+\newcommand{\figDeepTerrainRLArchitecture}{
+    \begin{figure}[!ht]
+        \centering
+        \includegraphics[width=0.7\textwidth]{./chapters/chapter_3/imgs/img_ch3_deepterrainrl_network_architecture.png}
+        \caption{Network architecture used by the agents. Actors and critics share various weights
+                 between them.}
+        \label{fig:ch3_deepterrainrl_architecture}
+    \end{figure}
+}
+
 \newcommand{\figBenchmarkControlSuite}{
 	\begin{figure}
 		\centering
