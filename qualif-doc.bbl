@@ -69,6 +69,10 @@ Featherstone, R. (1987).
 Heess, N., TB, D., et~al. (2017).
 \newblock Emergence of locomotion behaviours in rich environments.
 
+\bibitem[\protect\astroncite{Heess et~al.}{2016}]{HeessLearningAndTransfer}
+Heess, N., Wayne, G., et~al. (2016).
+\newblock Learning and transfer of modulated locomotor controllers.
+
 \bibitem[\protect\astroncite{Holden et~al.}{2017}]{Pfnn}
 Holden, D., Komura, T., et~al. (2017).
 \newblock Phased-functioned neural networks for character control.
@@ -202,6 +206,18 @@ Unity.
 \bibitem[\protect\astroncite{Unreal}{}]{Unreal}
 Unreal.
 \newblock Unreal engine. https://www.unrealengine.com/.
+
+\bibitem[\protect\astroncite{van Hasselt}{2012}]{CACLA2}
+van Hasselt, H. (2012).
+\newblock Reinforcement learning in continuous state and action spaces.
+\newblock In {\em Reinforcement Learning: State of the art}, pages 207--251.
+  Springer.
+
+\bibitem[\protect\astroncite{van Hasselt and Wiering}{2007}]{CACLA}
+van Hasselt, H. and Wiering, M.~A. (2007).
+\newblock Reinforcement learning in continuous action spaces.
+\newblock In {\em 2007 IEEE International Symposium on Approximate Dynamic
+  Programming and Reinforcement Learning}, pages 272--279.
 
 \bibitem[\protect\astroncite{Williams}{1992}]{REINFORCE}
 Williams, R. (1992).

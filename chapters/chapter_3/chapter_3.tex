@@ -252,10 +252,9 @@ Some key aspects of this work consist of:
           color of the trail that the agent leaves corresponds to the choice of actor
           used for that specific situation.
 
-    \item \textbf{Parameterized FSM controller}: the authors used a
-          finite state machine as a controller for the agent, and each actor
-          chosen for the specific situation has to set 29 parameters of this
-          FSM, like leg forces, PD joint targets, and speed feedback gains.
+          The computed actions for the chosen actors are then sent to a Finite State
+          Machine controller, which has 29 input parameters consisting of leg forces,
+          PD joint targets, and PD velocity feedback gains.
 
     \item \textbf{Complex terrain}: the approach presented by the authors
           worked in their proposed environments, which consisted in complex terrain
@@ -264,14 +263,14 @@ Some key aspects of this work consist of:
           used in future research (\cite{ActuationChoice}, \cite{DeepLoco}, \cite{DeepMimic})
           and would be later open sourced into a package called TerrainRLSim \citep{TerrainRLSim}.
 
-    \item \textbf{Initialization}: the resulting policies are not learned from scratch.
+    \item \textbf{Initialization}: the resulting policies \textbf{are not learned from scratch}.
           The authors used an initialization procedure to obtain a set of working
           behaviours (walking, jumping) that served as the basis for the training
           of the agents. The policies are also very structured (using a FSM controller),
           and although giving good results this structure is hand engineered. Some
           example of the initialization can be found \href{https://youtu.be/8qQmL3f2fd8?t=587}{here}.
 
-    \item \textbf{Network architecture}: finally, the actors and critics for each
+    \item \textbf{Network architecture}: the actors and critics for each
           agent were parameterized using deep neural networks, which processed the
           high dimensional state representation and output the corresponding results
           for the actors and critics (see Figure ~\ref{fig:ch3_deepterrainrl_architecture}).
@@ -280,6 +279,7 @@ Some key aspects of this work consist of:
           feature vectors are then used by fully connected layers that branch out
           to each actor and critic. Note that the actors and critics share weights
           up until the concatenation step of character and extracted terrain feature vectors.
+          For training the authors chose to use the CACLA algorithm, developed by \cite{CACLA}.
 
           \figDeepTerrainRLArchitecture
 
@@ -287,20 +287,87 @@ Some key aspects of this work consist of:
 
 \subsection{DeepLoco}
 
-\cite{DeepLoco} consisted of a follow up work from the one we discusses previously.
+\cite{DeepLoco} consisted of a follow up work from the one we discussed previously.
 This work presented a hierarchical system that successfully learned locomotion skills
-for more complicated tasks (compared forward terrain traversal). Some of the tasks
-that the agent successfully completed are shown in Figure ~\ref{fig:ch3_deeploco_tasks}.
-
+for more complicated tasks (compared to forward terrain traversal). Some of the tasks
+that the agent successfully completed are shown in Figure ~\ref{fig:ch3_deeploco_tasks},
+and a video from their results can be found \href{https://youtu.be/hd1yvLWm6oA}{here}
 
 \figDeepLocoTasks
-\figDeepLocoSystem
-\figDeepLocoStateFeatures
-\figDeepLocoArchitectures
 
+Some key aspects of this work are the following:
+
+\begin{itemize}
+    \item \textbf{A hierarchical system}: the approach proposed was to use a two-level
+          hierarchical controller (Figure ~\ref{fig:ch3_deeploco_system}), which consisted 
+          of a high-level controller that gave a heading direction and foot placement 
+          positions, and a low-level controller that generated the appropiate gait 
+          to satisfy this commands.
+
+          \figDeepLocoSystem
+
+    \item \textbf{High dimensional features}: similar to the previous work, the state
+          representation used is high dimensional (see Figure ~\ref{fig:ch3_deeploco_state_features}), 
+          with a 2D heightmap replacing the previous 1D choice.
+
+          \figDeepLocoStateFeatures
+
+    \item \textbf{Structure of the controller}: the methods used impose some structure
+          into the controller and the whole process. The approach is again not learn
+          the skills from scratch, compared to the results of a related work by
+          \cite{HeessLearningAndTransfer} (see some results in \href{https://youtu.be/sboPYvhpraQ?t=34}{this} video), 
+          in which the skills are learned without reference motions and extra pre processing
+          steps for initial learning (although they also do some initialization steps
+          for learning low-level skills).
+
+    \item \textbf{Complex tasks}: finally, the tasks presented in this work were
+          much more complex (see Figure ~\ref{fig:ch3_deeploco_tasks}), and required
+          more hierarchical reasoning. As shown in the first presented work related evaluation
+          of DeepRL algorithms \citep{Rllab}, some simple tasks required hierarchical
+          reasoning, and single low-level policies were not able to complete these tasks.
+
+    \item \textbf{Learning}: the learning algorithm used consist of a variant of
+          the CACLA algorithm \citep{CACLA2} used in the previously discussed work.
+
+\end{itemize}
 
 \subsection{Emergence of Locomotion}
 
+The authors of \cite{DeepmindEmergenceLocomotion} studied the same problem of locomotion
+as in \cite{DeepTerrainRL}. They developed an agent that could traverse obstacles
+courses that consisted of terrain generated \textbf{procedurally} in a single forward
+direction, shown in Figure ~\ref{fig:ch3_emergence_of_locomotion_tasks}. Their results
+are can be seen in action in \href{https://youtu.be/hx_bgoTF7bs}{this} video.
+
+\figEmergenceOfLocomotionTasks
+
+Some key aspects of this work are the following:
+
+\begin{itemize}
+    \item \textbf{High dimensional state representation}: the authors used a similar
+          state representation to the previously discussed works, which is shown in
+          Figure ~\ref{fig:ch3_emergence_of_locomotion_state_representation}.
+
+          \figEmergenceOfLocomotionStateRepresentation
+
+    \item \textbf{Complex terrain and curricula usage}: the authors also used more complicated
+          terrain (comparared to flat terrain benchmarks), and created them using procedural
+          terrain generation (see Figure ~\ref{fig:ch3_emergence_of_locomotion_terrains}). 
+          They also added a curriculum to the terrain creation procedure, which allow them 
+          to increase progressively the difficulty of the terrain generated.
+
+          \figEmergenceOfLocomotionTerrain
+
+    \item \textbf{Learning from scratch}: one of the key features of this work is
+          that the skills acquired are learned from scratch without previous initialization
+          nor motion reference, compared to the related works discusses previously.
+          However, because no reference is given the resulting policies give resulting
+          locomotion behaviours that are idiosincratic, and in some cases even funny (see
+          \href{https://youtu.be/hx_bgoTF7bs?t=87}{this} video for a reference of an 
+          humanoid with a peculiar gait). Also, the learning algorithm used is a distributed
+          variant of the PPO algorithm \citep{PPO}.
+
+\end{itemize}
 
 \subsection{DeepMimic}
 
