@@ -20,6 +20,10 @@ Beattie, C., Leibo, J.~Z., et~al. (2016).
   agents.
 \newblock {\em Journal of Artificial Intelligence Research}, 47:253--279.
 
+\bibitem[\protect\astroncite{Bellman and Dreyfus}{1962}]{Bellman}
+Bellman, R. and Dreyfus, S. (1962).
+\newblock Applied dynamic programming.
+
 \bibitem[\protect\astroncite{Bengio et~al.}{2009}]{CurriculumLearningBengio}
 Bengio, Y., Louradour, J., et~al. (2009).
 \newblock Curriculum learning.
@@ -64,6 +68,11 @@ Fan, L., Zhu, Y., et~al. (2018).
 Featherstone, R. (1987).
 \newblock {\em Robot Dynamics Algorithms}.
 \newblock Springer.
+
+\bibitem[\protect\astroncite{Hansen and Ostermeier}{2001}]{CMA}
+Hansen, N. and Ostermeier, A. (2001).
+\newblock Completely derandomized self-adaptation in evolution strategies.
+\newblock 9(2):159--195.
 
 \bibitem[\protect\astroncite{Heess et~al.}{2017}]{DeepmindEmergenceLocomotion}
 Heess, N., TB, D., et~al. (2017).
@@ -162,6 +171,11 @@ Rubinstein, R. (1999).
 \newblock The cross-entropy method for combinatorial and continuous
   optimization.
 
+\bibitem[\protect\astroncite{Salimans et~al.}{2017}]{ESopenai}
+Salimans, T., Ho, J., et~al. (2017).
+\newblock Evolution strategies as a scalable alternative to reinforcement
+  learning.
+
 \bibitem[\protect\astroncite{Schulman et~al.}{2015}]{TRPO}
 Schulman, J., Levine, S., et~al. (2015).
 \newblock Trust region policy optimization.
@@ -175,6 +189,11 @@ Schulman, J., Wolski, F., et~al. (2017).
 Silver, D., Huang, A., et~al. (2016).
 \newblock Mastering the game of go with deep neural network and tree search.
 \newblock {\em Nature}, 529:484--489.
+
+\bibitem[\protect\astroncite{Sutton and Barto}{2018}]{RLbook}
+Sutton, R. and Barto, A. (2018).
+\newblock {\em Reinforcement Learning: An Introduction}.
+\newblock MIT Press.
 
 \bibitem[\protect\astroncite{Sutton et~al.}{2000}]{PGSutton}
 Sutton, R., McAllester, D., et~al. (2000).

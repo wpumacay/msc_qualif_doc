@@ -62,17 +62,17 @@ just to name a few.
 
 \figdrlsamplesThird
 
-\todo{Parece un poco informal usar Let's start, usa otra frase o simplemente sácala} 
-In the followings subsections we define Reinforcement Learning, present classic solutions methods, and then
-discuss how Deep Learning fits into this framework by providing a way to capture representation
-in the context of function approximation.
+In the followings subsections we define Reinforcement Learning, present classic 
+solutions methods, and then discuss how Deep Learning fits into this framework 
+by providing a way to capture representation in the context of function approximation.
+Most of the base concepts described here are taken from the book \textit{Reinforcement
+Learning: An Introduction} \citep{RLbook}.
 
 \subsection{Reinforcement Learning}
 
-\todo{En toda esta subsección no vi una referencia, por lo menos indicar en que autor te basaste para escribirla}
 Reinforcement Learning is an overloaded term that encloses both a \textbf{learning paradign}
-and the \textbf{algorithms} that solve problems in this framework. Reinforcement Learning \todo{mejor decir directamente que is a learning paradigm like}
-is a learning paradigm, like supervised and unsupervised learning, but unlike these other paradigms \todo{Aqui colocar un punto y comenzar con Unlike learning from ... en vez de with the difference...} 
+and the \textbf{algorithms} that solve problems in this framework. Reinforcement Learning
+is a learning paradigm, like supervised and unsupervised learning, but unlike these other paradigms
 in Reinforcement Learning an agent has to learn by interactions with an environment.
 
 In Figure ~\ref{fig:ch2_rlloop} we show the Agent-Environment interaction loop. This represents
@@ -83,7 +83,7 @@ and a \textbf{new state} $S_{t+1}$ (obtained from the environment dynamics).
 
 \figrlloop
 
-We can formalize this setting with Markov Decision Processes (MDPs)\todo{referencia}, which is a framework
+We can formalize this setting with Markov Decision Processes (MDPs), which is a framework
 that we can use to model sequential decision making problems with uncertainties.
 
 \begin{definition}
@@ -97,10 +97,10 @@ that we can use to model sequential decision making problems with uncertainties.
     \end{itemize}
 \end{definition}
 
-We have already discussed \todo{discussed} some of the components of an MDP (state, action, reward).
+We have already discussed some of the components of an MDP (state, action, reward).
 The remaining components consist of: a transition model of the environment, $P(s'|s,a)$
 which basically models the environment's dynamics into a single conditional probability
-distribution, and a discount factor $\gamma$ used to take into account that rewards in the future might have \todo{that .. that no suena muy bien}
+distribution, and a discount factor $\gamma$ used to take into account how rewards in the future might have
 less importance than rewards now (discounting like when dealing with money). Some examples 
 of problems in RL formulated in the MDP framework are shown in Figure ~\ref{fig:ch2_mdps_samples}.
 
@@ -109,7 +109,7 @@ of problems in RL formulated in the MDP framework are shown in Figure ~\ref{fig:
 The objective of the agent is to maximize the expected sum of rewards it gets from
 its interaction with the environment. To achieve this it has to come up with a
 way to select the appropriate actions in a given situation, which in this case is given
-by the state of the agent. To formalize this, let's \todo{usa algo más formal} define some extra concepts:
+by the state of the agent. To formalize this objective we will define the following extra concepts:
 
 \begin{itemize}
     \item \textbf{Returns}, which is a more compact notation to express the sum of rewards.
@@ -166,16 +166,16 @@ summarized in the categories shown in Figure ~\ref{fig:ch2_rl_policies_differenc
     \item \textbf{Value based methods}, which try to solve for some auxiliary
           functions, called \textit{State-value} and \textit{Action-value} functions
           and then extract the solution directly. These methods make use of the Bellman
-          Backups iteratively to find a solution that satisfies the Bellman Equations\todo{referencia}.
-    \item \textbf{Policy based methods}, which solve for\todo{ quitar} the policy directly. These methods
+          Backups iteratively to find a solution that satisfies the Bellman Equations \citep{Bellman}.
+    \item \textbf{Policy based methods}, which solve for the policy directly. These methods
           make use of some parametrization of the policy via some function approximator
           (like a Neural Network), and then search for the parameters of this policy
           by optimizing the expected return.
 \end{itemize}
 
 Most of the current methods used are Policy based methods, specially in the context
-of robot locomotion \todo{referencia}. In the following section we will cover some concepts used when
-using policy based methods. 
+of locomotion (\citet{TRPO}, \citet{PPO}). In the following section we 
+will cover some concepts used when using policy based methods.
 
 We will also focus specially in \textbf{model-free} methods,
 which don't require information of the transition model of the environment. Most of the
@@ -194,13 +194,14 @@ return the agent gets from its interactions with the environment.
     \theta = \arg \max_\theta \mathbb{E}_{\pi_{\theta}} \lbrace G_{t} \rbrace
 \end{equation}
 
-One way to solve this optimization problem is to apply Derivative Free Optimization
-methods, like evolutionary algorithms \todo{referencia}. These black box optimization methods would
-search for the right set of parameters that satisfy the objective we are requesting.
+One way to solve this optimization problem is to apply Derivative-Free Optimization
+methods, like evolutionary algorithms (\citet{CMA}, \citet{ESopenai}). These black 
+box optimization methods search for the right set of parameters that satisfy the 
+objective we are requesting.
 
 We will focus in Gradient based optimization methods, which make use of gradient
 ascent to search for the right set of parameters. The kind of gradient used in this
-case is an estimate of the gradient of this\todo{its?} expectation objective, which we can sample
+case is an estimate of the gradient of this expectation, which we can sample
 using sample trajectories of interaction, and then use it with an optimizer like
 SGD. Let's introduce some extra concepts and then present this gradient estimate,
 and the base form of the Policy Gradients algorithms.
@@ -233,7 +234,7 @@ Where $p(\tau;\theta)$ is a probability distribution of trajectories, induced by
 the parameters of our policy $\theta$ (recall that the agent sees what its policy allows).
 We can then optimize for the parameters $\theta$ by computing the gradient of this
 objective function. However, directly trying to compute the gradient of this expectation
-is intractable, thus we make use of a mathematical trick (REINFORCE trick) to get an estimate of this gradient \citep{PGSutton}. \todo{en vez de so, usa thus, es más formal}
+is intractable, thus we make use of a mathematical trick (REINFORCE trick) to get an estimate of this gradient \citep{PGSutton}.
 
 \begin{theorem}
     For any differentiable policy $\pi_{\theta}(a|s)$, the gradient of the
@@ -292,29 +293,31 @@ packages, like \href{https://tensorflow.org}{Tensorflow} and \href{https://pytor
 \end{equation}
 
 \subsection{Deep Learning and RL}
-\todo{toda esta subsection no tiene referencias}
+
 As already explained earlier, we make use of function approximation to parameterize
 some component of our RL setup. In value based methods we usually parameterize the
 Action-value function as $Q_{\theta}$, and in policy based methods we parameterize
 the policy as $\pi_{\theta}$. These parametrization can be made by using various
-function approximators \todo{revisa si existe esta palabra, creo que seria mejor approximations}, like \textit{linear models}, \textit{fourier basis}, 
+function approximators, like \textit{linear models}, \textit{fourier basis}, 
 \textit{decision trees}, \textit{radial basis functions}, etc..
 
 Deep learning is used in this context to provide function approximators via Deep
-Neural Networks, as shown in Figure ~\ref{fig:ch2_rl_policy_parametrization}. 
-In this case, our $\theta$ parameters are the weights of a neural network used 
-to represent our policy. We can use the machinery from before (Policy Gradients)
-to optimize for the parameters of our network.
+Neural Networks. For example, the DQN agent from \cite{DQNAtari} uses a deep convolutional
+neural network to parameterize an action value function. Figure ~\ref{fig:ch2_rl_policy_parametrization}
+depicts another usage of Deep nets as function approximators. In this case our 
+$\theta$ parameters are the weights of a neural network used to represent the policy 
+of an agent. We can use the machinery from before (Policy Gradients) to optimize for 
+the parameters of our network.
 
 \figRlPolicyParametrization
 
 The term Deep Reinforcement Learning refers to this approach of using Deep Neural Networks
 as function approximators in the RL framework. The key difference behind this approach
 and previous works that used different function approximators is that in previous works
-the use of function approximators was decoupled from the representation given to the mode.
-The representation was given by features that where hand engineered by the researcher, and then
-combined with the function approximator chosen for the task. The approach that DeepRL follows is 
-different in the sense that we learn the representation via the Deep models we use as function approximators. \todo{se esta usando excesivamente la palabra approximator en este parrafo}
+these were decoupled from the representation given to the model. The representation was 
+given by features that where hand engineered by the researcher, and then combined with the 
+function approximator chosen for the task. The approach that DeepRL follows is different in 
+the sense that we learn the representation via the Deep models we use as function approximators.
 
 \section{Simulated Learning Environments}
 
