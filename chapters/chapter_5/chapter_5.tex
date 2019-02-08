@@ -143,9 +143,32 @@ current support for the MuJoCo backend contains the following:
           tend to need lots of samples, and distributed setups is usually a good
           option to speed up experimentation.
 
+          \newpage
           \figSupportedVisualizers
 
 \end{itemize}
 
-%% @TODO: Add a discussion here
-\todo{deberías cerrar el capítulo con una discus ión breve de lo que se hizo}
+\section{Summary}
+
+In this chapter we presented various details of our current implementation and
+the features currently available. Some key aspects discussed in this chapter are:
+
+\begin{itemize}
+    \item The current implementation already supports the features proposed, namely
+          agents, terrain and sensors creation. All these features were implemented
+          by decoupling the implementation from any backend specific, which will help 
+          to support various physics and rendering backends without much change.
+
+    \item The current implementation supports one physics backend (MuJoCo),
+          having support for the core features (agents, terrain and sensors) and
+          already allowing simulation and experiments through a C/C++ API.
+          We also have support for two rendering backends: a custom rendering backend,
+          and the rendering backend shipped along the MuJoCo physics engine 
+          (see Figure ~\ref{fig:ch5_current_supported_visualizers}).
+
+    \item This implementation also has support for some of the agents that were
+          proposed for the evaluation experiments (see Figure ~\ref{fig:ch5_current_supported_agents}).
+          We also reproduced (as a proof of concept) the terrain from \cite{DeepmindEmergenceLocomotion} 
+          by implementing the appropiate terrain generators (see Figure ~\ref{fig:ch5_current_supported_terrain}),
+          and some sensors used in various related works (see Figure ~\ref{fig:ch5_current_supported_sensors}).
+\end{itemize}

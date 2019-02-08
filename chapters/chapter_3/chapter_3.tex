@@ -46,7 +46,7 @@ used for locomotion tasks.
 \section{Deep RL algorithms for locomotion} \label{sec:ch3_deeprl_algorithms}
 
 Current state of the art DeepRL algorithms used in locomotion tasks are \textbf{Policy Based} 
-algorithms (or variants), which were introduced in section ~\ref{ref:subs:ch2:PolicyBasedMethods}. 
+algorithms (or variants), which were introduced in section ~\ref{subsec:ch2_policyBasedMethods}. 
 These variants address various problems with the standard Vanilla Policy Gradient algorithm,
 which include:
 
@@ -523,3 +523,33 @@ package, and are shown in Figure ~\ref{fig:ch3_marathon_envs}.
 \figBenchmarksUnityMLAgents
 
 \figBenchmarksMarathonEnvs
+
+\section{Summary}
+
+In this chapter we presented various related works from which we take inspiration
+for our proposal (presented in Chapter ~\ref{ch:intro}, and detailed in the next
+chapter). Some key ideas from this chapter are shown below.
+
+\begin{itemize}
+    \item We presented current state-of-the-art algorithms used in locomotion, 
+          namely TRPO \citep{TRPO} and PPO \citep{PPO}. These algorithms were
+          based in the Vanilla Policy Gradients method (section ~\ref{subsec:ch2_policyBasedMethods}), 
+          and try to solve problems like step size selection and sample efficiency.
+          These algorithms are going to be implemented as baselines for our evaluations
+          in the environments that we will implement as part of the framework.
+
+    \item We also presented some success stories of DeepRL in locomotion, like
+          \citet{Rllab}, \citet{DeepTerrainRL}, \citet{DeepLoco} and \citet{DeepmindEmergenceLocomotion}.
+          We take inspiration from these works for various features of our framework:
+          environments, tasks, state representation, etc..
+
+    \item Finally, we presented currently available benchmarks for DeepRL in locomotion,
+          and showed some details of their support and features that they provide. We
+          emphasize the fact that most of these benchmarks do not provide diverse
+          enough environments, which is a key aspect that our proposed framework
+          tries to solve.
+\end{itemize}
+
+In the next chapter we will give more details about our proposal. We will discuss
+some of the high level aspects of our proposal, as well as give more technical details
+about the approach for its implementation.

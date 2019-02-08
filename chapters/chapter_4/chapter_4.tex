@@ -39,7 +39,7 @@ three sections:
 \begin{itemize}
     \item Details of the approach, where we discuss some core ideas of the proposal and
           how we plan to implement it at a high level.
-    \item Details of the proposed framework, where we discuss more technical details about
+    \item Technical details of the proposed framework, where we discuss more technical details about
           the core functionality of the framework, the architecture to be used, 
           and the scope of the framework.
 \end{itemize}
@@ -167,7 +167,7 @@ that satisfies the requirements they have. The physics backends that we will sup
 for the scope of this thesis are: \textbf{MuJoCo} \citep{MuJoCo}, and \textbf{Bullet} 
 \citep{Bullet} for an license-free version.
 
-\section{Details of the proposed framework}
+\section{Technical details of the framework}
 
 The framework proposed consists basically of a multi-backend framework with exposed user APIs 
 for task creation and configuration. The framework is multi-backend
@@ -327,6 +327,39 @@ These APIs will consist of the following components:
 This functionality will be implemented in C/C++ in order to be as close to the backend as possible.
 However, we will also provide with Python bindings for these APIs to allow the user to create and 
 configure experiments through Python.
+
+\newpage
+
+\section{Summary}
+
+In this chapter we discussed our proposal in more detail. We presented some of
+the following key details:
+
+\begin{itemize}
+    \item We discussed the measure of intelligence, from which we take inspiration
+          for the design and scope of the framework. As shown in Figure ~\ref{fig:ch4_measure_of_intelligence}
+          our proposal goes in the direction of creating a framework that allows to
+          create a wide range of environments for our agents. We also discussed a bit
+          about curriculum learning and how it fits into our framework as a guide on
+          top of our environment creation mechanisms.
+
+    \item We discussed some of the environments that will be implemented for our
+          evaluation experiments, as shown in Figures ~\ref{fig:ch4_terrain_parameterization_one},
+          ~\ref{fig:ch4_terrain_parameterization_two}, ~\ref{fig:ch4_terrain_parameterization_three}
+          and ~\ref{fig:ch4_terrain_parameterization_four}. We also discussed about the
+          agents that will be used for our evaluation experiments, shown in Figures
+          ~\ref{fig:ch4_agents_experiments_1}, ~\ref{fig:ch4_agents_experiments_2} and
+          ~\ref{fig:ch4_agents_experiments_3}.
+
+    \item Finally, we gave various technical details about the underlying design of
+          the framework. We discussed how we planned to decouple the core functionality
+          to allow support for multiple physics and rendering backends, and also discussed
+          some of the key underlying structures used for the agents, terrain generators and
+          sensors that will be part of our framework.
+\end{itemize}
+
+In the next chapter we will give an overview of the features already implemented in
+our framework, which were implemented with the details presented in this chapter.
 
 %% \section{Details of the proposed evaluations experiments}
 %% 

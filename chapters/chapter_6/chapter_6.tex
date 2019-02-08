@@ -6,8 +6,84 @@
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\chapter{Discussion}
+\chapter{Preliminary conclusions}
 \label{ch:discussion}
 
-%% \input{./chapters/chapter_5/chapter_5_figs}
+In all previous chapters we presented our proposal, some background concepts
+and various related works from which we take inspiration. This last chapter
+gives the following preliminary conclusions about the relative difficulty for
+the completion of the proposed framework, some issues we might (and definetely will)
+encounter in the evaluation phase, and the importance of the contributions of
+our proposal (as discussed with some researchers in a conference, and some current
+frontiers in DeepRL research).
+
+
+\begin{itemize}
+    \item The difficulty of our proposal lies mainly in the engineering aspect
+          of the proposed framework. All aspects of the proposed framework have
+          been studied and implemented separately to a certain extent, so our work 
+          is not that novel from that point of view. However, to our knowledge there
+          has not been attempts so far to group all these aspects into a single
+          framework that can be \textbf{general-purpose} enough and \textbf{flexible} 
+          enough to allow researchers create complicated environments and tasks
+          \textbf{easily}.
+
+    \item Some issues that we will encounter ahead of us are related more in the
+          evaluation phase of our work. Current DeepRL algorithms are very sample
+          inefficient, and require lots of samples to work. To reduce this issue
+          to some extent it is common to have a distributed architecture for data
+          collection, in which workers distributed along various processing cores
+          (and potentially compute nodes) are in charge of taking the data from
+          simulation, and then pass that data to learners that are in charge
+          of the network updates of the policy. 
+
+          Some features that will be implemented in our framework will help with
+          this issue, namely having the core simulation decoupled from the rendering,
+          and allowing to swap to a headless renderer when training in clusters, and
+          the features necessary to have this distributed way of orchestrating the
+          learning process.
+
+    \item Another issue is the difficulty to chose the right set of hyperparameters
+          for the algorithms. This issue combined with the previous one will definetely
+          reduce amount of experiments we would be able to run properly and have
+          appropiate results. So, we plan to run experiments in a bottom up approach,
+          starting with simpler models, like the walker, acrobots and cartpoles,
+          and then moving to more complicated models, like humanoids.
+
+    \item As a disclaimer, we also expect not to have results as competitive to
+          the ones shown in the related works (\href{https://youtu.be/KPfzRSBzNX4}{link}, 
+          \href{https://youtu.be/hx_bgoTF7bs}{link}, \href{https://youtu.be/hd1yvLWm6oA}) 
+          with the time and resources we have available (most of these results took
+          even days to traing in computer clusters). We plan to at leasst have
+          some good results in our new environments with the simpler models we could
+          use (walker model, and maybe the dog and laikago models as well).
+
+    \item Despite the previously mentioned issues we want to emphasize that our
+          focus is in the framework itself, which would have the features we proposed,
+          be extensible enough that can be adapted in the future for better
+          backends or improvements in current ones, and have enough support to be
+          able to create diverse and complicated tasks.
+
+    \item Some of the importance of the contributions of this work were
+          reinforced when we had the chance to present part of our work in a conference
+          at NeurIPS. Various researchers gave us valuable feedback about our approach
+          and to their view the contributions of this work make it worth finishing it.
+          Some liked the idea that we could swap between backends. Some also liked
+          the idea of having an extensible API to create diverse environments in a wider
+          range of tasks, and some also suggested that would be interesting to see 
+          how well current DeepRL algorithms would perform in these new environments.
+
+    \item Finally, this works in intended to serve as the basis for further research
+          in the area. Once we have the tools, more interesting questions could be analyzed,
+          like why agents fail to generalize between tasks (Multitask RL). One of the
+          directions we intend to follow is the request made by OpenAI at this 
+          \href{https://openai.com/requests-for-research/#multitask-rl-with-continuous-actions}{link}.
+          We also would like to analyze how would it be possible to learn natural
+          behaviours from scratch, with minimal or no usage of reference motions. We
+          suspect that controlling the environment can help solve part of the puzzle,
+          and this would give more light about the direction we could take for future
+          research towards locomotion in the real world with real robot platforms,
+          because to our view some learning component is necessary in robotics
+          to get to robots that can interact properly with the environment.
+\end{itemize}
 
