@@ -470,4 +470,31 @@ shows these actuation models (adapted from \cite{ActuationChoice}).
 
 \figActuationModels
 
-\todo{deberias colocar una seccion de consideraciones finales para hacer un pequeño resumen del capitulo presentado y presentar lo que será visto en el siguiente de forma breve}
+\section{Summary}
+
+These are some of the topics we covered so far:
+
+\begin{itemize}
+    \item We discussed about the RL framework. Presented some concepts and discussed
+          the solution landscape. 
+
+    \item We discussed about function approximation, and a solution method called 
+          \textit{Policy Gradients}, which tries to solve for the parameterized policy 
+          directly.
+
+    \item We also discussed about DeepRL, and how it uses Deep models to parameterize
+          various components in the RL setup, like the V-function, Q-function, policies
+          and transition models.
+
+    \item Finally, we discussed about various aspects of simulated environments that
+          are used for RL. We also gave details about simulated environments for
+          locomotion tasks, discussed some of the internal details of their implementation
+          and some considerations about their design.
+\end{itemize}
+
+In the next chapter we will study more about state-of-the-art DeepRL algorithms, which
+build on top of the concepts covered (specially Policy Gradients). We will also
+discuss some success stories of DeepRL in locomotion tasks, from which we take inspiration
+for the proposed framework (representation, environments support, baselines used). 
+Finally, we will discuss some of the current benchmarks available for DeepRL research
+in locomotion in order to compare them with our proposed framework.
