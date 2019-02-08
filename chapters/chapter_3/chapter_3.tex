@@ -279,9 +279,11 @@ Some key aspects of this work consist of:
           feature vectors are then used by fully connected layers that branch out
           to each actor and critic. Note that the actors and critics share weights
           up until the concatenation step of character and extracted terrain feature vectors.
-          For training the authors chose to use the CACLA algorithm, developed by \cite{CACLA}.
 
           \figDeepTerrainRLArchitecture
+
+    \item \textbf{Learning algorithms}: for training the authors used the CACLA 
+          algorithm, developed by \cite{CACLA}.
 
 \end{itemize}
 
@@ -326,8 +328,8 @@ Some key aspects of this work are the following:
           of DeepRL algorithms \citep{Rllab}, some simple tasks required hierarchical
           reasoning, and single low-level policies were not able to complete these tasks.
 
-    \item \textbf{Learning}: the learning algorithm used consist of a variant of
-          the CACLA algorithm \citep{CACLA2} used in the previously discussed work.
+    \item \textbf{Learning algorithms}: the learning algorithm is the same used in
+          their previous work (CACLA, by \citeauthor{CACLA}).
 
 \end{itemize}
 
@@ -351,8 +353,8 @@ Some key aspects of this work are the following:
           \figEmergenceOfLocomotionStateRepresentation
 
     \item \textbf{Complex terrain and curricula usage}: the authors also used more complicated
-          terrain (comparared to flat terrain benchmarks), and created them using procedural
-          terrain generation (see Figure ~\ref{fig:ch3_emergence_of_locomotion_terrains}). 
+          terrain (comparared to flat terrain benchmarks) using procedural terrain 
+          generation (see Figure ~\ref{fig:ch3_emergence_of_locomotion_terrains}). 
           They also added a curriculum to the terrain creation procedure, which allow them 
           to increase progressively the difficulty of the terrain generated.
 
@@ -360,12 +362,17 @@ Some key aspects of this work are the following:
 
     \item \textbf{Learning from scratch}: one of the key features of this work is
           that the skills acquired are learned from scratch without previous initialization
-          nor motion reference, compared to the related works discusses previously.
-          However, because no reference is given the resulting policies give resulting
-          locomotion behaviours that are idiosincratic, and in some cases even funny (see
+          nor motion reference, compared to the related works discussed previously.
+          However, because no reference is given the resulting policies give locomotion 
+          behaviours that are idiosincratic, and in some cases even funny (see
           \href{https://youtu.be/hx_bgoTF7bs?t=87}{this} video for a reference of an 
           humanoid with a peculiar gait). Also, the learning algorithm used is a distributed
           variant of the PPO algorithm \citep{PPO}.
+
+    \item \textbf{Learning algorithms}: the authors used a distributed version
+          of the PPO \citep{PPO} algorithm for their main results, but they also 
+          tested some other algorithms, like TRPO \citep{TRPO} and A3C \citep{A3C}, 
+          in order to make comparisons.
 
 \end{itemize}
 

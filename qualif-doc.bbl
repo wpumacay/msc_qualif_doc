@@ -207,17 +207,15 @@ Unity.
 Unreal.
 \newblock Unreal engine. https://www.unrealengine.com/.
 
-\bibitem[\protect\astroncite{van Hasselt}{2012}]{CACLA2}
-van Hasselt, H. (2012).
-\newblock Reinforcement learning in continuous state and action spaces.
-\newblock In {\em Reinforcement Learning: State of the art}, pages 207--251.
-  Springer.
-
 \bibitem[\protect\astroncite{van Hasselt and Wiering}{2007}]{CACLA}
 van Hasselt, H. and Wiering, M.~A. (2007).
 \newblock Reinforcement learning in continuous action spaces.
 \newblock In {\em 2007 IEEE International Symposium on Approximate Dynamic
   Programming and Reinforcement Learning}, pages 272--279.
+
+\bibitem[\protect\astroncite{Volodymyr et~al.}{2016}]{A3C}
+Volodymyr, M., Badia, P.~A., et~al. (2016).
+\newblock Asynchronous methods for deep reinforcement learning.
 
 \bibitem[\protect\astroncite{Williams}{1992}]{REINFORCE}
 Williams, R. (1992).
