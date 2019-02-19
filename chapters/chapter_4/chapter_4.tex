@@ -127,7 +127,7 @@ the following environment variations:
 
     \item \textbf{Forward terrain generation}: these variations will modify the generated
         terrain in the forward direction, very similar to \citeauthor{DeepmindEmergenceLocomotion}
-        and \citeauthor{DeepTerrainRL}. We will use procedural generation to achieve this
+        and \citeauthor{DeepTerrainRL}. We will use procedural generation to achieve these
         results, with some differences to previous approaches: the small section can have
         variations, and perturbations can also be used in this variations.
 
@@ -141,7 +141,7 @@ the following environment variations:
         \figTerrainParameterizationThree
 
     \item \textbf{Static 3D scene with subtasks}: these variations consist of a 3D terrain
-        generated from a static scene. Subtasks are going to be define for the agent to solve,
+        generated from a static scene. Subtasks are going to be defined for the agent to solve,
         and the ones we are considering are target following and object collection.
 
         \figTerrainParameterizationFour
@@ -255,9 +255,9 @@ is composed of the following components:
 
 %% @TODO: Talk about approach of using adapters
 
-The backend-specific functionality is in charge of instantiating the appropiate 
+The backend-specific functionality is in charge of instantiating the appropriate 
 resources in the given backend, like instantiating bodies and joints for the abstract 
-agents, creating the appropiate terrain resources from the terrain primitives, and requesting
+agents, creating the appropriate terrain resources from the terrain primitives, and requesting
 the sensor readings required by the abstract sensors.
 
 The approach we chose is to use a design pattern called \textbf{bridge pattern}, which

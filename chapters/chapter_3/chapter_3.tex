@@ -37,6 +37,8 @@
 \input{./chapters/chapter_3/chapter_3_figs}
 \input{./chapters/chapter_3/chapter_3_algs}
 
+\todo{En la sección 3.1 hay muchas definiciones y algoritmos, parece que debería estar en la sección de background, es la impresión que queda. Tal vez mejora si se presenta como la sección 3.2. En fin, lo podemos dejar así y ver que opina el jurado.}
+
 In this chapter we will give an overview of current state of the art DeepRL algorithms
 used in locomotion tasks, which will be the baselines we will evaluate with the proposed
 framework. We also discuss various recent works in locomotion which also apply 
@@ -93,8 +95,8 @@ the same gradient). This results in the following constrained optimization probl
                 \Vert \theta - \theta_{old} \Vert_{2} \leq \delta
 \end{align}
 
-Even though we have a constrained the optimization problem with an threshold in the
-eucliden distance of the policy parameters, this usually does not yield the desired
+Even though we have a constrained the optimization problem with a threshold in the
+Euclidean \todo{Nombres propios en Mayúsculas Euclidean} distance of the policy parameters, this usually does not yield the desired
 results. For example, suppose we have a stochastic policy over a discrete action
 space of two actions, parameterized using a single parameter  $\theta$ and a sigmoid 
 function $\sigma$ in the following form.
@@ -109,14 +111,14 @@ function $\sigma$ in the following form.
 
 Two fixed changes in the policy parameter $\theta$ give very different changes in
 the output probabilities of the policy. The following figure shows this issue for
-the case of $\Delta \theta=2$, applied in $\theta$ 0, 2 and 4.
+the case of $\Delta \theta=2$, applied in $\theta=$ 0, 2 and 4.
 
 \figPolicyChanges
 
 \subsection{Natural Policy Gradients}
 
 A better policy update was proposed by \cite{NaturalPolicyGradient}, in which
-the authors proposed using the natural gradient instead of the a simple gradient 
+the author \todo{sólo es un autor} proposed using the natural gradient instead of the a simple gradient 
 update.
 
 \begin{equation}
@@ -153,7 +155,7 @@ Also, it does not give theoretical improvement guarantees about the results, alt
 it provided better updates than the Vanilla Policy Gradient. \cite{TRPO} introduced
 important changes that allow to solve the inversion issue, and also provided theoretical 
 improvement guarantees on the policy updates (each update is guaranteed to improve performance).
-The changes they introduced are listed below, and the resulting algorithm in shown in
+The changes they introduced are listed below, and the resulting algorithm is shown in
 Algorithm ~\ref{alg:trpo}.
 
 \begin{itemize}
@@ -301,8 +303,8 @@ Some key aspects of this work are the following:
     \item \textbf{A hierarchical system}: the approach proposed was to use a two-level
           hierarchical controller (Figure ~\ref{fig:ch3_deeploco_system}), which consisted 
           of a high-level controller that gave a heading direction and foot placement 
-          positions, and a low-level controller that generated the appropiate gait 
-          to satisfy this commands.
+          positions, and a low-level controller that generated the appropriate gait 
+          to satisfy this command.
 
           \figDeepLocoSystem
 
@@ -337,7 +339,7 @@ The authors of \cite{DeepmindEmergenceLocomotion} studied the same problem of lo
 as in \cite{DeepTerrainRL}. They developed an agent that could traverse obstacles
 courses that consisted of terrain generated \textbf{procedurally} in a single forward
 direction, shown in Figure ~\ref{fig:ch3_emergence_of_locomotion_tasks}. Their results
-are can be seen in action in \href{https://youtu.be/hx_bgoTF7bs}{this} video.
+can be seen in action in \href{https://youtu.be/hx_bgoTF7bs}{this} video.
 
 \figEmergenceOfLocomotionTasks
 
@@ -351,7 +353,7 @@ Some key aspects of this work are the following:
           \figEmergenceOfLocomotionStateRepresentation
 
     \item \textbf{Complex terrain and curricula usage}: the authors also used more complicated
-          terrain (comparared to flat terrain benchmarks) using procedural terrain 
+          terrain (compared to flat terrain benchmarks) using procedural terrain 
           generation (see Figure ~\ref{fig:ch3_emergence_of_locomotion_terrains}). 
           They also added a curriculum to the terrain creation procedure, which allow them 
           to increase progressively the difficulty of the terrain generated.
@@ -390,7 +392,7 @@ setups that the agents must solve, like walking, standing, running, etc.
 
 \figBenchmarkControlSuite
 
-As described in their \href{https://arxiv.org/pdf/1801.00690.pdf}{technical report},
+As described in their \href{https://arxiv.org/pdf/1801.00690.pdf}{technical report}\todo{Tal vez colocar un footnote porque no será posible ver la referencia al imprimir el documento, verificar otras referencias similares en otras partes de la tesis},
 some of the key features of this benchmark include:
 
 \begin{itemize}
