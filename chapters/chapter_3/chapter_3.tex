@@ -96,7 +96,7 @@ the same gradient). This results in the following constrained optimization probl
 \end{align}
 
 Even though we have a constrained the optimization problem with a threshold in the
-Euclidean \todo{Nombres propios en Mayúsculas Euclidean} distance of the policy parameters, this usually does not yield the desired
+Euclidean distance of the policy parameters, this usually does not yield the desired
 results. For example, suppose we have a stochastic policy over a discrete action
 space of two actions, parameterized using a single parameter  $\theta$ and a sigmoid 
 function $\sigma$ in the following form.
@@ -117,8 +117,8 @@ the case of $\Delta \theta=2$, applied in $\theta=$ 0, 2 and 4.
 
 \subsection{Natural Policy Gradients}
 
-A better policy update was proposed by \cite{NaturalPolicyGradient}, in which
-the author \todo{sólo es un autor} proposed using the natural gradient instead of the a simple gradient 
+A better policy update was introduced by \cite{NaturalPolicyGradient}, in which
+the author proposed using the natural gradient instead of the a simple gradient 
 update.
 
 \begin{equation}
@@ -167,7 +167,7 @@ Algorithm ~\ref{alg:trpo}.
 \algTRPO
 
 Some results (from the authors) of this algorithm in locomotion tasks and video game playing tasks 
-can be found in the following \href{https://youtu.be/jeid0wIrSn4}{link}.
+can be found in the following \href{https://youtu.be/jeid0wIrSn4}{link} \footnote{https://youtu.be/jeid0wIrSn4}.
 
 \subsection{Proximal Policy Optimization (PPO)}
 
@@ -193,7 +193,8 @@ The resulting algorithm is shown below.
 \algPPO
 
 Some results (from the authors) of this algorithm in locomotion tasks and video game playing tasks 
-can be found in the following \href{https://blog.openai.com/openai-baselines-ppo/}{link}.
+can be found in the following \href{https://blog.openai.com/openai-baselines-ppo/}{link} 
+\footnote{https://blog.openai.com/openai-baselines-ppo/}.
 
 \newpage
 
@@ -227,7 +228,8 @@ details of the benchmark itself, please refer to section ~\ref{subsec:ch3_rllab}
 \cite{DeepTerrainRL} presented very promising results for locomotion of simulated
 characters. Their agents were able to traverse complex terrain using very natural
 behaviours (see Figure ~\ref{fig:ch3_deepterrainrl}). Some footage of their results
-can be found in \href{https://xbpeng.github.io/projects/DeepTerrainRL/}{this} link.
+can be found in \href{https://xbpeng.github.io/projects/DeepTerrainRL/}{this} link 
+\footnote{https://xbpeng.github.io/projects/DeepTerrainRL/}.
 Some key aspects of this work consist of:
 
 \figDeepTerrainRL
@@ -268,7 +270,8 @@ Some key aspects of this work consist of:
           behaviours (walking, jumping) that served as the basis for the training
           of the agents. The policies are also very structured (using a FSM controller),
           and although giving good results this structure is hand engineered. Some
-          example of the initialization can be found \href{https://youtu.be/8qQmL3f2fd8?t=587}{here}.
+          example of the initialization can be found \href{https://youtu.be/8qQmL3f2fd8?t=587}{here}
+          \footnote{https://youtu.be/8qQmL3f2fd8?t=587}.
 
     \item \textbf{Network architecture}: the actors and critics for each
           agent were parameterized using deep neural networks, which processed the
@@ -294,6 +297,7 @@ This work presented a hierarchical system that successfully learned locomotion s
 for more complicated tasks (compared to forward terrain traversal). Some of the tasks
 that the agent successfully completed are shown in Figure ~\ref{fig:ch3_deeploco_tasks},
 and a video from their results can be found \href{https://youtu.be/hd1yvLWm6oA}{here}
+\footnote{https://youtu.be/hd1yvLWm6oA}.
 
 \figDeepLocoTasks
 
@@ -317,10 +321,11 @@ Some key aspects of this work are the following:
     \item \textbf{Structure of the controller}: the methods used impose some structure
           into the controller and the whole process. The approach is again not learn
           the skills from scratch, compared to the results of a related work by
-          \cite{HeessLearningAndTransfer} (see some results in \href{https://youtu.be/sboPYvhpraQ?t=34}{this} video), 
-          in which the skills are learned without reference motions and extra pre processing
-          steps for initial learning (although they also do some initialization steps
-          for learning low-level skills).
+          \cite{HeessLearningAndTransfer} (see some results in \href{https://youtu.be/sboPYvhpraQ?t=34}{this} video) 
+          \footnote{https://youtu.be/sboPYvhpraQ?t=34}, in which the skills are 
+          learned without reference motions and extra pre processing steps for 
+          initial learning (although they also do some initialization steps for 
+          learning low-level skills).
 
     \item \textbf{Complex tasks}: finally, the tasks presented in this work were
           much more complex (see Figure ~\ref{fig:ch3_deeploco_tasks}), and required
@@ -339,7 +344,7 @@ The authors of \cite{DeepmindEmergenceLocomotion} studied the same problem of lo
 as in \cite{DeepTerrainRL}. They developed an agent that could traverse obstacles
 courses that consisted of terrain generated \textbf{procedurally} in a single forward
 direction, shown in Figure ~\ref{fig:ch3_emergence_of_locomotion_tasks}. Their results
-can be seen in action in \href{https://youtu.be/hx_bgoTF7bs}{this} video.
+can be seen in action in \href{https://youtu.be/hx_bgoTF7bs}{this} video \footnote{\texttt{https://youtu.be/hx\_bgoTF7bs}}.
 
 \figEmergenceOfLocomotionTasks
 
@@ -365,9 +370,9 @@ Some key aspects of this work are the following:
           nor motion reference, compared to the related works discussed previously.
           However, because no reference is given the resulting policies give locomotion 
           behaviours that are idiosincratic, and in some cases even humorous (see
-          \href{https://youtu.be/hx_bgoTF7bs?t=87}{this} video for a reference of an 
-          humanoid with a peculiar gait). Also, the learning algorithm used is a distributed
-          variant of the PPO algorithm \citep{PPO}.
+          \href{https://youtu.be/hx_bgoTF7bs?t=87}{this} video \footnote{\texttt{https://youtu.be/hx\_bgoTF7bs?t=87}}
+          for a reference of an humanoid with a peculiar gait). Also, the learning 
+          algorithm used is a distributed variant of the PPO algorithm \citep{PPO}.
 
     \item \textbf{Learning algorithms}: the authors used a distributed version
           of the PPO \citep{PPO} algorithm for their main results, but they also 
@@ -392,8 +397,8 @@ setups that the agents must solve, like walking, standing, running, etc.
 
 \figBenchmarkControlSuite
 
-As described in their \href{https://arxiv.org/pdf/1801.00690.pdf}{technical report}\todo{Tal vez colocar un footnote porque no será posible ver la referencia al imprimir el documento, verificar otras referencias similares en otras partes de la tesis},
-some of the key features of this benchmark include:
+As described in their \href{https://arxiv.org/pdf/1801.00690.pdf}{technical report} 
+\footnote{https://arxiv.org/pdf/1801.00690.pdf} some of the key features of this benchmark include:
 
 \begin{itemize}
     \item \textbf{Full state observations}: the observations provided to the agent
@@ -413,7 +418,8 @@ some of the key features of this benchmark include:
 
     \item \textbf{MuJoCo backend}: MuJoCo is the underlying physics backend, and it is
           integrated into the suite by using Python bindings generated using 
-          \href{https://github.com/deepmind/dm_control/blob/master/dm_control/autowrap/autowrap.py}{ctypes}.
+          \href{https://github.com/deepmind/dm_control/blob/master/dm_control/autowrap/autowrap.py}{ctypes}
+          \footnote{\texttt{https://github.com/deepmind/dm\_control/blob/master/dm\_control/autowrap/autowrap.py}}.
 \end{itemize}
 
 \subsection{OpenAI Gym}
@@ -441,7 +447,8 @@ The options used as wrappers for the two physics backends available are the foll
 The RL API exposed by Gym is similar to the one exposed by ControlSuite. 
 In each step taken in the environment, the API returns the observation, 
 reward, and some extra observations. More information can be found in its 
-technical report \citep{Gym}, and in its \href{https://github.com/openai/gym}{repository}.
+technical report \citep{Gym}, and in its \href{https://github.com/openai/gym}{repository}
+\footnote{https://github.com/openai/gym}.
 
 \subsection{Rllab and Garage} \label{subsec:ch3_rllab}
 
@@ -454,7 +461,7 @@ by Rllab are grouped in three categories: \textbf{classic} (Figure ~\ref{fig:ch3
 (Figure ~\ref{fig:ch3_rllab_hierarchical}). It is compatible with Gym, by means of 
 a wrapper on top of its environments, but as they explain in their documentation 
 \href{https://rllab.readthedocs.io/en/latest/user/gym_integration.html}{website} 
-this is a very different API.
+\footnote{\texttt{https://rllab.readthedocs.io/en/latest/user/gym\_integration.html}} this is a very different API.
 
 \figBenchmarkRllabClassic
 
@@ -465,15 +472,17 @@ this is a very different API.
 Garage is the next version of the Rllab suite, and is very similar in architecture 
 to Rllab, with support for more environments and baselines. To this date the number 
 of environments is similar to the ones in Rllab, but is being actively supported, 
-compared to Rllab. More information can be found in its \href{https://github.com/rlworkgroup/garage}{repo}.
+compared to Rllab. More information can be found in its \href{https://github.com/rlworkgroup/garage}{repo}
+\footnote{https://github.com/rlworkgroup/garage}.
 
 \subsection{Robosuite}
  
-\href{https://github.com/StanfordVL/robosuite/}{Robosuite} is a set of benchmarks first 
-introduced along the \href{https://surreal.stanford.edu/}{Surreal} 
-framework by \cite{Surreal}. This set of benchmarks is more oriented towards robot manipulation,
-providing tasks that involve robot models commonly used as robotics manipulation research platforms 
-(like \textit{sawyer} and \textit{baxter}).
+\href{https://github.com/StanfordVL/robosuite/}{Robosuite} \footnote{https://github.com/StanfordVL/robosuite/}
+is a set of benchmarks first introduced along the \href{https://surreal.stanford.edu/}{Surreal} 
+\footnote{https://surreal.stanford.edu/} framework by \cite{Surreal}. This set of 
+benchmarks is more oriented towards robot manipulation, providing tasks that involve 
+robot models commonly used as robotics manipulation research platforms (like 
+\textit{sawyer} and \textit{baxter}).
 
 This set of benchmarks use MuJoCo as physics backend (through mujoco-py), and as they
 explain in their documentation, the suite provides various APIs that allow the user
@@ -495,8 +504,8 @@ accuracy.
 
 The simulator is not yet released (as stated by the authors, it is still 
 work in progress), but will probably be released as part of the 
-\href{https://developer.nvidia.com/isaac-sdk}{NVIDIA Isaac platform}. Some of the 
-benchmarks presented are shown in Figure ~\ref{fig:ch3_gpusim}, and include tasks
+\href{https://developer.nvidia.com/isaac-sdk}{NVIDIA Isaac platform} \footnote{https://developer.nvidia.com/isaac-sdk}. 
+Some of the benchmarks presented are shown in Figure ~\ref{fig:ch3_gpusim}, and include tasks
 involving hundreds of humanoids running in environments from low to high complexity.
 
 \figBenchmarksGpuSim
@@ -520,7 +529,8 @@ through a Python API that connects to the games that represent the tasks. The ba
 provided by the framework are shown in Figure ~\ref{fig:ch3_unity_ml_agents}. Also, 
 there are a set of tasks that are provided on top of this framework through the 
 \href{https://github.com/Unity-Technologies/marathon-envs}{Marathon Environments} 
-package, and are shown in Figure ~\ref{fig:ch3_marathon_envs}.
+\footnote{https://github.com/Unity-Technologies/marathon-envs} package, and are 
+shown in Figure ~\ref{fig:ch3_marathon_envs}.
 
 \figBenchmarksUnityMLAgents
 

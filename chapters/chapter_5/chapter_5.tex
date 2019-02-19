@@ -23,10 +23,11 @@ are available in github, in the following repositories:
 
 \begin{itemize}
     \item \textbf{Core functionality}: the repository that serves as the
-          core dependency for the framework. It can be found \href{https://github.com/wpumacay/tysocCore}{here}.
+          core dependency for the framework. It can be found \href{https://github.com/wpumacay/tysocCore}{here}
+          \footnote{https://github.com/wpumacay/tysocCore}.
     \item \textbf{MuJoCo implementation}: the repository with the
           adapter code for MuJoCo as the specific backend. It can be found
-          \href{https://github.com/wpumacay/tysocMjc}{here}.
+          \href{https://github.com/wpumacay/tysocMjc}{here} \footnote{https://github.com/wpumacay/tysocMjc}.
 \end{itemize}
 
 \section{Core functionality}
@@ -94,18 +95,18 @@ current support for the MuJoCo backend contains the following:
           various agents using the MuJoCo backend. There is also support for setting 
           control commands through the C/C++ low-level API, which allows to do 
           experiments similar to current benchmarks that also use MuJoCo. For a reference 
-          video visit \href{https://youtu.be/5zv5SK0o92I}{this} link.
+          video visit \href{https://youtu.be/5zv5SK0o92I}{this} link \footnote{https://youtu.be/5zv5SK0o92I}.
 
     \item \textbf{Terrain support}: The framework currently allows the instantiation 
           of the two core terrain generators using the MuJoCo backend. For a reference 
-          video visit \href{https://youtu.be/xWdNFGlhlOA}{this} link.
+          video visit \href{https://youtu.be/xWdNFGlhlOA}{this} link \footnote{https://youtu.be/xWdNFGlhlOA}.
 
     \item \textbf{Sensors support}: The implementation allows the user to take 
           measurements from the instantiated agents in the mujoco backend. Both
           types sensors mentioned earlier are supported. For reference 
-          videos visit \href{https://youtu.be/-EJMER5AGRQ}{this} and 
-          \href{https://youtu.be/c0R81VBZ72o}{this} links for extrinsic and intrinsic
-           measurements respectively.
+          videos visit \href{https://youtu.be/-EJMER5AGRQ}{this} \footnote{https://youtu.be/-EJMER5AGRQ} and 
+          \href{https://youtu.be/c0R81VBZ72o}{this} \footnote{https://youtu.be/c0R81VBZ72o} 
+          links for extrinsic and intrinsic measurements respectively.
 
     \item \textbf{Instantiation support}: The current approach for instantiating
           with the MuJoCo backend consists of making use of XML injection. The
@@ -118,8 +119,10 @@ current support for the MuJoCo backend contains the following:
           and making heavy use of object pools to reuse the resources that are
           defined in the XML file. A sample generated XML with all resources can
           be found \href{https://github.com/wpumacay/tysocMjc/blob/master/res/xml/workspace.xml}{here}
+          \footnote{https://github.com/wpumacay/tysocMjc/blob/master/res/xml/workspace.xml}
           (which is a big XML file), and a sample model for an agent can be found
-          \href{https://github.com/wpumacay/tysocMjc/blob/master/res/templates/mjcf/walker.xml}{here}.
+          \href{https://github.com/wpumacay/tysocMjc/blob/master/res/templates/mjcf/walker.xml}{here}
+          \footnote{https://github.com/wpumacay/tysocMjc/blob/master/res/templates/mjcf/walker.xml}.
 
           The approach of using core functionality separated from backend specific
           functionality helps a lot in this situation because we do not have to

@@ -286,7 +286,7 @@ loss function shown in Equation ~\ref{eq:ch2_vpg_loss}. By computing the gradien
 of this loss function we obtain the policy gradient from Equation ~\ref{eq:ch2_vanilla_policy_gradient}.
 This "supervised" view of the problem can help when implementing the algorithm
 using Neural Networks (to parameterize the policy) and current autodifferentiation 
-packages, like \href{https://tensorflow.org}{Tensorflow} and \href{https://pytorch.org}{PyTorch}. 
+packages, like Tensorflow \footnote{Tensorflow: https://tensorflow.org} and PyTorch \footnote{PyTorch: https://pytorch.org}. 
 
 \begin{equation} \label{eq:ch2_vpg_loss}
     L^{PG} = \mathbb{\hat E}_{t} \lbrace \log \pi_{\theta} (a_{t} | s_{t}) \hat A_{t} \rbrace
